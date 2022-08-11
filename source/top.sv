@@ -1,5 +1,7 @@
 //
 module top (
+    output  logic           pl_led1,
+    output  logic           fan_pwm
 );
 
     logic [39:0]    M00_AXI_araddr;
@@ -93,6 +95,13 @@ module top (
 		.S_AXI_WSTRB   (M00_AXI_wstrb  ),
 		.S_AXI_WVALID  (M00_AXI_wvalid )
 	);
+	
+	logic[26:0] led_count;
+    always_ff @(posedge axi_aclk) begin
+        led_count <= led_count + 1;
+	    pl_led1 <= led_count[26];
+	    fan_pwm <= led_count[16];
+	end
 
 endmodule
     
