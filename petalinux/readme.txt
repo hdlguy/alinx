@@ -33,8 +33,11 @@ sudo tar --preserve-permissions -zxvf linaro-stretch-developer-20180416-89.tar.g
 sudo cp --recursive --preserve binary/* /media/pedro/rootfs/; sync
 
 
+**********************************
 
+petalinux-package --boot --u-boot --fpga ../../implement/results/top.bit --format MCS
 
+program_flash -f ./proj1/images/linux/boot.mcs -offset 0 -flash_type qspi-x4-single -fsbl ./proj1/images/linux/zynqmp_fsbl.elf -cable type xilinx_tcf url TCP:127.0.0.1:3121
 
 
 *********** wic on sd card ************* 
