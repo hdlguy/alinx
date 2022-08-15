@@ -1,6 +1,8 @@
 
 petalinux-create --force --type project --template zynqMP --name proj1
 
+cp system-user.dtsi proj1/project-spec/meta-user/recipes-bsp/device-tree/files/
+
 cd proj1
 
 petalinux-config --get-hw-description=../../implement/results/
@@ -15,7 +17,6 @@ petalinux-build -c bootloader -x distclean
 petalinux-config -c kernel --silentconfig
 
 petalinux-build
-
 
 petalinux-package --force --boot --u-boot --kernel --offset 0xF40000 --fpga ../../implement/results/top.bit
 
