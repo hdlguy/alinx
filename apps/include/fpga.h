@@ -5,6 +5,6 @@
 #define     FPGA_REG_OFFSET         0x00
 
 // register numbers
-#define     FPGA_VERSION            0
-#define     FPGA_ID                 1
+#define     FPGA_ID                 0
+#define     FPGA_VERSION            1
 

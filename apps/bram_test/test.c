@@ -24,6 +24,12 @@ int main(int argc,char** argv)
         if(base_addr == NULL) fprintf(stderr,"Can't mmap\n");
     }
 
+    printf("FPGA_BASE_ADDRESS = 0x%08x, base_addr = %p\n", FPGA_BASE_ADDRESS, base_addr);
+
+    uint32_t *regptr = base_addr + FPGA_REG_OFFSET;
+
+    printf("FPGA_ID = 0x%08x, FPGA_VERSION = 0x%08x\n", regptr[FPGA_ID], regptr[FPGA_VERSION]);
+
 
 /*
     fprintf(stdout,"FPGA ID: 0x%08X\n",read_reg(pcie_addr,FPGA_ID));

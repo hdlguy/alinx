@@ -4,7 +4,7 @@ all: $(ALL_EXE)
 CC=gcc
 CFLAGS=-I. -I../include  -Wall
 
-DEPS = Makefile ../hw/proto2_hw.h
+DEPS = Makefile ../include/fpga.h 
 
 PUBLIC_LIBS = 
 LIB_FILES =
