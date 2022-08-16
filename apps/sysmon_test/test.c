@@ -6,10 +6,10 @@
 #include <fcntl.h>
 #include <string.h>
 
-#include "mem-io.h"
-#include "utils.h"
-#include "proto2_hw.h"
-#include "xspi_l.h"
+//#include "mem-io.h"
+//#include "utils.h"
+//#include "proto2_hw.h"
+//#include "xspi_l.h"
 
 float read_temp()
 {
