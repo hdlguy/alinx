@@ -52,3 +52,8 @@ sudo dd if=images/linux/petalinux-sdimage.wic of=/dev/sdc conv=fsync
 **** something like this will burn the qspi
 
 program_flash -f ./images/linux/BOOT.BIN -offset 0 -flash_type qspi-x4-single -fsbl ./images/linux/zynqmp_fsbl.elf -cable type xilinx_tcf url TCP:127.0.0.1:3121
+
+*********************************
+
+# open https://petalinux.xilinx.com/ in a web browser
+
