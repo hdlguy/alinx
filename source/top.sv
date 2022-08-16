@@ -103,5 +103,7 @@ module top (
 	    fan_pwm <= led_count[16] & led_count[15];
 	end
 
+    top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
+    
 endmodule
     
