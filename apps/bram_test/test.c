@@ -31,38 +31,26 @@ int main(int argc,char** argv)
     printf("FPGA_ID = 0x%08x, FPGA_VERSION = 0x%08x\n", regptr[FPGA_ID], regptr[FPGA_VERSION]);
 
 
-/*
-    fprintf(stdout,"FPGA ID: 0x%08X\n",read_reg(pcie_addr,FPGA_ID));
-    fprintf(stdout,"VERSION: 0x%08X\n",read_reg(pcie_addr,FPGA_VERSION));
-    write_reg(pcie_addr, LED_CONTROL, 0x0f);
-
-
-    // write the pmod LEDs
-    write_reg(pcie_addr, PMOD_GPIO_OFFSET+GPIO_TRI,  0x0000);
-    write_reg(pcie_addr, PMOD_GPIO_OFFSET+GPIO_DATA, 0x1234);
-
 
     // Test the scratch bram.
-    uint32_t* write_data = malloc(TEST_BRAM_SIZE);
-    uint32_t* read_data  = malloc(TEST_BRAM_SIZE);
+    uint32_t* write_data = malloc(TEST_RAM_SIZE);
+    uint32_t* read_data  = malloc(TEST_RAM_SIZE);
     // create test data.
-    //srand(1);
-    for (int i=0; i<TEST_BRAM_SIZE/4; i++) write_data[i] = rand();
-    uint32_t* bram_ptr = pcie_addr + TEST_BRAM_OFFSET;
+    for (int i=0; i<TEST_RAM_SIZE/4; i++) write_data[i] = rand();
+    uint32_t* bram_ptr = base_addr + TEST_RAM_OFFSET;
     fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
     // write bram
-    for (int i=0; i<TEST_BRAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
+    for (int i=0; i<TEST_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
     // read bram
-    for (int i=0; i<TEST_BRAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
+    for (int i=0; i<TEST_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
     // chech bram results
     int errors = 0;
-    for (int i=0; i<TEST_BRAM_SIZE/4; i++) {
+    for (int i=0; i<TEST_RAM_SIZE/4; i++) {
         if (read_data[i] != write_data[i]) errors++;
     }
     fprintf(stdout, "scratch bram errors = %d\n", errors);
     free(write_data);
     free(read_data);
-*/
 
 
     munmap(base_addr,FPGA_SIZE);
