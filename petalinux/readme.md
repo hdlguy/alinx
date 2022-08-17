@@ -53,4 +53,11 @@ petalinux-package --wic
 sudo dd if=images/linux/petalinux-sdimage.wic of=/dev/sdc conv=fsync
 
 
+# FPGA boot mode dip switch
+
+SW1 controls boot mode. Setting a switch to the "on" positions asserts a "0" on the mode line, ON = 0. OFF = 1;
+
+Switch positions 1, 2, 3 and 4 correspond to mode lines 3, 2, 1, 0.
+
+SD Card mode: switch 1 = on, switch 2 = off, switch 3 = on, switch 4 = off.
 
