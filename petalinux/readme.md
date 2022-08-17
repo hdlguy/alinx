@@ -1,3 +1,6 @@
+# Petalinux Build instructions
+
+    * open https://petalinux.xilinx.com/ in a web browser. this makes sure we have a good connection to the yocto downloads.
 
 petalinux-create --force --type project --template zynqMP --name proj1
 
@@ -34,26 +37,20 @@ sudo tar --preserve-permissions -zxvf linaro-stretch-developer-20180416-89.tar.g
 sudo cp --recursive --preserve binary/* /media/pedro/rootfs/; sync
 
 
-**********************************
+
+# Commands to burn Petalinux into the flash prom
 
 petalinux-package --boot --u-boot --fpga ../../implement/results/top.bit --format MCS
 
 program_flash -f ./proj1/images/linux/boot.mcs -offset 0 -flash_type qspi-x4-single -fsbl ./proj1/images/linux/zynqmp_fsbl.elf -cable type xilinx_tcf url TCP:127.0.0.1:3121
 
 
-*********** wic on sd card ************* 
+
+# Commands to create and install a wic image
 
 petalinux-package --wic
 
 sudo dd if=images/linux/petalinux-sdimage.wic of=/dev/sdc conv=fsync
 
 
-
-**** something like this will burn the qspi
-
-program_flash -f ./images/linux/BOOT.BIN -offset 0 -flash_type qspi-x4-single -fsbl ./images/linux/zynqmp_fsbl.elf -cable type xilinx_tcf url TCP:127.0.0.1:3121
-
-*********************************
-
-# open https://petalinux.xilinx.com/ in a web browser
 
