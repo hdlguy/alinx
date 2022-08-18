@@ -12,7 +12,9 @@ petalinux-config --get-hw-description=../../implement/results/
 
     * Yocto Settings -> Add pre-mirror url -> change http: to https:
     * Yocto Settings -> Network State Feeds url -> change http: to https:
-    * Image Settings -> EXT4 (if you want the rootfs on the sd card)
+    * Image Packaging Configuration -> EXT4 (if you want the rootfs on the sd card)
+    * Image Packaging Configuration -> Device node of SD device -> mmcblk1p2 (if you have the eMMC device enabled in Vivado IPI)
+    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> psu_sd_1 (if you have the eMMC device enabled in Vivado IPI)
     * save and exit
 
 petalinux-build -c bootloader -x distclean

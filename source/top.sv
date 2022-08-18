@@ -100,7 +100,7 @@ module top (
     always_ff @(posedge axi_aclk) begin
         led_count <= led_count + 1;
 	    pl_led1 <= led_count[26];
-	    fan_pwm <= led_count[16] & led_count[15];
+	    fan_pwm <= led_count[17] & led_count[16] & led_count[15];
 	end
 
     top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
