@@ -1,7 +1,9 @@
 //
 module top (
     output  logic           pl_led1,
-    output  logic           fan_pwm
+    output  logic           fan_pwm,
+    input   logic           clkin200_p,
+    input   logic           clkin200_n    
 );
 
     logic [39:0]    M00_AXI_araddr;
@@ -104,6 +106,15 @@ module top (
 	end
 
     top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
+
+    // let us use the 200MHz differential clock
+    logic clkin200, clk200;
+    IBUFDS IBUFDS_inst (.O(clkin200 ), .I(clkin200_p),  .IB(clkin200_n));
+    BUFG BUFG_inst (.O(clk200), .I(clkin200));
+    
+	logic[26:0] clk200_count;
+    always_ff @(posedge clk200) clk200_count <= clk200_count + 1;
+    top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
     
 endmodule
     
