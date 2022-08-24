@@ -21,7 +21,7 @@ Features of the the board were then tested using Linux command, C programs and f
     - 200MHz differential PL clock
 
 ## Tings Not Yet Tested
-    - PL DDR4 memory
+    - PL DDR4 memory (not installed on ACU2G SOM module)
     - CAN Bus
     - Camera Interface
     - Display Interface

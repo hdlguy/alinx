@@ -3,7 +3,10 @@ module top (
     output  logic           pl_led1,
     output  logic           fan_pwm,
     input   logic           clkin200_p,
-    input   logic           clkin200_n    
+    input   logic           clkin200_n,
+    //
+    input   logic           uart_rxd,
+    output  logic           uart_txd        
 );
 
     logic [39:0]    M00_AXI_araddr;
@@ -52,7 +55,10 @@ module top (
         .M00_AXI_wvalid     (M00_AXI_wvalid),
         //
         .axi_aclk           (axi_aclk),
-        .axi_aresetn        (axi_aresetn)
+        .axi_aresetn        (axi_aresetn),
+        //
+        .uart_rxd(uart_rxd),
+        .uart_txd(uart_txd)        
     );
     
     // This register file gives software contol over unit under test (UUT).
