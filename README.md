@@ -44,11 +44,11 @@ Both the PS and PL sides of the device were used extensively in these tests.
 The 2 GB PS DDR4 memory was used to run Petalinux and some Vitis applications.  DDR4 timing was found by selecting a Samsung memory and then adjusting slightly. The settings were not optimized but no problems have been seen.
 
 ### AlINX AL321 USB debug/download cable
-ALINX ships a very fine JTAG debug cable with the development board.  The usb cable is bright red which is helpful on a crowded bench covered with black cables. The debug cable enumerates as Digilent logic so ALINX must have license it from them. That's good. The cable suppors both 14 pin and the older 10 pin connections.
+ALINX ships a very fine JTAG debug cable with the development board.  The usb cable is bright red which is helpful on a crowded bench covered with black cables. The debug cable enumerates as Digilent logic so ALINX must have licensed it from them. That's good. The cable supports both 14 pin and the older 10 pin connections.
 We used this cable for all programming and debugging which included Vitis SDK and ILA Chipscope.
 
 ### fan PWM control
-We applied a 1KHz 1/8 duty cycle pwm signal to the fan and got a nice quite fan speed.
+We applied a 1KHz 1/8 duty cycle pwm signal to the fan and got a nice quiet fan speed.
 
 ### PL LED
 The PL LED is flashing.
@@ -66,14 +66,14 @@ The QSPI was programed to boot Petalinux to ram filesystem from powerup.
 The boot mode lines on the SOM were set to sd card.  An sd card was created to boot Petalinux to a Debian file system on the sd card. See instructions under petalinux folder.
 
 ### PS UART
-The PS uart was enable in Vivado and used to interact with the Petalinux boot process and print from Vitis applications.
+The PS uart was enabled in Vivado and used as the Petalinux boot console and to print from Vitis applications.
 
 ### PL UART
 A Vitis application was built using the axi_uartlite_0 device in the PL. The interface works.
 
 ### PS Ethernet
-The GEM3 ethernet MAC of the PS was enabled and Petalinux automatically connects to the network. User control was then done using ssh.
+The GEM3 ethernet MAC of the PS was enabled and Petalinux automatically connects to the network. User control was then done using ssh. A minimal Apache2 web server was demonstrated.
 
 ### 200MHz differential PL clock
-The 200MHz differential clock as used in the fpga design to run a counter that was observed with an ILA debug core.
+The 200MHz differential clock is used in the fpga design to run a counter that was observed with an ILA debug core.
 
