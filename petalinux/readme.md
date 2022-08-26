@@ -19,7 +19,10 @@ petalinux-config --get-hw-description=../../implement/results/
 
 petalinux-build -c bootloader -x distclean
 
-petalinux-config -c kernel --silentconfig
+petalinux-config -c kernel
+
+    * Drivers -> nvme -> nvme as block device.
+    * save and exit
 
 petalinux-build
 

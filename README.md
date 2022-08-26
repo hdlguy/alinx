@@ -20,6 +20,8 @@ Features of the the board were then tested using Linux command, C programs and f
     - PL UART
     - PS Ethernet
     - 200MHz differential PL clock
+    - PS I2C board temperature sensor
+    - M.2 PCIe
 
 ## Tings Not Yet Tested
     - PL DDR4 memory (not installed on ACU2G SOM module)
@@ -29,7 +31,6 @@ Features of the the board were then tested using Linux command, C programs and f
     - Mini-Displayport Interface
     - PS LED
     - PL Ethernet
-    - M.2 PCIe
     - Dual 40 pin expansion connectors
     - USB 3.0 hub
 
@@ -76,4 +77,13 @@ The GEM3 ethernet MAC of the PS was enabled and Petalinux automatically connects
 
 ### 200MHz differential PL clock
 The 200MHz differential clock is used in the fpga design to run a counter that was observed with an ILA debug core.
+
+### PS I2C board temperature sensor
+The I2C bus to the onboard temperature sensor was enabled in Vivado. Petalinux was rebuild with new XSA file.  The temperature sensor was accessed using the linux driver, i2c-tools and a little linux program. See apps/i2c_test.
+
+
+### M.2 PCIe
+An nvme ssd was formatted in a linux workstation then installed in the M.2 slot of the carrier board.  Vivado ZynqMP adjustments were made and the fpga recompiled. Petalinux kernel configurations were set to support nVME drive as block device. Standard linux commands were used to mount the drive.
+
+    /dev/nvme0n1p1 ext4      234G   60M  222G   1% /mnt/nvme
 
