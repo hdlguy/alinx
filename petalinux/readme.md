@@ -32,7 +32,9 @@ petalinux-package --force --boot --u-boot --kernel --offset 0xF40000 --fpga ../.
 
 
 cp images/linux/BOOT.BIN /media/pedro/BOOT/
+
 cp images/linux/image.ub /media/pedro/BOOT/
+
 cp images/linux/boot.scr /media/pedro/BOOT/
 
 cd ..
