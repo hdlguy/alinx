@@ -59,14 +59,7 @@ The eMMC drive was tested by enabling the interface in Vivado and rebuilding Pet
 
     /dev/mmcblk0p1  7.2G   33M  6.7G   1% /mnt/emmc
 
-
-### QSPI boot to Petalinux
-The QSPI was programed to boot Petalinux to ram filesystem from powerup.
-
-### SD card boot 
-The boot mode lines on the SOM were set to sd card.  An sd card was created to boot Petalinux to a Debian file system on the sd card. See instructions under petalinux folder.
-
-SD write speed:
+eMMC write speed:
 
 pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
 1000+0 records in
@@ -77,7 +70,7 @@ real	0m21.737s
 user	0m0.001s
 sys	0m5.842s
 
-SD read speed:
+eMMC read speed:
 
 pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0 of=/dev/null bs=2M count=1000
 mmcblk0       mmcblk0boot0  mmcblk0boot1  mmcblk0p1     mmcblk0rpmb   
@@ -90,6 +83,12 @@ real	0m22.687s
 user	0m0.015s
 sys	0m3.987s
 
+
+### QSPI boot to Petalinux
+The QSPI was programed to boot Petalinux to ram filesystem from powerup.
+
+### SD card boot 
+The boot mode lines on the SOM were set to sd card.  An sd card was created to boot Petalinux to a Debian file system on the sd card. See instructions under petalinux folder.
 
 ### PS UART
 The PS uart was enabled in Vivado and used as the Petalinux boot console and to print from Vitis applications.
