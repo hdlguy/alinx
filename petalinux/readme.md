@@ -43,7 +43,7 @@ sudo cp --recursive --preserve binary/* /media/pedro/rootfs/; sync
 
 
 
-# Commands to burn Petalinux into the flash prom
+# Commands to burn Petalinux into the flash prom (not used)
 
 petalinux-package --boot --u-boot --fpga ../../implement/results/top.bit --format MCS
 
@@ -51,7 +51,7 @@ program_flash -f ./proj1/images/linux/boot.mcs -offset 0 -flash_type qspi-x4-sin
 
 
 
-# Commands to create and install a wic image
+# Commands to create and install a wic image (not used)
 
 petalinux-package --wic
 
