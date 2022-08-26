@@ -36,7 +36,7 @@ Features of the the board were then tested using Linux command, C programs and f
 
 
 ## Test and Review
-After purchase ALINX provides schematics of the core SOM board and the carrier board as well as a thorough user's guide in English and Chinese.  Lacking are Vivado board definition files and Petalinux BSP.
+After purchase, ALINX provides schematics of the core SOM board and the carrier board as well as a thorough user's guide in English and Chinese.  Lacking are Vivado board definition files and Petalinux BSP.
 
 An fpga test design was created with PS peripherals enabled and Petalinux was built using the resulting XSA file.
 
