@@ -119,7 +119,7 @@ The I2C bus to the onboard temperature sensor was enabled in Vivado. Petalinux w
 
 
 ### M.2 PCIe
-An nvme ssd was formatted in a linux workstation then installed in the M.2 slot of the carrier board.  Vivado ZynqMP adjustments were made and the fpga recompiled. Petalinux kernel configurations were set to support nVME drive as block device. Standard linux commands were used to mount the drive.
+An nvme ssd was installed in the M.2 slot of the carrier board.  Vivado ZynqMP adjustments were made and the fpga recompiled. Petalinux kernel configurations were set to support nVME drive as block device. Standard linux commands were used to partition, format and mount the drive.
 
     sudo fdisk /dev/nvme0n1
     sudo mkfs.ext4 /dev/nvme0n1p1 
