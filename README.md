@@ -64,7 +64,7 @@ eMMC write speed:
 pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
 1000+0 records in
 1000+0 records out
-2097152000 bytes (2.1 GB, 2.0 GiB) copied, 21.6952 s, 96.7 MB/s
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 21.6952 s, **96.7 MB/s**
 
 real	0m21.737s
 user	0m0.001s
@@ -77,7 +77,7 @@ mmcblk0       mmcblk0boot0  mmcblk0boot1  mmcblk0p1     mmcblk0rpmb
 pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0p1 of=/dev/null bs=2M count=1000
 1000+0 records in
 1000+0 records out
-2097152000 bytes (2.1 GB, 2.0 GiB) copied, 22.6514 s, 92.6 MB/s
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 22.6514 s, **92.6 MB/s**
 
 real	0m22.687s
 user	0m0.015s
@@ -116,7 +116,7 @@ Write speed was measured using dd.
 pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/nvme0n1p1 bs=2M count=1000
 1000+0 records in
 1000+0 records out
-2097152000 bytes (2.1 GB, 2.0 GiB) copied, 6.54003 s, 321 MB/s
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 6.54003 s, **321 MB/s**
 
 real	0m6.583s
 user	0m0.024s
@@ -127,7 +127,7 @@ Write speed was measured using dd.
 pedro@linaro-developer:~$ time sudo dd if=/dev/nvme0n1p1 of=/dev/null bs=2M count=1000
 1000+0 records in
 1000+0 records out
-2097152000 bytes (2.1 GB, 2.0 GiB) copied, 5.42412 s, 387 MB/s
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 5.42412 s, **387 MB/s**
 
 real	0m5.468s
 user	0m0.020s
