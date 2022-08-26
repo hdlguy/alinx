@@ -63,8 +63,33 @@ The eMMC drive was tested by enabling the interface in Vivado and rebuilding Pet
 ### QSPI boot to Petalinux
 The QSPI was programed to boot Petalinux to ram filesystem from powerup.
 
-### SD card boot to Petalinux with Debian root filesyste on sd card
+### SD card boot 
 The boot mode lines on the SOM were set to sd card.  An sd card was created to boot Petalinux to a Debian file system on the sd card. See instructions under petalinux folder.
+
+SD write speed:
+
+pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
+1000+0 records in
+1000+0 records out
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 21.6952 s, 96.7 MB/s
+
+real	0m21.737s
+user	0m0.001s
+sys	0m5.842s
+
+SD read speed:
+
+pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0 of=/dev/null bs=2M count=1000
+mmcblk0       mmcblk0boot0  mmcblk0boot1  mmcblk0p1     mmcblk0rpmb   
+pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0p1 of=/dev/null bs=2M count=1000
+1000+0 records in
+1000+0 records out
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 22.6514 s, 92.6 MB/s
+
+real	0m22.687s
+user	0m0.015s
+sys	0m3.987s
+
 
 ### PS UART
 The PS uart was enabled in Vivado and used as the Petalinux boot console and to print from Vitis applications.
@@ -86,4 +111,27 @@ The I2C bus to the onboard temperature sensor was enabled in Vivado. Petalinux w
 An nvme ssd was formatted in a linux workstation then installed in the M.2 slot of the carrier board.  Vivado ZynqMP adjustments were made and the fpga recompiled. Petalinux kernel configurations were set to support nVME drive as block device. Standard linux commands were used to mount the drive.
 
     /dev/nvme0n1p1 ext4      234G   60M  222G   1% /mnt/nvme
+
+Write speed was measured using dd.
+
+pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/nvme0n1p1 bs=2M count=1000
+1000+0 records in
+1000+0 records out
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 6.54003 s, 321 MB/s
+
+real	0m6.583s
+user	0m0.024s
+sys	0m6.180s
+
+Write speed was measured using dd.
+
+pedro@linaro-developer:~$ time sudo dd if=/dev/nvme0n1p1 of=/dev/null bs=2M count=1000
+1000+0 records in
+1000+0 records out
+2097152000 bytes (2.1 GB, 2.0 GiB) copied, 5.42412 s, 387 MB/s
+
+real	0m5.468s
+user	0m0.020s
+sys	0m4.751s
+
 
