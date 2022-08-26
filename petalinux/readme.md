@@ -26,6 +26,8 @@ petalinux-config -c kernel
 
 petalinux-build
 
+    * NOTE: frequently petalinux-build generates error messages. Just rerun the previous three commands to resolve that. (Who knows why?)
+
 petalinux-package --force --boot --u-boot --kernel --offset 0xF40000 --fpga ../../implement/results/top.bit
 
 
