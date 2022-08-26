@@ -68,16 +68,16 @@ The eMMC drive was tested by enabling the interface in Vivado and rebuilding Pet
 
 Write speed:
 
-pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 21.6952 s, **96.7 MB/s**
 
 Read speed:
 
-pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0 of=/dev/null bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/mmcblk0 of=/dev/null bs=2M count=1000
 mmcblk0       mmcblk0boot0  mmcblk0boot1  mmcblk0p1     mmcblk0rpmb   
-pedro@linaro-developer:~$ time sudo dd if=/dev/mmcblk0p1 of=/dev/null bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/mmcblk0p1 of=/dev/null bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 22.6514 s, **92.6 MB/s**
@@ -90,14 +90,14 @@ The boot mode lines on the SOM were set to sd card.  An sd card was created to b
 
 Write speed:
 
-pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=~/ddtarget bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/zero of=~/ddtarget bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 82.182 s, ***25.5 MB/s***
 
 Read speed:
 
-pedro@linaro-developer:~$ time sudo dd if=~/ddtarget of=/dev/null bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=~/ddtarget of=/dev/null bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 87.5167 s, ***24.0 MB/s***
@@ -130,14 +130,14 @@ An nvme ssd was formatted in a linux workstation then installed in the M.2 slot 
 
 Write speed:
 
-pedro@linaro-developer:~$ time sudo dd if=/dev/zero of=/dev/nvme0n1p1 bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/zero of=/dev/nvme0n1p1 bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 6.54003 s, **321 MB/s**
 
 Read speed:
 
-pedro@linaro-developer:~$ time sudo dd if=/dev/nvme0n1p1 of=/dev/null bs=2M count=1000
+pedro@linaro-developer:\~$ time sudo dd if=/dev/nvme0n1p1 of=/dev/null bs=2M count=1000
 1000+0 records in
 1000+0 records out
 2097152000 bytes (2.1 GB, 2.0 GiB) copied, 5.42412 s, **387 MB/s**
