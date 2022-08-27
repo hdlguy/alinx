@@ -23,7 +23,7 @@ Features of the the board were then tested using Linux command, C programs and f
     - PS I2C board temperature sensor
     - M.2 PCIe
 
-## Tings Not Yet Tested
+## Things Not Yet Tested
     - PL DDR4 memory (not installed on ACU2G SOM module)
     - CAN Bus
     - Camera Interface
