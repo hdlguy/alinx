@@ -1,6 +1,9 @@
 # ALINX Board
 Some fpga and software logic to test out the new ALINX AXU2CG-E development board.
 
+    http://www.alinx.com/en/index.php/default/content/147.html
+    http://www.alinx.com/en/index.php/default/content/108.html
+
 ## Methodology
 First, an fpga design was created with Zynq MPSOC system and this was compiled.  The resulting XSA file was then used to 
 create a Petalinux boot image that mounts the sd card as a Debian root filesystem.
