@@ -1,32 +1,90 @@
 /include/ "system-conf.dtsi"
+
 / {
+	clock_si5223_0: clk27 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <27000000>;
+	};
+
+	clock_si5223_1: clk26 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <26000000>;
+	};
+
+	clock_si5223_3: clk100 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
+	};
+
+	clock_si5223_4: clk100 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
+	};
+};
+
+&pinctrl0 {
+    status = "okay";
+
+	pinctrl_usb0_default: usb0-default {
+		mux {
+			groups = "usb0_0_grp";
+			function = "usb0";
+		};
+
+		conf {
+			groups = "usb0_0_grp";
+			power-source = <0x1>;
+		};
+
+		conf-rx {
+			pins = "MIO52", "MIO53", "MIO55";
+			bias-high-impedance;
+			drive-strength = <12>;
+			slew-rate = <0x0>;
+		};
+
+		conf-tx {
+			pins = "MIO54", "MIO56", "MIO57", "MIO58", "MIO59",
+			       "MIO60", "MIO61", "MIO62", "MIO63";
+			bias-disable;
+			drive-strength = <4>;
+			slew-rate = <0x1>;
+		};
+	};
+};
+
+&psgtr {
+    clocks = <&clock_si5223_0 &clock_si5223_1 &clock_si5223_3 &clock_si5223_4>;
+    clock-names = "ref0", "ref1", "ref2", "ref3";
 };
 
 /* SD */
 &sdhci1 {
-	disable-wp;
-	no-1-8-v;
+    disable-wp;
+    no-1-8-v;
+};
+
+&usb0 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_usb0_default>;    
+    phy-names = "usb3-phy";
+    phys = <&psgtr 1 4 0 1>;
 };
 
 /* USB  */
 &dwc3_0 {
     status = "okay";
     dr_mode = "host";
+    snps,usb3_lpm_capable;
+    maximum-speed = "super-speed";
 };
 
 &gem3 {
-	status = "okay";
-	local-mac-address = [00 0a 35 00 02 90];
+    status = "okay";
+    local-mac-address = [00 0a 35 00 02 90];
 };
-
-/*
-&i2c1 {
-    lm75@48 {
-        compatible = "lm75";
-        reg = <0x48>;
-        status = "okay";
-    };
-};
-*/
-
 
