@@ -22,6 +22,8 @@ petalinux-build -c bootloader -x distclean
 petalinux-config -c kernel
 
     * Drivers -> nvme -> nvme as block device.
+    * Device Drivers -> Phy Subsystem -> PHY Core.
+    * Device Drivers -> Phy Subsystem -> Xilinx ZynqMP PHY driver.
     * save and exit
 
 petalinux-build
