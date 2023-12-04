@@ -1,6 +1,6 @@
 # run at linux command line 
 #       xsct setup.tcl
-#       vitis -workspace ./workspace
+#       vitis --classic -workspace ./workspace
 #
 file delete -force ./workspace
 
