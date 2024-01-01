@@ -9,7 +9,7 @@ http://www.alinx.com/en/index.php/default/content/108.html
 First, an fpga design was created with Zynq MPSOC system and this was compiled.  The resulting XSA file was then used to 
 create a Petalinux boot image that mounts the sd card as a Debian root filesystem.
 
-Features of the the board were then tested using Linux command, C programs and fpga logic.
+Features of the the board were then tested using Linux commands, C programs and fpga logic.
 
 ## Things Tested
     - Xilinx XCZU2CG-1SFVC784E MPSOC device
