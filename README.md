@@ -118,8 +118,7 @@ The GEM3 ethernet MAC of the PS was enabled and Petalinux automatically connects
 The 200MHz differential clock is used in the fpga design to run a counter that was observed with an ILA debug core.
 
 ### PS I2C board temperature sensor
-The I2C bus to the onboard temperature sensor was enabled in Vivado. Petalinux was rebuild with new XSA file.  The temperature sensor was accessed using the linux driver, i2c-tools and a little linux program. See apps/i2c_test.
-
+The I2C bus to the onboard temperature sensor was enabled in Vivado. Petalinux was rebuilt with new XSA file.  The temperature sensor was accessed using the linux driver, i2c-tools and a little linux program. See apps/i2c_test.
 
 ### M.2 PCIe
 An nvme ssd was installed in the M.2 slot of the carrier board.  Vivado ZynqMP adjustments were made and the fpga recompiled. Petalinux kernel configurations were set to support nVME drive as block device. Standard linux commands were used to partition, format and mount the drive.
