@@ -5,11 +5,12 @@ module top (
     output logic[3:0]  pcie_mgt_txn,
     output logic[3:0]  pcie_mgt_txp,
     input  logic       pcie_perstn,
-    input  logic       pcie_refclk_clk_n,
-    input  logic       pcie_refclk_clk_p
+    input  logic       pcie_refclk_n,
+    input  logic       pcie_refclk_p,
+    //
+    output  logic[1:0]  led
 );
     
-
     logic [31:0]  M00_AXI_araddr;
     logic [2:0]   M00_AXI_arprot;
     logic         M00_AXI_arready;
@@ -58,9 +59,9 @@ module top (
         .pcie_mgt_rxp       (pcie_mgt_rxp),
         .pcie_mgt_txn       (pcie_mgt_txn),
         .pcie_mgt_txp       (pcie_mgt_txp),
-        .perstn             (perstn),
-        .refclk_clk_n       (refclk_clk_n),
-        .refclk_clk_p       (refclk_clk_p)
+        .perstn             (pcie_perstn),
+        .refclk_clk_n       (pcie_refclk_n),
+        .refclk_clk_p       (pcie_refclk_p)
     );
 
     // This register file gives software contol over unit under test (UUT).
@@ -70,6 +71,7 @@ module top (
     assign slv_read[0] = 32'hdeadbeef;
     assign slv_read[1] = 32'h76543210;
     
+    assign led         = slv_reg[2][1:0];
     assign slv_read[2] = slv_reg[2];
     
     assign slv_read[Nregs-1:3] = slv_reg[Nregs-1:3];
