@@ -4,7 +4,11 @@ module top (
     input  logic       sysclk_n,
     input  logic       sysclk_p,
     //
-    output  logic[1:0]  led
+    output  logic[1:0]  led,
+    //
+    input   logic       resetn,
+    input   logic       usb_uart_rxd,
+    output  logic       usb_uart_txd    
 );
 
     logic clk, sysclk;
@@ -35,6 +39,8 @@ module top (
 
     system system_i (
         .clk                (clk),    
+        .resetn             (resetn),
+        //
         .M00_AXI_araddr     (M00_AXI_araddr),
         .M00_AXI_arprot     (M00_AXI_arprot),
         .M00_AXI_arready    (M00_AXI_arready),
@@ -55,7 +61,10 @@ module top (
         .M00_AXI_wstrb      (M00_AXI_wstrb),
         .M00_AXI_wvalid     (M00_AXI_wvalid),
         .axi_aclk           (axi_aclk),
-        .axi_aresetn        (axi_aresetn)
+        .axi_aresetn        (axi_aresetn),
+        //
+        .usb_uart_rxd       (usb_uart_rxd),
+        .usb_uart_txd       (usb_uart_txd)
     );
 
     // This register file gives software contol over unit under test (UUT).
