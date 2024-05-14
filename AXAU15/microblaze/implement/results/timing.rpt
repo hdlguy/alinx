@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date              : Mon May 13 15:43:33 2024
+| Date              : Tue May 14 07:54:54 2024
 | Host              : WD850X2TB running 64-bit Ubuntu 22.04.4 LTS
 | Command           : report_timing_summary -file ./results/timing.rpt
 | Design            : top
@@ -147,7 +147,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      1.672        0.000                      0                35349        0.010        0.000                      0                35346        1.958        0.000                       0                 10369  
+      1.901        0.000                      0                35341        0.011        0.000                      0                35338        1.958        0.000                       0                 10365  
 
 
 All user specified timing constraints are met.
@@ -173,9 +173,9 @@ system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TCK  {0.000 16.666}  
 
 Clock                                                           WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----                                                           -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sysclk                                                            1.672        0.000                      0                35071        0.010        0.000                      0                35071        1.958        0.000                       0                 10095  
-  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK         14.910        0.000                      0                  228        0.018        0.000                      0                  228       16.134        0.000                       0                   233  
-  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE       30.890        0.000                      0                   47        0.091        0.000                      0                   47       33.058        0.000                       0                    41  
+sysclk                                                            1.901        0.000                      0                35063        0.011        0.000                      0                35063        1.958        0.000                       0                 10091  
+  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK         15.009        0.000                      0                  228        0.018        0.000                      0                  228       16.134        0.000                       0                   233  
+  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE       31.264        0.000                      0                   47        0.129        0.000                      0                   47       33.058        0.000                       0                    41  
 
 
 ------------------------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS
 
 Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
 ----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
-**default**   sysclk                           14.564        0.000                      0                    3                                                                        
+**default**   sysclk                           14.712        0.000                      0                    3                                                                        
 
 
 ------------------------------------------------------------------------------------------------
@@ -207,35 +207,35 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sysclk
   To Clock:  sysclk
 
-Setup :            0  Failing Endpoints,  Worst Slack        1.672ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.010ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        1.901ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.011ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        1.958ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             1.672ns  (required time - arrival time)
-  Source:                 system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_exception_from_ex_reg/C
+Slack (MET) :             1.901ns  (required time - arrival time)
+  Source:                 system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_valid_reg/C
                             (rising edge-triggered cell FDRE clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/ENARDEN
+  Destination:            system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/ENARDEN
                             (rising edge-triggered cell RAMB36E2 clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             sysclk
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            5.000ns  (sysclk rise@5.000ns - sysclk rise@0.000ns)
-  Data Path Delay:        2.729ns  (logic 0.691ns (25.321%)  route 2.038ns (74.679%))
+  Data Path Delay:        2.705ns  (logic 0.644ns (23.809%)  route 2.061ns (76.191%))
   Logic Levels:           5  (AND2B1L=1 LUT2=2 LUT3=1 LUT6=1)
-  Clock Path Skew:        -0.222ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    2.039ns = ( 7.039 - 5.000 ) 
-    Source Clock Delay      (SCD):    2.460ns
-    Clock Pessimism Removal (CPR):    0.199ns
+  Clock Path Skew:        -0.017ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.975ns = ( 6.975 - 5.000 ) 
+    Source Clock Delay      (SCD):    2.234ns
+    Clock Pessimism Removal (CPR):    0.242ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
     Discrete Jitter          (DJ):    0.000ns
     Phase Error              (PE):    0.000ns
-  Clock Net Delay (Source):      1.318ns (routing 0.171ns, distribution 1.147ns)
-  Clock Net Delay (Destination): 1.080ns (routing 0.155ns, distribution 0.925ns)
+  Clock Net Delay (Source):      1.092ns (routing 0.171ns, distribution 0.921ns)
+  Clock Net Delay (Destination): 1.016ns (routing 0.155ns, distribution 0.861ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -250,28 +250,28 @@ Slack (MET) :             1.672ns  (required time - arrival time)
                          net (fo=1, routed)           0.335     1.114    sysclk
     BUFGCE_X0Y45         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.028     1.142 r  BUFG_sysclk/O
-    X0Y1 (CLOCK_ROOT)    net (fo=10094, routed)       1.318     2.460    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Clk
-    SLICE_X32Y77         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_exception_from_ex_reg/C
+    X0Y1 (CLOCK_ROOT)    net (fo=10090, routed)       1.092     2.234    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Clk
+    SLICE_X7Y97          FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_valid_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X32Y77         FDRE (Prop_GFF_SLICEL_C_Q)
-                                                      0.079     2.539 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_exception_from_ex_reg/Q
-                         net (fo=7, routed)           0.209     2.749    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_exception_from_ex
-    SLICE_X31Y72         LUT2 (Prop_C5LUT_SLICEM_I0_O)
-                                                      0.068     2.817 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/wb_exception_i_i_1/O
-                         net (fo=6, routed)           0.266     3.083    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/MEM_DataBus_Access_reg_2
-    SLICE_X32Y77         LUT6 (Prop_G6LUT_SLICEL_I3_O)
-                                                      0.123     3.206 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/Using_FPGA.Native_i_2__1/O
-                         net (fo=4, routed)           0.216     3.422    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/p_237_in
-    SLICE_X30Y75         LUT3 (Prop_E6LUT_SLICEM_I0_O)
-                                                      0.052     3.474 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/Using_FPGA.Native_i_1__3/O
-                         net (fo=1, routed)           0.243     3.717    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_DLMB.Using_Latch_AS_Logic.AND2B1L_I1/SRI
-    SLICE_X30Y71         AND2B1L (Prop_BFF_SLICEM_SRI_O)
-                                                      0.219     3.936 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_DLMB.Using_Latch_AS_Logic.AND2B1L_I1/Using_FPGA.Native/O
-                         net (fo=2, routed)           0.391     4.327    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[7].ram.r/prim_noinit.ram/ena
-    SLICE_X20Y67         LUT2 (Prop_H6LUT_SLICEL_I1_O)
-                                                      0.150     4.477 r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[7].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram_i_1/O
-                         net (fo=8, routed)           0.712     5.189    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/ENA_I
-    RAMB36_X0Y11         RAMB36E2                                     r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/ENARDEN
+    SLICE_X7Y97          FDRE (Prop_HFF_SLICEM_C_Q)
+                                                      0.079     2.313 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_valid_reg/Q
+                         net (fo=13, routed)          0.266     2.579    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_valid_instr
+    SLICE_X8Y97          LUT2 (Prop_B5LUT_SLICEL_I1_O)
+                                                      0.165     2.744 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/wb_exception_i_i_1/O
+                         net (fo=6, routed)           0.249     2.993    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/MEM_DataBus_Access_reg_2
+    SLICE_X8Y96          LUT6 (Prop_G6LUT_SLICEL_I3_O)
+                                                      0.089     3.082 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/Using_FPGA.Native_i_2__1/O
+                         net (fo=4, routed)           0.093     3.175    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/p_237_in
+    SLICE_X7Y96          LUT3 (Prop_G6LUT_SLICEM_I0_O)
+                                                      0.037     3.212 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Decode_I/Using_FPGA_2.ex_load_store_instr_Inst/Using_FPGA.Native_i_1__3/O
+                         net (fo=1, routed)           0.298     3.510    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_DLMB.Using_Latch_AS_Logic.AND2B1L_I1/SRI
+    SLICE_X5Y97          AND2B1L (Prop_BFF_SLICEL_SRI_O)
+                                                      0.223     3.733 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_DLMB.Using_Latch_AS_Logic.AND2B1L_I1/Using_FPGA.Native/O
+                         net (fo=2, routed)           0.146     3.879    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[7].ram.r/prim_noinit.ram/ena
+    SLICE_X5Y98          LUT2 (Prop_H6LUT_SLICEL_I1_O)
+                                                      0.051     3.930 r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[7].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram_i_1/O
+                         net (fo=8, routed)           1.009     4.939    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/ENA_I
+    RAMB36_X1Y22         RAMB36E2                                     r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/ENARDEN
   -------------------------------------------------------------------    -------------------
 
                          (clock sysclk rise edge)     5.000     5.000 r  
@@ -285,17 +285,17 @@ Slack (MET) :             1.672ns  (required time - arrival time)
                          net (fo=1, routed)           0.297     5.936    sysclk
     BUFGCE_X0Y45         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.024     5.960 r  BUFG_sysclk/O
-    X0Y1 (CLOCK_ROOT)    net (fo=10094, routed)       1.080     7.039    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/clka
-    RAMB36_X0Y11         RAMB36E2                                     r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/CLKARDCLK
-                         clock pessimism              0.199     7.238    
-                         clock uncertainty           -0.035     7.203    
-    RAMB36_X0Y11         RAMB36E2 (Setup_RAMB36E2_RAMB36_CLKARDCLK_ENARDEN)
-                                                     -0.342     6.861    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram
+    X0Y1 (CLOCK_ROOT)    net (fo=10090, routed)       1.016     6.975    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/clka
+    RAMB36_X1Y22         RAMB36E2                                     r  system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram/CLKARDCLK
+                         clock pessimism              0.242     7.217    
+                         clock uncertainty           -0.035     7.182    
+    RAMB36_X1Y22         RAMB36E2 (Setup_RAMB36E2_RAMB36_CLKARDCLK_ENARDEN)
+                                                     -0.342     6.840    system_i/microblaze_0_local_memory/lmb_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.SERIES8_TDP_SP36_NO_ECC_ATTR.ram
   -------------------------------------------------------------------
-                         required time                          6.861    
-                         arrival time                          -5.189    
+                         required time                          6.840    
+                         arrival time                          -4.939    
   -------------------------------------------------------------------
-                         slack                                  1.672    
+                         slack                                  1.901    
 
 
 
@@ -303,22 +303,22 @@ Slack (MET) :             1.672ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.010ns  (arrival time - required time)
-  Source:                 system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_upsizer.inst_upsizer/gen_r_ch.accum_reg[bytes][13][userdata][1]/C
-                            (rising edge-triggered cell FDRE clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMG/I
-                            (rising edge-triggered cell RAMD32 clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
+Slack (MET) :             0.011ns  (arrival time - required time)
+  Source:                 system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[0]/C
+                            (rising edge-triggered cell FDSE clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
+  Destination:            system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[13]_srl13___UARTLITE_CORE_I_UARTLITE_RX_I_data_shift_reg_r_11/D
+                            (rising edge-triggered cell SRL16E clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             sysclk
   Path Type:              Hold (Min at Slow Process Corner)
   Requirement:            0.000ns  (sysclk rise@0.000ns - sysclk rise@0.000ns)
-  Data Path Delay:        0.233ns  (logic 0.058ns (24.893%)  route 0.175ns (75.107%))
+  Data Path Delay:        0.197ns  (logic 0.058ns (29.442%)  route 0.139ns (70.558%))
   Logic Levels:           0  
-  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.418ns
-    Source Clock Delay      (SCD):    2.021ns
-    Clock Pessimism Removal (CPR):    0.252ns
-  Clock Net Delay (Source):      1.061ns (routing 0.155ns, distribution 0.906ns)
-  Clock Net Delay (Destination): 1.275ns (routing 0.171ns, distribution 1.104ns)
+  Clock Path Skew:        0.157ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.394ns
+    Source Clock Delay      (SCD):    1.993ns
+    Clock Pessimism Removal (CPR):    0.243ns
+  Clock Net Delay (Source):      1.034ns (routing 0.155ns, distribution 0.879ns)
+  Clock Net Delay (Destination): 1.251ns (routing 0.171ns, distribution 1.080ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -333,13 +333,13 @@ Slack (MET) :             0.010ns  (arrival time - required time)
                          net (fo=1, routed)           0.297     0.936    sysclk
     BUFGCE_X0Y45         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.024     0.960 r  BUFG_sysclk/O
-    X0Y1 (CLOCK_ROOT)    net (fo=10094, routed)       1.061     2.021    system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_upsizer.inst_upsizer/s_sc_aclk
-    SLICE_X8Y68          FDRE                                         r  system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_upsizer.inst_upsizer/gen_r_ch.accum_reg[bytes][13][userdata][1]/C
+    X0Y1 (CLOCK_ROOT)    net (fo=10090, routed)       1.034     1.993    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/s_axi_aclk
+    SLICE_X27Y130        FDSE                                         r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X8Y68          FDRE (Prop_HFF_SLICEL_C_Q)
-                                                      0.058     2.079 r  system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.gen_upsizer.inst_upsizer/gen_r_ch.accum_reg[bytes][13][userdata][1]/Q
-                         net (fo=1, routed)           0.175     2.254    system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/DIG0
-    SLICE_X9Y75          RAMD32                                       r  system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMG/I
+    SLICE_X27Y130        FDSE (Prop_HFF_SLICEM_C_Q)
+                                                      0.058     2.051 r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[0]/Q
+                         net (fo=1, routed)           0.139     2.190    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/p_0_in[1]
+    SLICE_X25Y130        SRL16E                                       r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[13]_srl13___UARTLITE_CORE_I_UARTLITE_RX_I_data_shift_reg_r_11/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sysclk rise edge)     0.000     0.000 r  
@@ -353,16 +353,16 @@ Slack (MET) :             0.010ns  (arrival time - required time)
                          net (fo=1, routed)           0.335     1.114    sysclk
     BUFGCE_X0Y45         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.028     1.142 r  BUFG_sysclk/O
-    X0Y1 (CLOCK_ROOT)    net (fo=10094, routed)       1.275     2.418    system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/WCLK
-    SLICE_X9Y75          RAMD32                                       r  system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMG/CLK
-                         clock pessimism             -0.252     2.166    
-    SLICE_X9Y75          RAMD32 (Hold_G5LUT_SLICEM_CLK_I)
-                                                      0.078     2.244    system_i/smartconnect_0/inst/m00_nodes/m00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMG
+    X0Y1 (CLOCK_ROOT)    net (fo=10090, routed)       1.251     2.394    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/s_axi_aclk
+    SLICE_X25Y130        SRL16E                                       r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[13]_srl13___UARTLITE_CORE_I_UARTLITE_RX_I_data_shift_reg_r_11/CLK
+                         clock pessimism             -0.243     2.151    
+    SLICE_X25Y130        SRL16E (Hold_B6LUT_SLICEM_CLK_D)
+                                                      0.029     2.180    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/data_shift_reg[13]_srl13___UARTLITE_CORE_I_UARTLITE_RX_I_data_shift_reg_r_11
   -------------------------------------------------------------------
-                         required time                         -2.244    
-                         arrival time                           2.254    
+                         required time                         -2.180    
+                         arrival time                           2.190    
   -------------------------------------------------------------------
-                         slack                                  0.010    
+                         slack                                  0.011    
 
 
 
@@ -376,9 +376,9 @@ Period(ns):         5.000
 Sources:            { sysclk_p }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.355         5.000       3.645      RAMB36_X0Y13  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
-Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         2.500       1.958      RAMB36_X0Y13  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
-High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         2.500       1.958      RAMB36_X0Y13  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
+Min Period        n/a     RAMB36E2/CLKARDCLK  n/a            1.355         5.000       3.645      RAMB36_X0Y24  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
+Low Pulse Width   Slow    RAMB36E2/CLKARDCLK  n/a            0.542         2.500       1.958      RAMB36_X0Y24  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
+High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         2.500       1.958      RAMB36_X0Y24  system_i/axi_bram_ctrl_0_bram/U0/inst_blk_mem_gen/gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.WITH_BMM_INFO.SP.SIMPLE_PRIM36.SERIES8_SP_NO_ECC_ATTR.ram/CLKARDCLK
 
 
 
@@ -386,7 +386,7 @@ High Pulse Width  Slow    RAMB36E2/CLKARDCLK  n/a            0.542         2.500
 From Clock:  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
   To Clock:  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
 
-Setup :            0  Failing Endpoints,  Worst Slack       14.910ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack       15.009ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.018ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack       16.134ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -394,73 +394,73 @@ PW    :            0  Failing Endpoints,  Worst Slack       16.134ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             14.910ns  (required time - arrival time)
-  Source:                 system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/C
-                            (falling edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
-  Destination:            system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count_reg[1]/D
+Slack (MET) :             15.009ns  (required time - arrival time)
+  Source:                 system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/tdi_shifter_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
+  Destination:            system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/CE
+                            (falling edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
   Path Group:             system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
   Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            16.667ns  (system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise@33.333ns - system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK fall@16.667ns)
-  Data Path Delay:        1.542ns  (logic 0.354ns (22.956%)  route 1.188ns (77.044%))
-  Logic Levels:           2  (LUT3=1 LUT6=1)
-  Clock Path Skew:        -0.004ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    3.156ns = ( 36.489 - 33.333 ) 
-    Source Clock Delay      (SCD):    9.250ns = ( 25.917 - 16.667 ) 
-    Clock Pessimism Removal (CPR):    6.091ns
+  Requirement:            16.667ns  (system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK fall@16.667ns - system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise@0.000ns)
+  Data Path Delay:        1.295ns  (logic 0.278ns (21.460%)  route 1.017ns (78.540%))
+  Logic Levels:           2  (LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.066ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    3.092ns = ( 19.759 - 16.667 ) 
+    Source Clock Delay      (SCD):    9.247ns
+    Clock Pessimism Removal (CPR):    6.089ns
   Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + DCD
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
     Discrete Jitter          (DJ):    0.000ns
     Phase Error              (PE):    0.000ns
     Duty Cycle Distortion   (DCD):    0.200ns
-  Clock Net Delay (Source):      1.537ns (routing 0.737ns, distribution 0.800ns)
-  Clock Net Delay (Destination): 1.429ns (routing 0.669ns, distribution 0.760ns)
+  Clock Net Delay (Source):      1.534ns (routing 0.737ns, distribution 0.797ns)
+  Clock Net Delay (Destination): 1.365ns (routing 0.669ns, distribution 0.696ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
+                         (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise edge)
+                                                      0.000     0.000 r  
+    CONFIG_SITE_X0Y0     BSCANE2                      0.000     0.000 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TCK
+    CONFIG_SITE_X0Y0     BSCANE2 (Prop_BSCAN2_CONFIG_SITE_INTERNAL_TCK_DRCK)
+                                                      5.900     5.900 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
+                         net (fo=1, routed)           1.785     7.685    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
+    BUFGCE_X0Y22         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     7.713 r  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
+    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.534     9.247    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_unisim.MB_SRL16E_I1
+    SLICE_X23Y96         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/tdi_shifter_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y96         FDRE (Prop_FFF2_SLICEL_C_Q)
+                                                      0.081     9.328 f  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/tdi_shifter_reg[3]/Q
+                         net (fo=3, routed)           0.461     9.789    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native_6
+    SLICE_X22Y96         LUT6 (Prop_D6LUT_SLICEL_I1_O)
+                                                      0.146     9.935 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native_i_2/O
+                         net (fo=1, routed)           0.130    10.065    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native_i_2_n_0
+    SLICE_X23Y96         LUT5 (Prop_H6LUT_SLICEL_I0_O)
+                                                      0.051    10.116 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native_i_1/O
+                         net (fo=1, routed)           0.426    10.542    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/CE
+    SLICE_X21Y96         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/CE
+  -------------------------------------------------------------------    -------------------
+
                          (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK fall edge)
                                                      16.667    16.667 f  
     CONFIG_SITE_X0Y0     BSCANE2                      0.000    16.667 f  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TCK
     CONFIG_SITE_X0Y0     BSCANE2 (Prop_BSCAN2_CONFIG_SITE_INTERNAL_TCK_DRCK)
-                                                      5.900    22.566 f  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
-                         net (fo=1, routed)           1.785    24.351    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
+                                                      0.465    17.132 f  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
+                         net (fo=1, routed)           1.238    18.369    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
     BUFGCE_X0Y22         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
-                                                      0.028    24.379 f  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
-    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.537    25.917    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native_0
-    SLICE_X28Y93         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/C  (IS_INVERTED)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X28Y93         FDRE (Prop_AFF_SLICEM_C_Q)
-                                                      0.077    25.994 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/Q
-                         net (fo=3, routed)           0.119    26.113    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/sync
-    SLICE_X28Y91         LUT6 (Prop_B6LUT_SLICEM_I0_O)
-                                                      0.125    26.238 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Dbg_Shift_0_INST_0/O
-                         net (fo=8, routed)           0.823    27.061    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Shift
-    SLICE_X31Y82         LUT3 (Prop_H6LUT_SLICEM_I2_O)
-                                                      0.152    27.213 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count[1]_i_1/O
-                         net (fo=1, routed)           0.246    27.459    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count[1]_i_1_n_0
-    SLICE_X31Y82         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count_reg[1]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise edge)
-                                                     33.333    33.333 r  
-    CONFIG_SITE_X0Y0     BSCANE2                      0.000    33.333 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TCK
-    CONFIG_SITE_X0Y0     BSCANE2 (Prop_BSCAN2_CONFIG_SITE_INTERNAL_TCK_DRCK)
-                                                      0.465    33.798 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
-                         net (fo=1, routed)           1.238    35.036    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
-    BUFGCE_X0Y22         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
-                                                      0.024    35.060 r  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
-    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.429    36.489    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Clk
-    SLICE_X31Y82         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count_reg[1]/C
-                         clock pessimism              6.091    42.579    
-                         clock uncertainty           -0.235    42.344    
-    SLICE_X31Y82         FDRE (Setup_CFF_SLICEM_C_D)
-                                                      0.025    42.369    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_count_reg[1]
+                                                      0.024    18.393 f  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
+    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.365    19.758    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native_0
+    SLICE_X21Y96         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native/C  (IS_INVERTED)
+                         clock pessimism              6.089    25.847    
+                         clock uncertainty           -0.235    25.612    
+    SLICE_X21Y96         FDRE (Setup_EFF_SLICEL_C_CE)
+                                                     -0.060    25.552    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.SYNC_FDRE/Using_FPGA.Native
   -------------------------------------------------------------------
-                         required time                         42.369    
-                         arrival time                         -27.459    
+                         required time                         25.552    
+                         arrival time                         -10.542    
   -------------------------------------------------------------------
-                         slack                                 14.910    
+                         slack                                 15.009    
 
 
 
@@ -469,21 +469,21 @@ Slack (MET) :             14.910ns  (required time - arrival time)
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack (MET) :             0.018ns  (arrival time - required time)
-  Source:                 system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_datain_reg[31]/C
-                            (rising edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
-  Destination:            system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.New_Instr_Reg_TCK_reg[30]/D
-                            (rising edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
+  Source:                 system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TDI
+                            (internal path startpoint clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
+  Destination:            system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[3]/D
+                            (rising edge-triggered cell FDCE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK  {rise@0.000ns fall@16.667ns period=33.333ns})
   Path Group:             system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
   Path Type:              Hold (Min at Slow Process Corner)
   Requirement:            0.000ns  (system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise@0.000ns - system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise@0.000ns)
-  Data Path Delay:        0.131ns  (logic 0.059ns (44.900%)  route 0.072ns (55.100%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.052ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    9.281ns
-    Source Clock Delay      (SCD):    3.092ns
-    Clock Pessimism Removal (CPR):    6.137ns
-  Clock Net Delay (Source):      1.365ns (routing 0.669ns, distribution 0.696ns)
-  Clock Net Delay (Destination): 1.568ns (routing 0.737ns, distribution 0.831ns)
+  Data Path Delay:        2.443ns  (logic 0.547ns (22.391%)  route 1.896ns (77.609%))
+  Logic Levels:           2  (BSCANE2=1 LUT1=1)
+  Input Delay:            1.000ns
+  Clock Path Skew:        3.363ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    9.263ns
+    Source Clock Delay      (SCD):    0.465ns
+    Clock Pessimism Removal (CPR):    5.435ns
+  Clock Net Delay (Destination): 1.550ns (routing 0.737ns, distribution 0.813ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -492,16 +492,16 @@ Slack (MET) :             0.018ns  (arrival time - required time)
     CONFIG_SITE_X0Y0     BSCANE2                      0.000     0.000 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TCK
     CONFIG_SITE_X0Y0     BSCANE2 (Prop_BSCAN2_CONFIG_SITE_INTERNAL_TCK_DRCK)
                                                       0.465     0.465 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK
-                         net (fo=1, routed)           1.238     1.703    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
-    BUFGCE_X0Y22         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
-                                                      0.024     1.727 r  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
-    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.365     3.092    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Clk
-    SLICE_X26Y65         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_datain_reg[31]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X26Y65         FDRE (Prop_EFF_SLICEL_C_Q)
-                                                      0.059     3.151 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_datain_reg[31]/Q
-                         net (fo=3, routed)           0.072     3.223    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.shift_datain_reg_n_0_[31]
-    SLICE_X26Y64         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.New_Instr_Reg_TCK_reg[30]/D
+                         input delay                  1.000     1.465    
+    CONFIG_SITE_X0Y0     BSCANE2                      0.000     1.465 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/INTERNAL_TDI
+    CONFIG_SITE_X0Y0     BSCANE2 (Prop_BSCAN2_CONFIG_SITE_INTERNAL_TDI_TDI)
+                                                      0.465     1.930 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/TDI
+                         net (fo=1, routed)           1.431     3.361    system_i/mdm_1/U0/Use_E2.LUT1_I/I0
+    SLICE_X24Y103        LUT1 (Prop_G6LUT_SLICEM_I0_O)
+                                                      0.082     3.443 r  system_i/mdm_1/U0/Use_E2.LUT1_I/Using_FPGA.Native/O
+                         net (fo=5, routed)           0.465     3.908    system_i/mdm_1/U0/MDM_Core_I1/Ext_JTAG_TDI
+    SLICE_X22Y99         FDCE                                         r  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK rise edge)
@@ -512,14 +512,14 @@ Slack (MET) :             0.018ns  (arrival time - required time)
                          net (fo=1, routed)           1.785     7.685    system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/DRCK
     BUFGCE_X0Y22         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.028     7.713 r  system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/O
-    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.568     9.281    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Clk
-    SLICE_X26Y64         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.New_Instr_Reg_TCK_reg[30]/C
-                         clock pessimism             -6.137     3.144    
-    SLICE_X26Y64         FDRE (Hold_GFF2_SLICEL_C_D)
-                                                      0.062     3.206    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.New_Instr_Reg_TCK_reg[30]
+    X0Y1 (CLOCK_ROOT)    net (fo=232, routed)         1.550     9.263    system_i/mdm_1/U0/MDM_Core_I1/Use_unisim.MB_SRL16E_I1
+    SLICE_X22Y99         FDCE                                         r  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[3]/C
+                         clock pessimism             -5.435     3.828    
+    SLICE_X22Y99         FDCE (Hold_FFF2_SLICEL_C_D)
+                                                      0.062     3.890    system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.TDI_Shifter_reg[3]
   -------------------------------------------------------------------
-                         required time                         -3.206    
-                         arrival time                           3.223    
+                         required time                         -3.890    
+                         arrival time                           3.908    
   -------------------------------------------------------------------
                          slack                                  0.018    
 
@@ -536,8 +536,8 @@ Sources:            { system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/DRCK }
 
 Check Type        Corner  Lib Pin     Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
 Min Period        n/a     BUFGCE/I    n/a            1.290         33.333      32.043     BUFGCE_X0Y22   system_i/mdm_1/U0/No_Dbg_Reg_Access.BUFG_DRCK/Using_FPGA.Native/I
-Low Pulse Width   Slow    SRL16E/CLK  n/a            0.532         16.666      16.134     SLICE_X28Y114  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[12]_srl13_MDM_Core_I1_Use_BSCAN.Config_Reg_reg_c_25/CLK
-High Pulse Width  Slow    SRL16E/CLK  n/a            0.532         16.667      16.135     SLICE_X28Y114  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[12]_srl13_MDM_Core_I1_Use_BSCAN.Config_Reg_reg_c_25/CLK
+Low Pulse Width   Slow    SRL16E/CLK  n/a            0.532         16.666      16.134     SLICE_X24Y103  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[12]_srl13_MDM_Core_I1_Use_BSCAN.Config_Reg_reg_c_25/CLK
+High Pulse Width  Slow    SRL16E/CLK  n/a            0.532         16.667      16.135     SLICE_X24Y103  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.Config_Reg_reg[12]_srl13_MDM_Core_I1_Use_BSCAN.Config_Reg_reg_c_25/CLK
 
 
 
@@ -545,27 +545,27 @@ High Pulse Width  Slow    SRL16E/CLK  n/a            0.532         16.667      1
 From Clock:  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE
   To Clock:  system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE
 
-Setup :            0  Failing Endpoints,  Worst Slack       30.890ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.091ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack       31.264ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.129ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack       33.058ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             30.890ns  (required time - arrival time)
+Slack (MET) :             31.264ns  (required time - arrival time)
   Source:                 system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native/C
                             (falling edge-triggered cell FDCE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE  {rise@0.000ns fall@33.333ns period=66.666ns})
-  Destination:            system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[8]/CE
+  Destination:            system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[3]/CE
                             (rising edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE  {rise@0.000ns fall@33.333ns period=66.666ns})
   Path Group:             system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            33.333ns  (system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE rise@66.666ns - system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE fall@33.333ns)
-  Data Path Delay:        2.087ns  (logic 0.486ns (23.287%)  route 1.601ns (76.713%))
+  Data Path Delay:        1.632ns  (logic 0.406ns (24.872%)  route 1.226ns (75.128%))
   Logic Levels:           3  (LUT3=1 LUT4=1 LUT5=1)
-  Clock Path Skew:        -0.059ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    2.133ns = ( 68.799 - 66.666 ) 
-    Source Clock Delay      (SCD):    7.237ns = ( 40.570 - 33.333 ) 
+  Clock Path Skew:        -0.140ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.069ns = ( 68.735 - 66.666 ) 
+    Source Clock Delay      (SCD):    7.254ns = ( 40.587 - 33.333 ) 
     Clock Pessimism Removal (CPR):    5.045ns
   Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + DCD
     Total System Jitter     (TSJ):    0.071ns
@@ -573,8 +573,8 @@ Slack (MET) :             30.890ns  (required time - arrival time)
     Discrete Jitter          (DJ):    0.000ns
     Phase Error              (PE):    0.000ns
     Duty Cycle Distortion   (DCD):    0.200ns
-  Clock Net Delay (Source):      0.798ns (routing 0.001ns, distribution 0.797ns)
-  Clock Net Delay (Destination): 0.722ns (routing 0.001ns, distribution 0.721ns)
+  Clock Net Delay (Source):      0.815ns (routing 0.001ns, distribution 0.814ns)
+  Clock Net Delay (Destination): 0.658ns (routing 0.001ns, distribution 0.657ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -586,22 +586,22 @@ Slack (MET) :             30.890ns  (required time - arrival time)
                          net (fo=1, routed)           1.311    39.744    system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0
     BUFGCE_X0Y36         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.028    39.772 f  system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0_BUFG_inst/O
-    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.798    40.570    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/CLK
-    SLICE_X27Y92         FDCE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native/C  (IS_INVERTED)
+    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.815    40.587    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/CLK
+    SLICE_X22Y97         FDCE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native/C  (IS_INVERTED)
   -------------------------------------------------------------------    -------------------
-    SLICE_X27Y92         FDCE (Prop_EFF_SLICEM_C_Q)
-                                                      0.076    40.646 f  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native/Q
-                         net (fo=18, routed)          0.193    40.839    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Q_0
-    SLICE_X28Y94         LUT3 (Prop_C5LUT_SLICEM_I1_O)
-                                                      0.111    40.950 f  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Dbg_Reg_En_0[2]_INST_0/O
-                         net (fo=2, routed)           0.250    41.200    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Reg_En[2]
-    SLICE_X28Y94         LUT4 (Prop_B6LUT_SLICEM_I0_O)
-                                                      0.149    41.349 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_TDO_INST_0_i_18/O
-                         net (fo=7, routed)           0.361    41.710    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Use_Serial_Unified_Completion.completion_block_reg
-    SLICE_X28Y82         LUT5 (Prop_G6LUT_SLICEM_I4_O)
-                                                      0.150    41.860 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.normal_stop_TClk_i_1/O
-                         net (fo=9, routed)           0.797    42.657    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Control_Reg_En
-    SLICE_X28Y67         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[8]/CE
+    SLICE_X22Y97         FDCE (Prop_EFF_SLICEL_C_Q)
+                                                      0.079    40.666 f  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Using_FPGA.Native/Q
+                         net (fo=18, routed)          0.207    40.872    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Q_0
+    SLICE_X21Y97         LUT3 (Prop_D6LUT_SLICEL_I1_O)
+                                                      0.089    40.961 f  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/Dbg_Reg_En_0[0]_INST_0/O
+                         net (fo=2, routed)           0.101    41.062    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Reg_En[0]
+    SLICE_X21Y96         LUT4 (Prop_B6LUT_SLICEL_I2_O)
+                                                      0.148    41.210 f  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_TDO_INST_0_i_18/O
+                         net (fo=7, routed)           0.437    41.647    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Use_Serial_Unified_Completion.completion_block_reg
+    SLICE_X16Y95         LUT5 (Prop_B6LUT_SLICEL_I4_O)
+                                                      0.090    41.737 r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.normal_stop_TClk_i_1/O
+                         net (fo=9, routed)           0.482    42.219    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Control_Reg_En
+    SLICE_X7Y92          FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[3]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE rise edge)
@@ -612,17 +612,17 @@ Slack (MET) :             30.890ns  (required time - arrival time)
                          net (fo=1, routed)           0.922    68.053    system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0
     BUFGCE_X0Y36         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.024    68.077 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0_BUFG_inst/O
-    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.722    68.799    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Update
-    SLICE_X28Y67         FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[8]/C
-                         clock pessimism              5.045    73.844    
-                         clock uncertainty           -0.235    73.608    
-    SLICE_X28Y67         FDRE (Setup_AFF_SLICEM_C_CE)
-                                                     -0.061    73.547    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[8]
+    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.658    68.735    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Dbg_Update
+    SLICE_X7Y92          FDRE                                         r  system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[3]/C
+                         clock pessimism              5.045    73.780    
+                         clock uncertainty           -0.235    73.544    
+    SLICE_X7Y92          FDRE (Setup_EFF2_SLICEM_C_CE)
+                                                     -0.061    73.483    system_i/microblaze_0/U0/MicroBlaze_Core_I/Performance.Core/Use_Debug_Logic.Master_Core.Debug_Perf/Serial_Dbg_Intf.control_reg_reg[3]
   -------------------------------------------------------------------
-                         required time                         73.547    
-                         arrival time                         -42.657    
+                         required time                         73.483    
+                         arrival time                         -42.219    
   -------------------------------------------------------------------
-                         slack                                 30.890    
+                         slack                                 31.264    
 
 
 
@@ -630,7 +630,7 @@ Slack (MET) :             30.890ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.091ns  (arrival time - required time)
+Slack (MET) :             0.129ns  (arrival time - required time)
   Source:                 system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE  {rise@0.000ns fall@33.333ns period=66.666ns})
   Destination:            system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/D
@@ -638,14 +638,14 @@ Slack (MET) :             0.091ns  (arrival time - required time)
   Path Group:             system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE rise@0.000ns - system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE rise@0.000ns)
-  Data Path Delay:        0.144ns  (logic 0.083ns (57.462%)  route 0.061ns (42.538%))
+  Data Path Delay:        0.182ns  (logic 0.077ns (42.265%)  route 0.105ns (57.735%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.006ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    6.546ns
-    Source Clock Delay      (SCD):    1.622ns
-    Clock Pessimism Removal (CPR):    4.918ns
-  Clock Net Delay (Source):      0.450ns (routing 0.000ns, distribution 0.450ns)
-  Clock Net Delay (Destination): 0.512ns (routing 0.001ns, distribution 0.511ns)
+    Destination Clock Delay (DCD):    6.538ns
+    Source Clock Delay      (SCD):    1.616ns
+    Clock Pessimism Removal (CPR):    4.916ns
+  Clock Net Delay (Source):      0.444ns (routing 0.000ns, distribution 0.444ns)
+  Clock Net Delay (Destination): 0.504ns (routing 0.001ns, distribution 0.503ns)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -657,16 +657,16 @@ Slack (MET) :             0.091ns  (arrival time - required time)
                          net (fo=1, routed)           0.690     1.155    system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0
     BUFGCE_X0Y36         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.017     1.172 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0_BUFG_inst/O
-    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.450     1.622    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/CLK
-    SLICE_X28Y89         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/C
+    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.444     1.616    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/CLK
+    SLICE_X21Y95         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X28Y89         FDRE (Prop_DFF2_SLICEM_C_Q)
-                                                      0.041     1.663 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/Q
-                         net (fo=2, routed)           0.052     1.715    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/completion_ctrl
-    SLICE_X28Y89         LUT3 (Prop_D5LUT_SLICEM_I2_O)
-                                                      0.042     1.757 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/completion_ctrl[0]_i_1/O
-                         net (fo=1, routed)           0.009     1.766    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I_n_35
-    SLICE_X28Y89         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/D
+    SLICE_X21Y95         FDRE (Prop_HFF2_SLICEL_C_Q)
+                                                      0.039     1.655 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/Q
+                         net (fo=2, routed)           0.099     1.754    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/completion_ctrl
+    SLICE_X21Y95         LUT3 (Prop_H5LUT_SLICEL_I2_O)
+                                                      0.038     1.792 r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I/completion_ctrl[0]_i_1/O
+                         net (fo=1, routed)           0.006     1.798    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/Use_BSCAN.FDC_I_n_35
+    SLICE_X21Y95         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE rise edge)
@@ -677,16 +677,16 @@ Slack (MET) :             0.091ns  (arrival time - required time)
                          net (fo=1, routed)           0.915     6.015    system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0
     BUFGCE_X0Y36         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.019     6.034 r  system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0_BUFG_inst/O
-    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.512     6.546    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/CLK
-    SLICE_X28Y89         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/C
-                         clock pessimism             -4.918     1.628    
-    SLICE_X28Y89         FDRE (Hold_DFF2_SLICEM_C_D)
-                                                      0.047     1.675    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]
+    X0Y1 (CLOCK_ROOT)    net (fo=40, routed)          0.504     6.538    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/CLK
+    SLICE_X21Y95         FDRE                                         r  system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]/C
+                         clock pessimism             -4.916     1.622    
+    SLICE_X21Y95         FDRE (Hold_HFF2_SLICEL_C_D)
+                                                      0.047     1.669    system_i/mdm_1/U0/MDM_Core_I1/JTAG_CONTROL_I/completion_ctrl_reg[0]
   -------------------------------------------------------------------
-                         required time                         -1.675    
-                         arrival time                           1.766    
+                         required time                         -1.669    
+                         arrival time                           1.798    
   -------------------------------------------------------------------
-                         slack                                  0.091    
+                         slack                                  0.129    
 
 
 
@@ -701,8 +701,8 @@ Sources:            { system_i/mdm_1/U0/Use_E2.BSCAN_I/Use_E2.BSCANE2_I/UPDATE }
 
 Check Type        Corner  Lib Pin   Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
 Min Period        n/a     BUFGCE/I  n/a            1.290         66.666      65.376     BUFGCE_X0Y36  system_i/mdm_1/U0/Use_E2.BSCAN_I/Dbg_Update_0_BUFG_inst/I
-Low Pulse Width   Slow    FDCE/C    n/a            0.275         33.333      33.058     SLICE_X29Y96  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[0]/C
-High Pulse Width  Slow    FDCE/C    n/a            0.275         33.333      33.058     SLICE_X29Y96  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[0]/C
+Low Pulse Width   Slow    FDCE/C    n/a            0.275         33.333      33.058     SLICE_X22Y98  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[0]/C
+High Pulse Width  Slow    FDCE/C    n/a            0.275         33.333      33.058     SLICE_X22Y98  system_i/mdm_1/U0/MDM_Core_I1/Use_BSCAN.PORT_Selector_1_reg[0]/C
 
 
 
@@ -711,28 +711,28 @@ Path Group:  **default**
 From Clock:  sysclk
   To Clock:  
 
-Setup :            0  Failing Endpoints,  Worst Slack       14.564ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack       14.712ns,  Total Violation        0.000ns
 Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             14.564ns  (required time - arrival time)
+Slack (MET) :             14.712ns  (required time - arrival time)
   Source:                 system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/TX_reg/C
                             (rising edge-triggered cell FDSE clocked by sysclk  {rise@0.000ns fall@2.500ns period=5.000ns})
   Destination:            usb_uart_txd
   Path Group:             **default**
   Path Type:              Max at Slow Process Corner
   Requirement:            21.112ns  (MaxDelay Path 21.112ns)
-  Data Path Delay:        4.182ns  (logic 2.894ns (69.198%)  route 1.288ns (30.802%))
+  Data Path Delay:        4.069ns  (logic 2.893ns (71.095%)  route 1.176ns (28.905%))
   Logic Levels:           1  (OBUF=1)
   Output Delay:           0.000ns
-  Clock Path Skew:        -2.366ns (DCD - SCD + CPR)
+  Clock Path Skew:        -2.332ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    0.000ns
-    Source Clock Delay      (SCD):    2.366ns
+    Source Clock Delay      (SCD):    2.332ns
     Clock Pessimism Removal (CPR):    0.000ns
-  Clock Net Delay (Source):      1.224ns (routing 0.171ns, distribution 1.053ns)
+  Clock Net Delay (Source):      1.189ns (routing 0.171ns, distribution 1.018ns)
   Timing Exception:       MaxDelay Path 21.112ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -748,15 +748,15 @@ Slack (MET) :             14.564ns  (required time - arrival time)
                          net (fo=1, routed)           0.335     1.114    sysclk
     BUFGCE_X0Y45         BUFGCE (Prop_BUFCE_BUFGCE_I_O)
                                                       0.028     1.142 r  BUFG_sysclk/O
-    X0Y1 (CLOCK_ROOT)    net (fo=10094, routed)       1.224     2.366    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/s_axi_aclk
-    SLICE_X16Y81         FDSE                                         r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/TX_reg/C
+    X0Y1 (CLOCK_ROOT)    net (fo=10090, routed)       1.189     2.332    system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/s_axi_aclk
+    SLICE_X27Y127        FDSE                                         r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/TX_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X16Y81         FDSE (Prop_FFF2_SLICEL_C_Q)
-                                                      0.081     2.447 r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/TX_reg/Q
-                         net (fo=1, routed)           1.288     3.735    usb_uart_txd_OBUF
+    SLICE_X27Y127        FDSE (Prop_BFF2_SLICEM_C_Q)
+                                                      0.080     2.412 r  system_i/axi_uartlite_0/U0/UARTLITE_CORE_I/UARTLITE_TX_I/TX_reg/Q
+                         net (fo=1, routed)           1.176     3.588    usb_uart_txd_OBUF
     A13                  OBUF (Prop_OUTBUF_HDIOB_M_I_O)
-                                                      2.813     6.548 r  usb_uart_txd_OBUF_inst/O
-                         net (fo=0)                   0.000     6.548    usb_uart_txd
+                                                      2.813     6.400 r  usb_uart_txd_OBUF_inst/O
+                         net (fo=0)                   0.000     6.400    usb_uart_txd
     A13                                                               r  usb_uart_txd (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -765,9 +765,9 @@ Slack (MET) :             14.564ns  (required time - arrival time)
                          output delay                -0.000    21.112    
   -------------------------------------------------------------------
                          required time                         21.112    
-                         arrival time                          -6.548    
+                         arrival time                          -6.400    
   -------------------------------------------------------------------
-                         slack                                 14.564    
+                         slack                                 14.712    
 
 
 
