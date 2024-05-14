@@ -1,15 +1,38 @@
 
 module top (
+    // 200MHz system clock
+    input   logic       sysclk_p,
+    input   logic       sysclk_n,
+    //
+    output  logic[1:0]  led,
+    output  logic       fan_pwm,
+    //
     input  logic[3:0]  pcie_mgt_rxn,
     input  logic[3:0]  pcie_mgt_rxp,
     output logic[3:0]  pcie_mgt_txn,
     output logic[3:0]  pcie_mgt_txp,
     input  logic       pcie_perstn,
     input  logic       pcie_refclk_n,
-    input  logic       pcie_refclk_p,
-    //
-    output  logic[1:0]  led
+    input  logic       pcie_refclk_p
 );
+    
+    logic clk, sysclk;
+    IBUFDS IBUFDS_sysclk (.O(sysclk), .I(sysclk_p), .IB(sysclk_n));
+    BUFG BUFG_sysclk (.O(clk), .I(sysclk));
+
+    logic[27:0] led_count;
+    always_ff @(posedge clk) begin
+        led_count <= led_count + 1;
+        led <= led_count[27:26];
+    end
+
+	logic[27:0] fan_count;
+    always_ff @(posedge axi_aclk) begin
+        fan_count <= fan_count + 1;
+	    fan_pwm <= fan_count[18] & fan_count[17] & fan_count[16];
+	end
+
+
     
     logic [31:0]  M00_AXI_araddr;
     logic [2:0]   M00_AXI_arprot;
@@ -71,7 +94,7 @@ module top (
     assign slv_read[0] = 32'hdeadbeef;
     assign slv_read[1] = 32'h76543210;
     
-    assign led         = slv_reg[2][1:0];
+    //assign led         = slv_reg[2][1:0];
     assign slv_read[2] = slv_reg[2];
     
     assign slv_read[Nregs-1:3] = slv_reg[Nregs-1:3];
