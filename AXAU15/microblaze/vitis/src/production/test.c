@@ -1,5 +1,6 @@
 
 #include "xil_printf.h"
+#include "xparameters.h"
 #include "fpga.h"
 
 int main()
