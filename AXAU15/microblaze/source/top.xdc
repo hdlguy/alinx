@@ -14,6 +14,7 @@ set_property PACKAGE_PIN AC16       [get_ports led[1]]
 set_property PACKAGE_PIN W21        [get_ports led[0]]
 
 set_property IOSTANDARD LVDS        [get_ports {sysclk_*}]
+set_property DIFF_TERM  TRUE        [get_ports {sysclk_*}]
 set_property PACKAGE_PIN T24        [get_ports sysclk_p]
 set_property PACKAGE_PIN U24        [get_ports sysclk_n]
 
