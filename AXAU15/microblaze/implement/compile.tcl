@@ -25,7 +25,12 @@ report_timing_summary   -file           ./results/timing.rpt
 report_utilization      -file           ./results/utilization.rpt
 report_io               -file           ./results/io.rpt
 
-set_property BITSTREAM.GENERAL.COMPRESS TRUE [get_designs impl_1]
+set_property CFGBVS VCCO [current_design]
+set_property CONFIG_VOLTAGE 1.8 [current_design]
+set_property BITSTREAM.CONFIG.CONFIGRATE 6 [current_design]
+set_property BITSTREAM.Config.SPI_BUSWIDTH 4 [current_design]
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+
 write_bitstream -bin_file -force ./results/top.bit
 
 close_project
