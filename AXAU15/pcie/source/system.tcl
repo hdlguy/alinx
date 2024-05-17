@@ -233,13 +233,13 @@ proc create_root_design { parentCell } {
   # Create instance: xdma_0, and set properties
   set xdma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.1 xdma_0 ]
   set_property -dict [list \
-    CONFIG.axi_data_width {256_bit} \
+    CONFIG.axi_data_width {128_bit} \
     CONFIG.axist_bypass_en {true} \
     CONFIG.axist_bypass_size {1} \
     CONFIG.axisten_freq {250} \
     CONFIG.cfg_mgmt_if {false} \
     CONFIG.pcie_extended_tag {false} \
-    CONFIG.pl_link_cap_max_link_speed {16.0_GT/s} \
+    CONFIG.pl_link_cap_max_link_speed {8.0_GT/s} \
     CONFIG.pl_link_cap_max_link_width {X4} \
     CONFIG.xdma_axi_intf_mm {AXI_Memory_Mapped} \
     CONFIG.xdma_rnum_chnl {4} \

@@ -5,7 +5,6 @@ module top (
     input   logic       sysclk_n,
     //
     output  logic[1:0]  led,
-    output  logic       fan_pwm,
     //
     input  logic[3:0]  pcie_mgt_rxn,
     input  logic[3:0]  pcie_mgt_rxp,
@@ -25,12 +24,6 @@ module top (
         led_count <= led_count + 1;
         led <= led_count[27:26];
     end
-
-	logic[27:0] fan_count;
-    always_ff @(posedge axi_aclk) begin
-        fan_count <= fan_count + 1;
-	    fan_pwm <= fan_count[18] & fan_count[17] & fan_count[16];
-	end
 
 
     
