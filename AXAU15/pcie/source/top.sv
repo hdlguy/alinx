@@ -19,13 +19,6 @@ module top (
     IBUFDS IBUFDS_sysclk (.O(sysclk), .I(sysclk_p), .IB(sysclk_n));
     BUFG BUFG_sysclk (.O(clk), .I(sysclk));
 
-    logic[27:0] led_count;
-    always_ff @(posedge clk) begin
-        led_count <= led_count + 1;
-        led <= led_count[27:26];
-    end
-
-
     
     logic [31:0]  M00_AXI_araddr;
     logic [2:0]   M00_AXI_arprot;
@@ -48,6 +41,13 @@ module top (
     logic         M00_AXI_wvalid;
     logic         axi_aclk;
     logic         axi_aresetn;
+    
+    logic[27:0] led_count;
+    always_ff @(posedge axi_aclk) begin
+        led_count <= led_count + 1;
+        led <= led_count[27:26];
+    end
+
 
     system system_i (
         .M00_AXI_araddr     (M00_AXI_araddr),
@@ -75,9 +75,9 @@ module top (
         .pcie_mgt_rxp       (pcie_mgt_rxp),
         .pcie_mgt_txn       (pcie_mgt_txn),
         .pcie_mgt_txp       (pcie_mgt_txp),
-        .perstn             (pcie_perstn),
-        .refclk_clk_n       (pcie_refclk_n),
-        .refclk_clk_p       (pcie_refclk_p)
+        .pcie_perstn        (pcie_perstn),
+        .pcie_ref_clk_n     (pcie_refclk_n),
+        .pcie_ref_clk_p     (pcie_refclk_p)
     );
 
     // This register file gives software contol over unit under test (UUT).

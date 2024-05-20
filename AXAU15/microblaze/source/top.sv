@@ -8,22 +8,22 @@ module top (
     //
     input   logic       resetn,
     input   logic       usb_uart_rxd,
-    output  logic       usb_uart_txd,
-    //
-    output              ddr4_act_n,
-    output logic[16:0]  ddr4_adr,
-    output logic[1:0]   ddr4_ba,
-    output logic[0:0]   ddr4_bg,
-    output logic[0:0]   ddr4_ck_c,
-    output logic[0:0]   ddr4_ck_t,
-    output logic[0:0]   ddr4_cke,
-    output logic[0:0]   ddr4_cs_n,
-    inout  logic[1:0]   ddr4_dm_n,
-    inout  logic[15:0]  ddr4_dq,
-    inout  logic[1:0]   ddr4_dqs_c,
-    inout  logic[1:0]   ddr4_dqs_t,
-    output logic[0:0]   ddr4_odt,
-    output              ddr4_reset_n        
+    output  logic       usb_uart_txd
+//    //
+//    output              ddr4_act_n,
+//    output logic[16:0]  ddr4_adr,
+//    output logic[1:0]   ddr4_ba,
+//    output logic[0:0]   ddr4_bg,
+//    output logic[0:0]   ddr4_ck_c,
+//    output logic[0:0]   ddr4_ck_t,
+//    output logic[0:0]   ddr4_cke,
+//    output logic[0:0]   ddr4_cs_n,
+//    inout  logic[1:0]   ddr4_dm_n,
+//    inout  logic[15:0]  ddr4_dq,
+//    inout  logic[1:0]   ddr4_dqs_c,
+//    inout  logic[1:0]   ddr4_dqs_t,
+//    output logic[0:0]   ddr4_odt,
+//    output              ddr4_reset_n        
 );
 
 //    logic clk, sysclk;
@@ -80,22 +80,22 @@ module top (
         .axi_aresetn        (axi_aresetn),
         //
         .usb_uart_rxd       (usb_uart_rxd),
-        .usb_uart_txd       (usb_uart_txd),
-        //
-        .ddr4_act_n         (ddr4_act_n),
-        .ddr4_adr           (ddr4_adr),
-        .ddr4_ba            (ddr4_ba),
-        .ddr4_bg            (ddr4_bg),
-        .ddr4_ck_c          (ddr4_ck_c),
-        .ddr4_ck_t          (ddr4_ck_t),
-        .ddr4_cke           (ddr4_cke),
-        .ddr4_cs_n          (ddr4_cs_n),
-        .ddr4_dm_n          (ddr4_dm_n),
-        .ddr4_dq            (ddr4_dq),
-        .ddr4_dqs_c         (ddr4_dqs_c),
-        .ddr4_dqs_t         (ddr4_dqs_t),
-        .ddr4_odt           (ddr4_odt),
-        .ddr4_reset_n       (ddr4_reset_n)        
+        .usb_uart_txd       (usb_uart_txd)
+//        //
+//        .ddr4_act_n         (ddr4_act_n),
+//        .ddr4_adr           (ddr4_adr),
+//        .ddr4_ba            (ddr4_ba),
+//        .ddr4_bg            (ddr4_bg),
+//        .ddr4_ck_c          (ddr4_ck_c),
+//        .ddr4_ck_t          (ddr4_ck_t),
+//        .ddr4_cke           (ddr4_cke),
+//        .ddr4_cs_n          (ddr4_cs_n),
+//        .ddr4_dm_n          (ddr4_dm_n),
+//        .ddr4_dq            (ddr4_dq),
+//        .ddr4_dqs_c         (ddr4_dqs_c),
+//        .ddr4_dqs_t         (ddr4_dqs_t),
+//        .ddr4_odt           (ddr4_odt),
+//        .ddr4_reset_n       (ddr4_reset_n)        
     );
 
     // This register file gives software contol over unit under test (UUT).
