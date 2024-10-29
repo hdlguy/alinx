@@ -15,9 +15,9 @@ module top (
     input  logic       pcie_refclk_p
 );
     
-    logic clk, sysclk;
-    IBUFDS IBUFDS_sysclk (.O(sysclk), .I(sysclk_p), .IB(sysclk_n));
-    BUFG BUFG_sysclk (.O(clk), .I(sysclk));
+//    logic clk, sysclk;
+//    IBUFDS IBUFDS_sysclk (.O(sysclk), .I(sysclk_p), .IB(sysclk_n));
+//    BUFG BUFG_sysclk (.O(clk), .I(sysclk));
 
     
     logic [31:0]  M00_AXI_araddr;

@@ -5,7 +5,8 @@ set_property BITSTREAM.CONFIG.UNUSEDPIN PULLNONE [current_design]
 set_property CFGBVS GND [current_design]
 set_property CONFIG_VOLTAGE 1.8 [current_design]
 
-create_clock -period 5.000 -name sysclk -waveform {0.000 2.500} [get_ports {sysclk_p}]
+create_clock -period 5.000 -name sysclk    -waveform {0.000 2.500} [get_ports {sysclk_p}]
+create_clock -period 10.00 -name pcirefclk -waveform {0.000 5.000} [get_ports {pcie_refclk_p}]
 
 set_property IOSTANDARD LVCMOS18    [get_ports {led[*]}]
 set_property PACKAGE_PIN AC16       [get_ports led[1]]
