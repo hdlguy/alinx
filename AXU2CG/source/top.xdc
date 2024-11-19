@@ -16,3 +16,12 @@ set_property PACKAGE_PIN AE12       [get_ports pl_led1]
 
 set_property IOSTANDARD LVCMOS33    [get_ports fan_pwm]
 set_property PACKAGE_PIN AA11       [get_ports fan_pwm]
+
+
+set_max_delay -to [get_ports {fan_pwm}]    16.666
+set_max_delay -to [get_ports {pl_led1}]    16.666
+set_max_delay -to [get_ports {uart_txd}]   16.666
+
+set_max_delay -from [get_ports {uart_rxd}] 16.666
+set_min_delay -from [get_ports {uart_rxd}] 16.666
+
