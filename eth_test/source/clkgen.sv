@@ -1,7 +1,7 @@
 //
-module top (
+module clkgen (
     input   logic           clkin200_p, clkin200_n,
-    output  logic           clk300, clk125, clk125_90;
+    output  logic           clk300, clk125, clk125_90
 );
 
     // let us use the 200MHz differential clock

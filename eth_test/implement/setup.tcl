@@ -58,6 +58,7 @@ read_verilog -sv ../source/axis/rtl/axis_fifo.v
 read_verilog -sv ../source/axis/rtl/arbiter.v
 read_verilog -sv ../source/axis/rtl/priority_encoder.v
 
+read_verilog -sv ../source/clkgen.sv
 read_verilog -sv ../source/fpga_core.sv
 read_verilog -sv ../source/top.sv
 
