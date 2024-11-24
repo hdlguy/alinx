@@ -1,7 +1,8 @@
 //
 module clkgen (
     input   logic           clkin200_p, clkin200_n,
-    output  logic           clk300, clk125, clk125_90
+    output  logic           clk300, clk125, clk125_90,
+    output  logic           locked
 );
 
     // let us use the 200MHz differential clock
@@ -9,7 +10,7 @@ module clkgen (
     IBUFDS IBUFDS_inst (.O(clkin200 ), .I(clkin200_p),  .IB(clkin200_n));
     BUFG BUFG_inst (.O(clk200), .I(clkin200));
     
-    logic clk300_int, clk300, clk125_int, clk125, clk125_90_int, clk125_90;
+    logic clk300_int, clk300, clk125_int, clk125, clk125_90_int, clk125_90, mmcm_clkfb;
     MMCME3_BASE #(
           .BANDWIDTH("OPTIMIZED"),    // Jitter programming (HIGH, LOW, OPTIMIZED)
           .CLKFBOUT_MULT_F(5.0),      // 5*200=1000MHz
@@ -56,13 +57,13 @@ module clkgen (
           .CLKOUT4(),  
           .CLKOUT5(),  
           .CLKOUT6(),  
-          .CLKFBOUT(mmcm_clkfb),   // 1-bit output: Feedback clock
-          .CLKFBOUTB(), // 1-bit output: Inverted CLKFBOUT
-          .LOCKED(),       // 1-bit output: LOCK
+          .LOCKED(locked),       // 1-bit output: LOCK
           .CLKIN1(clk200),       // 1-bit input: Clock
           .PWRDWN(1'b0),       // 1-bit input: Power-down
           .RST(1'b0),             // 1-bit input: Reset
-          .CLKFBIN(mmcm_clkfb)      // 1-bit input: Feedback clock
+          .CLKFBOUT (mmcm_clkfb),       // 1-bit output: Feedback clock
+          .CLKFBOUTB(),                 // 1-bit output: Inverted CLKFBOUT
+          .CLKFBIN  (mmcm_clkfb)        // 1-bit input: Feedback clock
     );    
     
     BUFG BUFG_300    (.O(clk300), .I(clk300_int));

@@ -1,7 +1,7 @@
 
 create_clock -period 5.000 -name clkin200_p     [get_ports clkin200_p]
 create_clock -period 8.000 -name eth_mii_rx_clk [get_ports eth_mii_rx_clk]
-create_clock -period 8.000 -name eth_mii_tx_clk [get_ports eth_mii_tx_clk]
+#create_clock -period 8.000 -name eth_mii_tx_clk [get_ports eth_mii_tx_clk]
 
 set_property IOSTANDARD DIFF_HSTL_I_12  [get_ports {clkin200_*}]
 set_property ODT RTT_NONE               [get_ports {clkin200_*}]
@@ -31,6 +31,13 @@ set_property PACKAGE_PIN B8         [get_ports eth_mii_rx_ctl]
 
 set_property PACKAGE_PIN D5         [get_ports eth_mii_rst_n]
 
+set_property IOB TRUE [get_ports eth_mii_rxd[*]]
+set_property IOB TRUE [get_ports eth_mii_rx_ctl]
+
+set_property IOB TRUE [get_ports eth_mii_txd[*]]
+set_property IOB TRUE [get_ports eth_mii_tx_ctl]
+set_property IOB TRUE [get_ports eth_mii_tx_clk]
+
 #set_property PACKAGE_PIN A6         [get_ports eth_mii_mdc]
 #set_property PACKAGE_PIN C8         [get_ports eth_mii_mdio]
 
@@ -51,10 +58,17 @@ set_input_delay -clock [get_clocks {eth_mii_rx_clk}] -clock_fall    -max -add_de
 set_input_delay -clock [get_clocks {eth_mii_rx_clk}]                -min -add_delay 3.0 [get_ports {eth_mii_rx_ctl}]
 set_input_delay -clock [get_clocks {eth_mii_rx_clk}]                -max -add_delay 3.9 [get_ports {eth_mii_rx_ctl}]
 
-set_output_delay -clock [get_clocks {eth_mii_tx_clk}] -clock_fall   -min -add_delay 0.1 [get_ports {eth_mii_txd[*]}]
-set_output_delay -clock [get_clocks {eth_mii_tx_clk}] -clock_fall   -max -add_delay 3.8 [get_ports {eth_mii_txd[*]}]
-set_output_delay -clock [get_clocks {eth_mii_tx_clk}]               -min -add_delay 0.1 [get_ports {eth_mii_txd[*]}]
-set_output_delay -clock [get_clocks {eth_mii_tx_clk}]               -max -add_delay 3.8 [get_ports {eth_mii_txd[*]}]
+#set_output_delay -clock [get_clocks {eth_mii_tx_clk}] -clock_fall   -min -add_delay 0.1 [get_ports {eth_mii_txd[*]}]
+#set_output_delay -clock [get_clocks {eth_mii_tx_clk}] -clock_fall   -max -add_delay 3.8 [get_ports {eth_mii_txd[*]}]
+#set_output_delay -clock [get_clocks {eth_mii_tx_clk}]               -min -add_delay 0.1 [get_ports {eth_mii_txd[*]}]
+#set_output_delay -clock [get_clocks {eth_mii_tx_clk}]               -max -add_delay 3.8 [get_ports {eth_mii_txd[*]}]
 
-
+set_max_delay -to [get_ports {eth_mii_txd[*]}]    16.666
+set_min_delay -to [get_ports {eth_mii_txd[*]}]    0.0
+set_max_delay -to [get_ports {eth_mii_rst_n}]     16.666
+set_min_delay -to [get_ports {eth_mii_rst_n}]     0.0
+set_max_delay -to [get_ports {eth_mii_tx_clk}]    16.666
+set_min_delay -to [get_ports {eth_mii_tx_clk}]    0.0
+set_max_delay -to [get_ports {eth_mii_tx_ctl}]    16.666
+set_min_delay -to [get_ports {eth_mii_tx_ctl}]    0.0
 

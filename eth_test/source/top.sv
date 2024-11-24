@@ -17,8 +17,8 @@ module top (
     output  logic           eth_mii_rst_n    
 );
 
-    logic clk300, clk125, clk125_90;
-    clkgen clkgen_inst (.clkin200_p(clkin200_p), .clkin200_n(clkin200_n), .clk300(clk300), .clk125(clk125), .clk125_90(clk125_90));
+    logic clk300, clk125, clk125_90, locked;
+    clkgen clkgen_inst (.clkin200_p(clkin200_p), .clkin200_n(clkin200_n), .clk300(clk300), .clk125(clk125), .clk125_90(clk125_90), .locked(locked));
 
     logic[26:0] led_count;
     logic[7:0] reset_count=-1;
@@ -27,11 +27,16 @@ module top (
         led_count <= led_count + 1;
         led <= led_count[25];
         fan_pwm <= led_count[17] & led_count[16] & led_count[15];
-        if (reset_count != 0) begin
-            reset_count <= reset_count - 1;
+        if (~locked) begin
+            reset_count <= -1;
             reset <= 1;
         end else begin
-            reset <= 0;
+            if (reset_count != 0) begin
+                reset_count <= reset_count - 1;
+                reset <= 1;
+            end else begin
+                reset <= 0;
+            end
         end
     end
 
@@ -41,7 +46,8 @@ module top (
         // * Clock: 125MHz
         .clk(clk125),
         .clk90(clk125_90),
-        .rst(reset),  // * Synchronous reset
+        .clk300(clk300),
+        .rst(reset),
         // * GPIO
         .btnu(0),
         .btnl(0),
