@@ -337,6 +337,11 @@ eth_mac_inst (
     .cfg_rx_enable(1'b1)
 );
 
+    mac_1g_ila ila_inst (.clk(clk), 
+        .probe0({rx_axis_tdata, rx_axis_tkeep, rx_axis_tvalid, rx_axis_tready, rx_axis_tlast, rx_axis_tuser}),  //  8+5=13
+        .probe1({tx_axis_tdata, tx_axis_tkeep, tx_axis_tvalid, tx_axis_tready, tx_axis_tlast, tx_axis_tuser})   //  8+5=13
+    );
+
 eth_axis_rx
 eth_axis_rx_inst (
     .clk(clk),

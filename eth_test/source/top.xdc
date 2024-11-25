@@ -15,7 +15,7 @@ set_property IOSTANDARD LVCMOS33    [get_ports fan_pwm]
 set_property PACKAGE_PIN AA11       [get_ports fan_pwm]
 
 set_property IOSTANDARD LVCMOS18    [get_ports eth_mii_*]
-set_property PACKAGE_PIN E8         [get_ports eth_mii_tx_clk]
+set_property PACKAGE_PIN A7         [get_ports eth_mii_tx_clk]
 set_property PACKAGE_PIN A8         [get_ports eth_mii_txd[3]]
 set_property PACKAGE_PIN A9         [get_ports eth_mii_txd[2]]
 set_property PACKAGE_PIN D9         [get_ports eth_mii_txd[1]]

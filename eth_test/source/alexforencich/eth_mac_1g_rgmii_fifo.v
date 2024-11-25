@@ -122,6 +122,7 @@ module eth_mac_1g_rgmii_fifo #
     input  wire                       cfg_rx_enable
 );
 
+    
 wire tx_clk;
 wire rx_clk;
 wire tx_rst;
