@@ -1,7 +1,7 @@
 //
 module clkgen (
     input   logic           clkin200_p, clkin200_n,
-    output  logic           clk300, clk125, clk125_90,
+    output  logic           clk125, clk125_90,
     output  logic           locked
 );
 
@@ -10,8 +10,8 @@ module clkgen (
     IBUFDS IBUFDS_inst (.O(clkin200 ), .I(clkin200_p),  .IB(clkin200_n));
     BUFG BUFG_inst (.O(clk200), .I(clkin200));
     
-    logic clk300_int, clk300, clk125_int, clk125, clk125_90_int, clk125_90, mmcm_clkfb;
-    MMCME3_BASE #(
+    logic clk300_int, clk125_int, clk125, clk125_90_int, clk125_90, mmcm_clkfb, pre_locked, locked_int=0;
+    MMCME4_BASE #(
           .BANDWIDTH("OPTIMIZED"),    // Jitter programming (HIGH, LOW, OPTIMIZED)
           .CLKFBOUT_MULT_F(5.0),      // 5*200=1000MHz
           .CLKFBOUT_PHASE(0.0),       // Phase offset in degrees of CLKFB (-360.000-360.000)
@@ -30,7 +30,7 @@ module clkgen (
           .CLKOUT4_PHASE(0.0),
           .CLKOUT5_PHASE(0.0),
           .CLKOUT6_PHASE(0.0),
-          .CLKOUT0_DIVIDE_F(26*0.125),   // 1000/(26*0.125) = 307.6923076923077
+          .CLKOUT0_DIVIDE_F(1), 
           .CLKOUT1_DIVIDE(8),
           .CLKOUT2_DIVIDE(8),
           .CLKOUT3_DIVIDE(1),
@@ -46,7 +46,7 @@ module clkgen (
           .REF_JITTER1(0.0),          // Reference input jitter in UI (0.000-0.999)
           .STARTUP_WAIT("FALSE")      // Delays DONE until MMCM is locked (FALSE, TRUE)
     ) MMCME3_BASE_inst (
-          .CLKOUT0(clk300_int),  // 300MHz
+          .CLKOUT0(), 
           .CLKOUT0B(),
           .CLKOUT1(clk125_int),  // 125MHz
           .CLKOUT1B(),
@@ -57,7 +57,7 @@ module clkgen (
           .CLKOUT4(),  
           .CLKOUT5(),  
           .CLKOUT6(),  
-          .LOCKED(locked),       // 1-bit output: LOCK
+          .LOCKED(pre_locked),       // 1-bit output: LOCK
           .CLKIN1(clk200),       // 1-bit input: Clock
           .PWRDWN(1'b0),       // 1-bit input: Power-down
           .RST(1'b0),             // 1-bit input: Reset
@@ -66,7 +66,9 @@ module clkgen (
           .CLKFBIN  (mmcm_clkfb)        // 1-bit input: Feedback clock
     );    
     
-    BUFG BUFG_300    (.O(clk300), .I(clk300_int));
+    always_ff @(posedge clk125) locked_int <= pre_locked;
+    assign locked = locked_int;
+    
     BUFG BUFG_125    (.O(clk125), .I(clk125_int));
     BUFG BUFG_125_90 (.O(clk125_90), .I(clk125_90_int));            
     

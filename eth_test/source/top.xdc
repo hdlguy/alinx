@@ -1,6 +1,6 @@
 
-create_clock -period 5.000 -name clkin200_p     [get_ports clkin200_p]
-create_clock -period 8.000 -name eth_mii_rx_clk [get_ports eth_mii_rx_clk]
+create_clock -period 5.000 -name clkin200_p     -waveform {0.00, 2.50}  [get_ports clkin200_p]
+create_clock -period 8.000 -name eth_mii_rx_clk -waveform {0.00, 4.00}  [get_ports eth_mii_rx_clk]
 #create_clock -period 8.000 -name eth_mii_tx_clk [get_ports eth_mii_tx_clk]
 
 set_property IOSTANDARD DIFF_HSTL_I_12  [get_ports {clkin200_*}]

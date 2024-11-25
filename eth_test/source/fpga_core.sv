@@ -15,7 +15,6 @@ module fpga_core #
      */
     input  wire       clk,
     input  wire       clk90,
-    input  logic      clk300,
     input  wire       rst,
 
     /*
@@ -276,51 +275,6 @@ always @(posedge clk) begin
     end
 end
 
-//    // delay tx clock by 1.1ns to provide setup time at phy
-//    // create reset for IDELAYCTRL
-//    logic delctrl_reset;
-//    logic[7:0] del_reset_count = -1;
-//    always_ff @(posedge clk300) begin
-//        if (reset) begin
-//            del_reset_count <= -1;
-//            delctrl_reset <= 1;
-//        end else begin
-//            if (del_reset_count != 0) begin
-//                del_reset_count <= del_reset_count - 1;
-//                delctrl_reset <= 1;
-//            end else begin
-//                delctrl_reset <= 0;
-//            end
-//        end
-//    end
-//    IDELAYCTRL #(.SIM_DEVICE("ULTRASCALE")) IDELAYCTRL_inst (.RDY(), .REFCLK(clk300), .RST(delctrl_reset));
-
-//    logic phy_tx_clk_int;
-//    ODELAYE3 #(
-//        .CASCADE("NONE"),               // Cascade setting (MASTER, NONE, SLAVE_END, SLAVE_MIDDLE)
-//        .DELAY_FORMAT("TIME"),          // (COUNT, TIME)
-//        .DELAY_TYPE("FIXED"),           // Set the type of tap delay line (FIXED, VARIABLE, VAR_LOAD)
-//        .DELAY_VALUE(1099),             // Output delay tap setting
-//        .IS_CLK_INVERTED(1'b0),         // Optional inversion for CLK
-//        .IS_RST_INVERTED(1'b0),         // Optional inversion for RST
-//        .REFCLK_FREQUENCY(307.692),     // IDELAYCTRL clock input frequency in MHz (200.0-800.0).
-//        .SIM_DEVICE("ULTRASCALE_PLUS"), // Set the device version for simulation functionality (ULTRASCALE, ULTRASCALE_PLUS, ULTRASCALE_PLUS_ES1, ULTRASCALE_PLUS_ES2)
-//        .UPDATE_MODE("ASYNC")           // Determines when updates to the delay will take effect (ASYNC, MANUAL, SYNC)
-//    ) ODELAYE3_inst (
-//        .RST(reset),                    // 1-bit input: Asynchronous Reset to the DELAY_VALUE
-//        .ODATAIN(phy_tx_clk_int),       // 1-bit input: Data input
-//        .DATAOUT(phy_tx_clk),           // 1-bit output: Delayed data from ODATAIN input port
-//        .EN_VTC(1'b1),                  // 1-bit input: Keep delay constant over VT
-//        .CASC_OUT(),                    // 1-bit output: Cascade delay output to IDELAY input cascade
-//        .CNTVALUEOUT(),                 // 9-bit output: Counter value output
-//        .CASC_IN(1'b0),                 // 1-bit input: Cascade delay input from slave IDELAY CASCADE_OUT
-//        .CASC_RETURN(1'b0),             // 1-bit input: Cascade delay returning from slave IDELAY DATAOUT
-//        .CLK(1'b0),                     // 1-bit input: Clock input
-//        .CNTVALUEIN(0),                 // 9-bit input: Counter value input
-//        .CE(1'b0),                      // 1-bit input: Active-High enable increment/decrement input
-//        .INC(1'b0),                     // 1-bit input: Increment/Decrement tap delay input
-//        .LOAD(1'b0)                     // 1-bit input: Load DELAY_VALUE input
-//    );
 
    
 //assign led = sw;
