@@ -287,7 +287,7 @@ assign uart_rts = 0;
 eth_mac_1g_rgmii_fifo #(
     .TARGET(TARGET),
     .IODDR_STYLE("IODDR"),
-    .CLOCK_INPUT_STYLE("BUFR"),
+    .CLOCK_INPUT_STYLE("BUFG"),
     .USE_CLK90("TRUE"),
     .ENABLE_PADDING(1),
     .MIN_FRAME_LENGTH(64),
