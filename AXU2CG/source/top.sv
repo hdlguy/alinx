@@ -1,12 +1,22 @@
 //
 module top (
-    output  logic           pl_led1,
-    output  logic           fan_pwm,
-    input   logic           clkin200_p,
-    input   logic           clkin200_n,
+    output  logic       pl_led1,
+    output  logic       fan_pwm,
+    input   logic       clkin200_p,
+    input   logic       clkin200_n,
     //
-    input   logic           uart_rxd,
-    output  logic           uart_txd        
+    input   logic       uart_rxd,
+    output  logic       uart_txd,
+    //
+    output  logic       mdio_mdc,
+    inout   logic       mdio_mdio,
+    output  logic[0:0]  rgmii_reset_n,
+    input   logic[3:0]  rgmii_rxd,
+    input   logic       rgmii_rx_ctl,
+    input   logic       rgmii_rxc,
+    output  logic[3:0]  rgmii_txd,
+    output  logic       rgmii_tx_ctl,
+    output  logic       rgmii_txc            
 );
 
     logic [39:0]    M00_AXI_araddr;
@@ -32,7 +42,7 @@ module top (
     logic           axi_aclk;
     logic [0:0]     axi_aresetn;
     
-
+    logic mdio_mdio_i, mdio_mdio_o, mdio_mdio_t;
     system system_i (
         .M00_AXI_araddr     (M00_AXI_araddr),
         .M00_AXI_arprot     (M00_AXI_arprot),
@@ -57,9 +67,22 @@ module top (
         .axi_aclk           (axi_aclk),
         .axi_aresetn        (axi_aresetn),
         //
-        .uart_rxd(uart_rxd),
-        .uart_txd(uart_txd)        
+        .uart_rxd           (uart_rxd),
+        .uart_txd           (uart_txd),
+        //
+        .mdio_mdc           (mdio_mdc),
+        .mdio_mdio_i        (mdio_mdio_i),
+        .mdio_mdio_o        (mdio_mdio_o),
+        .mdio_mdio_t        (mdio_mdio_t),
+        .phy_reset_n        (rgmii_reset_n),
+        .rgmii_rd           (rgmii_rxd),
+        .rgmii_rx_ctl       (rgmii_rx_ctl),
+        .rgmii_rxc          (rgmii_rxc),
+        .rgmii_td           (rgmii_txd),
+        .rgmii_tx_ctl       (rgmii_tx_ctl),
+        .rgmii_txc          (rgmii_txc)                
     );
+    IOBUF mdio_mdio_iobuf (.I(mdio_mdio_o), .IO(mdio_mdio), .O(mdio_mdio_i), .T(mdio_mdio_t));     
     
     // This register file gives software contol over unit under test (UUT).
     localparam int Nregs = 16;
