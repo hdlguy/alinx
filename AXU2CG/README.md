@@ -69,6 +69,10 @@ The eMMC drive was tested by enabling the interface in Vivado and rebuilding Pet
 
     /dev/mmcblk0p1  7.2G   33M  6.7G   1% /mnt/emmc
 
+    sudo vi /etc/fstab
+
+/dev/mmcblk0p1  /mnt/emmc/  ext4  defaults  0  1
+
 Write speed:
 
 pedro@linaro-developer:\~$ time sudo dd if=/dev/zero of=/dev/mmcblk0p1 bs=2M count=1000
@@ -129,6 +133,12 @@ An nvme ssd was installed in the M.2 slot of the carrier board.  Vivado ZynqMP a
     sudo mount /dev/nvme0n1p1 /mnt/nvme/
 
     /dev/nvme0n1p1 ext4      234G   60M  222G   1% /mnt/nvme
+
+    sudo vi /etc/fstab 
+
+/dev/nvme0n1p1  /mnt/nvme/  ext4  defaults  0  1
+
+
 
 Write speed:
 
