@@ -1,4 +1,4 @@
-/include/ "system-conf.dtsi"
+/* /include/ "system-conf.dtsi" */
 
 / {
 	clock_si5223_0: clk27 {
