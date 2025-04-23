@@ -6,9 +6,9 @@ set_property ODT RTT_NONE               [get_ports {clkin200_*}]
 set_property PACKAGE_PIN AE5            [get_ports clkin200_p]
 set_property PACKAGE_PIN AF5            [get_ports clkin200_n]
 
-set_property IOSTANDARD LVCMOS33    [get_ports {uart_*}]
-set_property PACKAGE_PIN AH12       [get_ports uart_txd]
-set_property PACKAGE_PIN AH11       [get_ports uart_rxd]
+#set_property IOSTANDARD LVCMOS33    [get_ports {uart_*}]
+#set_property PACKAGE_PIN AH12       [get_ports uart_txd]
+#set_property PACKAGE_PIN AH11       [get_ports uart_rxd]
 
 
 set_property IOSTANDARD LVCMOS33    [get_ports pl_led1]

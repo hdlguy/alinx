@@ -19,8 +19,9 @@ cd proj1
 petalinux-config --get-hw-description=../sdt/
 
     * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
-    * Image Packaging Configuration -> Device node of SD device -> mmcblk1p2                (if you have the eMMC device enabled in Vivado IPI)
-    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1   (if you have the eMMC device enabled in Vivado IPI)
+    * Image Packaging Configuration -> Device node of SD device -> mmcblk0p2                (if you have the eMMC device enabled in Vivado IPI)
+    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1     (if you have the eMMC device enabled in Vivado IPI)
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait
     * save and exit
 
 ### Build the bootloader
@@ -29,10 +30,7 @@ petalinux-build -c bootloader -x distclean
 
 ### Configure the kernel
 
-petalinux-config -c kernel
-
-    * Device Drivers -> nvme -> nvme as block device.
-    * save and exit
+petalinux-config -c kernel --silentconfig
 
 ### Build
 
