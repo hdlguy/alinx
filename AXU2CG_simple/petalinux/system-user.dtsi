@@ -1,5 +1,32 @@
 
 / {
+    fclk0:fclk0 {
+        status = "okay";
+        compatible = "xlnx,fclk";
+        clocks = <0x04 0x47>;
+        phandle = <0xa5>;
+    };
+
+    fclk1 {
+        status = "okay";
+        compatible = "xlnx,fclk";
+        clocks = <0x04 0x48>;
+        phandle = <0xa6>;
+    };
+    
+    fclk2 {
+        status = "okay";
+        compatible = "xlnx,fclk";
+        clocks = <0x04 0x49>;
+        phandle = <0xa7>;
+    };
+
+    fclk3 {
+        status = "okay";
+        compatible = "xlnx,fclk";
+        clocks = <0x04 0x4a>;
+        phandle = <0xa8>;
+    };
 };
 
 &sdhci1 {

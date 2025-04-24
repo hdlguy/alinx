@@ -101,7 +101,7 @@ module top (
 	logic[26:0] led_count;
     always_ff @(posedge axi_aclk) begin
         led_count <= led_count + 1;
-	    pl_led1 <= led_count[26];
+	    //pl_led1 <= led_count[26];
 	    fan_pwm <= led_count[17] & led_count[16] & led_count[15];
 	end
 
@@ -113,7 +113,10 @@ module top (
     BUFG BUFG_inst (.O(clk200), .I(clkin200));
     
 	logic[26:0] clk200_count;
-    always_ff @(posedge clk200) clk200_count <= clk200_count + 1;
+    always_ff @(posedge clk200) begin
+        clk200_count <= clk200_count + 1;        
+	    pl_led1 <= clk200_count[24];
+    end
     top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
     
 endmodule

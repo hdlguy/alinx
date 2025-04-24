@@ -22,6 +22,7 @@ petalinux-config --get-hw-description=../sdt/
     * Image Packaging Configuration -> Device node of SD device -> mmcblk0p2                (if you have the eMMC device enabled in Vivado IPI)
     * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1     (if you have the eMMC device enabled in Vivado IPI)
     * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait
+    * FPGA Manager -> enable
     * save and exit
 
 ### Build the bootloader
@@ -41,6 +42,7 @@ petalinux-build
 ### Package 
 
 petalinux-package --force --boot --fsbl --fpga --pmufw --u-boot
+petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga ../../implement/results/top.bit
 
 ### Copy to SD Card
 
@@ -106,16 +108,8 @@ Here are the most important commands listed for convenience.
 
     /debootstrap/debootstrap --second-stage
 
-Add these sources to /etc/apt/sources.list
 
-    deb http://deb.debian.org/debian buster main contrib non-free
-    deb-src http://deb.debian.org/debian buster main contrib non-free
-    deb http://security.debian.org/ buster/updates main contrib non-free
-    deb-src http://security.debian.org/ buster/updates main contrib non-free
-    deb http://deb.debian.org/debian buster-updates main contrib non-free
-    deb-src http://deb.debian.org/debian buster-updates main contrib non-free
-
-    Do some more file system configuration.
+Do some more file system configuration.
 
     apt update
     apt install locales dialog
