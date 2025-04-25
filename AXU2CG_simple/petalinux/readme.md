@@ -123,10 +123,10 @@ Do some more file system configuration.
 
     Exit chroot.
 
-exit
-    Write filesystem to SD card.
 
-sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/rootfs/; sync
+Write filesystem to SD card.
+
+    sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/rootfs/; sync
 
 
 

@@ -21,6 +21,7 @@ petalinux-config --get-hw-description=../sdt/
     * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
     * Image Packaging Configuration -> Device node of SD device -> mmcblk1p2                (if you have the eMMC device enabled in Vivado IPI)
     * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1   (if you have the eMMC device enabled in Vivado IPI)
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk1p2 rw rootwait clk_ignore_unused (mmc 1, rw, clk_ignore_unused)
     * save and exit
 
 ### Build the bootloader
