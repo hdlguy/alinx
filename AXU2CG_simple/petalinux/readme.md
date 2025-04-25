@@ -2,7 +2,7 @@
 
 ## Petalinux Build instructions
 
-    * open https://petalinux.xilinx.com/ in a web browser. this makes sure we have a good connection to the yocto downloads.
+    * open https://petalinux.xilinx.com/ in a web browser to make sure we have a good connection to the yocto downloads.
 
 ### Convert the vivado .xsa file to the system device tree files that Petalinux 2024.x wants.
 
@@ -18,11 +18,10 @@ cd proj1
 
 petalinux-config --get-hw-description=../sdt/
 
-    * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
-    * Image Packaging Configuration -> Device node of SD device -> mmcblk0p2                (if you have the eMMC device enabled in Vivado IPI)
-    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1     (if you have the eMMC device enabled in Vivado IPI)
-    * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait
-    * FPGA Manager -> enable
+    * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         
+    * Image Packaging Configuration -> Device node of SD device -> mmcblk0p2                
+    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1     
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait clk_ignore_unused
     * save and exit
 
 ### Build the bootloader
@@ -37,12 +36,9 @@ petalinux-config -c kernel --silentconfig
 
 petalinux-build
 
-    * NOTE: frequently petalinux-build generates error messages. Just rerun the previous three commands to resolve that. (Who knows why?)
-
 ### Package 
 
 petalinux-package --force --boot --fsbl --fpga --pmufw --u-boot
-petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga ../../implement/results/top.bit
 
 ### Copy to SD Card
 
@@ -52,7 +48,7 @@ cd ..
 
 
 
-# Petalinux v2021.2 Build instructions
+# Petalinux (2021.2) on ZynqMP
 
     * open https://petalinux.xilinx.com/ in a web browser. this makes sure we have a good connection to the yocto downloads.
 
