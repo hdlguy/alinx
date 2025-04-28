@@ -13,7 +13,8 @@
 
 float read_temp()
 {
-    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw", "r");
+    //FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw", "r");
+    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_temp20_raw", "r");
 
     char iio_str[256];
     fscanf(fd_iio, "%s", iio_str);
@@ -26,7 +27,8 @@ float read_temp()
 
 float read_vccint()
 {
-    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage2_vccint_raw", "r");
+    //FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage2_vccint_raw", "r");
+    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage2_raw", "r");
 
     char iio_str[256];
     fscanf(fd_iio, "%s", iio_str);
@@ -38,7 +40,8 @@ float read_vccint()
 
 float read_vccaux()
 {
-    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage4_vccaux_raw", "r");
+    //FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage4_vccaux_raw", "r");
+    FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_voltage4_raw", "r");
     char iio_str[256];
     fscanf(fd_iio, "%s", iio_str);
     fclose(fd_iio);
