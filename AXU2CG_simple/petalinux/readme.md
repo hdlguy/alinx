@@ -12,9 +12,9 @@
 
 petalinux-create project --template zynqMP --name proj1
 
-### configure project from hardware
-
 cd proj1
+
+### configure project from hardware
 
 petalinux-config --get-hw-description=../sdt/
 
