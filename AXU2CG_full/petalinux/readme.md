@@ -101,7 +101,7 @@ Here are the most important commands listed for convenience.
     sudo apt install qemu-user-static
     sudo apt install debootstrap
 
-    sudo debootstrap --arch=arm64 --foreign buster debianMinimalRootFS
+    sudo debootstrap --arch=arm64 --foreign bookworm debianMinimalRootFS
     sudo cp /usr/bin/qemu-aarch64-static ./debianMinimalRootFS/usr/bin/
     sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
     sudo chroot ./debianMinimalRootFS
@@ -111,12 +111,12 @@ Here are the most important commands listed for convenience.
 
 Add these sources to /etc/apt/sources.list
 
-    deb http://deb.debian.org/debian buster main contrib non-free
-    deb-src http://deb.debian.org/debian buster main contrib non-free
-    deb http://security.debian.org/ buster/updates main contrib non-free
-    deb-src http://security.debian.org/ buster/updates main contrib non-free
-    deb http://deb.debian.org/debian buster-updates main contrib non-free
-    deb-src http://deb.debian.org/debian buster-updates main contrib non-free
+    deb http://deb.debian.org/debian bookworm main contrib non-free
+    deb-src http://deb.debian.org/debian bookworm main contrib non-free
+    deb http://security.debian.org/ bookworm/updates main contrib non-free
+    deb-src http://security.debian.org/ bookworm/updates main contrib non-free
+    deb http://deb.debian.org/debian bookworm-updates main contrib non-free
+    deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free
 
     Do some more file system configuration.
 
