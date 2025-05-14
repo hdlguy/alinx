@@ -13,18 +13,16 @@ module vinstru #(
     input   logic[15:0]         noise_amplitude,
     input   logic[15:0]         filter_bandwidth,
     //
-    output  logic               dv_out,
-    output  logic[Wdata-1:0]    d_out
+    output  logic               tvalid,
+    output  logic[Wdata-1:0]    tdata,
+    output  logic               tlast
 );
 
     // make a periodic pulse
     logic[31:0] period_count=-1;
     logic period_tc=0;
     always_ff @(posedge clk) begin
-        if (0 == enable) begin
-            period_count <= pulse_period;
-            period_tc <= 0;
-        end else begin
+        if (enable) begin
             if (period_count == 0) begin
                 period_count <= pulse_period;
                 period_tc <= 1;
@@ -32,8 +30,39 @@ module vinstru #(
                 period_count <= period_count - 1;
                 period_tc <= 0;
             end
+        end else begin
+            period_count <= pulse_period;
+            period_tc <= 0;
         end   
     end
+    
+    
+    // generate pulse
+    logic[15:0] pulse_count=-1;  
+    logic[15:0] pulse=0;  
+    always_ff @(posedge clk) begin
+    
+        if (enable) begin
+        
+            if (period_tc) begin
+                pulse_count <= pulse_width;
+            end else begin
+                if (pulse_count == 0) begin
+                    pulse <= 0;
+                end else begin
+                    pulse_count <= pulse_count - 1;
+                    pulse <= pulse_amplitude;
+                end
+            end
+            
+        end else begin
+        
+            pulse_count <= pulse_width;
+            pulse <= 0;
+            
+        end
+        
+    end        
 
 endmodule
 

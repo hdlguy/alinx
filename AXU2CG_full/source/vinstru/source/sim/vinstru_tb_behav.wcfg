@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="vinstru_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="vinstru_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="11,000.001 ns"></ZoomEndTime>
+      <Cursor1Time time="3,062.559 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="352"></NameColumnWidth>
+      <ValueColumnWidth column_width="124"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject type="logic" fp_name="/vinstru_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/pulse_period">
+      <obj_property name="ElementShortName">pulse_period[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_period[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/pulse_width">
+      <obj_property name="ElementShortName">pulse_width[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_width[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/pulse_amplitude">
+      <obj_property name="ElementShortName">pulse_amplitude[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_amplitude[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/noise_amplitude">
+      <obj_property name="ElementShortName">noise_amplitude[15:0]</obj_property>
+      <obj_property name="ObjectShortName">noise_amplitude[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/filter_bandwidth">
+      <obj_property name="ElementShortName">filter_bandwidth[15:0]</obj_property>
+      <obj_property name="ObjectShortName">filter_bandwidth[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/tvalid">
+      <obj_property name="ElementShortName">tvalid</obj_property>
+      <obj_property name="ObjectShortName">tvalid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/tlast">
+      <obj_property name="ElementShortName">tlast</obj_property>
+      <obj_property name="ObjectShortName">tlast</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/tdata">
+      <obj_property name="ElementShortName">tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider13" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/uut/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/uut/enable">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/pulse_width">
+      <obj_property name="ElementShortName">pulse_width[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_width[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/pulse_amplitude">
+      <obj_property name="ElementShortName">pulse_amplitude[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_amplitude[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/noise_amplitude">
+      <obj_property name="ElementShortName">noise_amplitude[15:0]</obj_property>
+      <obj_property name="ObjectShortName">noise_amplitude[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_bandwidth">
+      <obj_property name="ElementShortName">filter_bandwidth[15:0]</obj_property>
+      <obj_property name="ObjectShortName">filter_bandwidth[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/pulse_period">
+      <obj_property name="ElementShortName">pulse_period[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_period[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/period_count">
+      <obj_property name="ElementShortName">period_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">period_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/uut/period_tc">
+      <obj_property name="ElementShortName">period_tc</obj_property>
+      <obj_property name="ObjectShortName">period_tc</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/pulse_count">
+      <obj_property name="ElementShortName">pulse_count[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse_count[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/pulse">
+      <obj_property name="ElementShortName">pulse[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse[15:0]</obj_property>
+   </wvobject>
+</wave_config>
