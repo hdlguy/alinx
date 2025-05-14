@@ -2,8 +2,7 @@
 close_project -quiet
 file delete -force proj.xpr *.os *.jou *.log proj.srcs proj.cache proj.runs
 #
-create_project -force proj 
-set_property board_part em.avnet.com:ultrazed_eg_iocc_production:part0:1.0 [current_project]
+create_project -force -part xczu2cg-sfvc784-1-e proj 
 set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 
