@@ -10,10 +10,10 @@ set_property default_lib work [current_project]
 #upgrade_ip -quiet  [get_ips *]
 #generate_target {all} [get_ips *]
 
-read_verilog -sv ../../../iir/iir_filter.sv
-read_verilog -sv ../../../iir/iir_sos_dsp48.sv
-read_verilog -sv ../../../iir/round_n_sat.sv
-read_verilog -sv ../../../iir/iir_mult_accum.sv
+#read_verilog -sv ../../../iir/iir_filter.sv
+#read_verilog -sv ../../../iir/iir_sos_dsp48.sv
+#read_verilog -sv ../../../iir/round_n_sat.sv
+#read_verilog -sv ../../../iir/iir_mult_accum.sv
 
 read_verilog -sv ../vinstru.sv  
 read_verilog -sv ../vinstru_tb.sv  
