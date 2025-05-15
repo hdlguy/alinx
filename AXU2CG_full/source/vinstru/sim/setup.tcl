@@ -10,13 +10,13 @@ set_property default_lib work [current_project]
 #upgrade_ip -quiet  [get_ips *]
 #generate_target {all} [get_ips *]
 
-#read_verilog -sv ../../../iir/iir_filter.sv
-#read_verilog -sv ../../../iir/iir_sos_dsp48.sv
-#read_verilog -sv ../../../iir/round_n_sat.sv
-#read_verilog -sv ../../../iir/iir_mult_accum.sv
+read_verilog -sv ../../iir_verilog/iir_filter.sv
+read_verilog -sv ../../iir_verilog/iir_sos_dsp48.sv
+read_verilog -sv ../../iir_verilog/round_n_sat.sv
+read_verilog -sv ../../iir_verilog/iir_mult_accum.sv
 
-read_verilog -sv ../vinstru.sv  
-read_verilog -sv ../vinstru_tb.sv  
+read_verilog -sv ../source/vinstru.sv  
+read_verilog -sv ../source/vinstru_tb.sv  
 
 add_files -fileset sim_1 -norecurse ./vinstru_tb_behav.wcfg
 

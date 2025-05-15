@@ -18,11 +18,20 @@ module vinstru #(
     output  logic               tlast
 );
 
+    // make 1/8 heartbeat so we can use the iir_filter
+    logic heartbeat;
+    logic[2:0] heart_count=0;
+    always_ff @(posedge clk) begin
+        heart_count <= heart_count - 1;
+        heartbeat <= (0 == heart_count);
+    end
+
+
     // make a periodic pulse
     logic[31:0] period_count=-1;
     logic period_tc=0;
     always_ff @(posedge clk) begin
-        if (enable) begin
+        if ((enable) && (heartbeat)) begin
             if (period_count == 0) begin
                 period_count <= pulse_period;
                 period_tc <= 1;
@@ -64,13 +73,22 @@ module vinstru #(
         
     end        
     
-    // format short; clear; N=32; W=0.25; Bc=18; b=fir1(N,W,"low"); cq=round(b*(2.0^(Bc-1))); for i=1:N+1 printf("%d, ",cq(i)) endfor; printf("\n");
-    logic[39:0] m_axis_data_tdata;
-    fir_core your_instance_name (.aclk(clk), .s_axis_data_tvalid(1'b1), .s_axis_data_tready(), .s_axis_data_tdata(pulse), .m_axis_data_tvalid(), .m_axis_data_tdata(m_axis_data_tdata));
-    logic[15:0] fir_data;
-    assign fir_data = m_axis_data_tdata[17+:16];
-
-
+/*
+    // iir filter
+    localparam int  Ncint  = 3;
+    localparam int  Ncwidth = 18;
+    localparam int  Ncfrac = Ncwidth - Ncint;
+    localparam int  Nsos = 5;
+    localparam real coeff[0:Nsos-1][0:5] =  '{
+        '{ +0.002563476562, +0.005401611328, +0.002838134766, +1.000000000000, -1.803985595703, +0.813781738281 },
+        '{ +0.002563476562, +0.005279541016, +0.002716064453, +1.000000000000, -1.818359375000, +0.828460693359 },
+        '{ +0.002563476562, +0.005126953125, +0.002563476562, +1.000000000000, -1.852111816406, +0.862365722656 },
+        '{ +0.002563476562, +0.004974365234, +0.002410888672, +1.000000000000, -1.899139404297, +0.909576416016 },
+        '{ +0.002563476562, +0.004882812500, +0.002319335938, +1.000000000000, -1.957031250000, +0.967803955078 }
+    };
+    logic[17:0] filt_dout;
+    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(1'b1), .d_in(pulse), .dv_out(), .d_out(filt_dout));
+*/
 
 
 endmodule
@@ -90,5 +108,11 @@ endmodule
 //    };
 //    logic[17:0] filt_dout;
 //    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(1'b1), .d_in(pulse), .dv_out(), .d_out(filt_dout));
+
+//    // format short; clear; N=32; W=0.25; Bc=18; b=fir1(N,W,"low"); cq=round(b*(2.0^(Bc-1))); for i=1:N+1 printf("%d, ",cq(i)) endfor; printf("\n");
+//    logic[39:0] m_axis_data_tdata;
+//    fir_core your_instance_name (.aclk(clk), .s_axis_data_tvalid(1'b1), .s_axis_data_tready(), .s_axis_data_tdata(pulse), .m_axis_data_tvalid(), .m_axis_data_tdata(m_axis_data_tdata));
+//    logic[15:0] fir_data;
+//    assign fir_data = m_axis_data_tdata[17+:16];
 
 
