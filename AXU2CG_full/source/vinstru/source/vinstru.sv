@@ -31,13 +31,15 @@ module vinstru #(
     logic[31:0] period_count=-1;
     logic period_tc=0;
     always_ff @(posedge clk) begin
-        if ((enable) && (heartbeat)) begin
-            if (period_count == 0) begin
-                period_count <= pulse_period;
-                period_tc <= 1;
-            end else begin
-                period_count <= period_count - 1;
-                period_tc <= 0;
+        if (enable) begin
+            if (heartbeat) begin
+                if (period_count == 0) begin
+                    period_count <= pulse_period;
+                    period_tc <= 1;
+                end else begin
+                    period_count <= period_count - 1;
+                    period_tc <= 0;
+                end
             end
         end else begin
             period_count <= pulse_period;
@@ -48,19 +50,21 @@ module vinstru #(
     
     // generate pulse
     logic[15:0] pulse_count=-1;  
-    logic[15:0] pulse=0;  
+    logic[17:0] pulse=0;  
     always_ff @(posedge clk) begin
     
         if (enable) begin
         
-            if (period_tc) begin
-                pulse_count <= pulse_width;
-            end else begin
-                if (pulse_count == 0) begin
-                    pulse <= 0;
+            if (heartbeat) begin        
+                if (period_tc) begin
+                    pulse_count <= pulse_width;
                 end else begin
-                    pulse_count <= pulse_count - 1;
-                    pulse <= $signed(pulse_amplitude);
+                    if (pulse_count == 0) begin
+                        pulse <= 0;
+                    end else begin
+                        pulse_count <= pulse_count - 1;
+                        pulse <= $signed(pulse_amplitude);
+                    end
                 end
             end
             
@@ -71,9 +75,11 @@ module vinstru #(
             
         end
         
-    end        
+    end
     
-/*
+    // generate noise
+            
+   
     // iir filter
     localparam int  Ncint  = 3;
     localparam int  Ncwidth = 18;
@@ -86,9 +92,9 @@ module vinstru #(
         '{ +0.002563476562, +0.004974365234, +0.002410888672, +1.000000000000, -1.899139404297, +0.909576416016 },
         '{ +0.002563476562, +0.004882812500, +0.002319335938, +1.000000000000, -1.957031250000, +0.967803955078 }
     };
-    logic[17:0] filt_dout;
-    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(1'b1), .d_in(pulse), .dv_out(), .d_out(filt_dout));
-*/
+    logic[17:0] filt_d_out;
+    logic filt_dv_out;
+    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(heartbeat), .d_in(pulse), .dv_out(filt_dv_out), .d_out(filt_d_out));
 
 
 endmodule

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="4,400.001 ns"></ZoomEndTime>
-      <Cursor1Time time="0.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="1,001.000001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="352"></NameColumnWidth>
-      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+      <ValueColumnWidth column_width="112"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="23" />
+   <WVObjectSize size="25" />
    <wvobject type="logic" fp_name="/vinstru_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -77,6 +77,10 @@
       <obj_property name="ElementShortName">enable</obj_property>
       <obj_property name="ObjectShortName">enable</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/vinstru_tb/uut/heartbeat">
+      <obj_property name="ElementShortName">heartbeat</obj_property>
+      <obj_property name="ObjectShortName">heartbeat</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/vinstru_tb/uut/pulse_width">
       <obj_property name="ElementShortName">pulse_width[15:0]</obj_property>
       <obj_property name="ObjectShortName">pulse_width[15:0]</obj_property>
@@ -118,8 +122,8 @@
       <obj_property name="ObjectShortName">pulse_count[15:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vinstru_tb/uut/pulse">
-      <obj_property name="ElementShortName">pulse[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pulse[15:0]</obj_property>
+      <obj_property name="ElementShortName">pulse[17:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse[17:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
@@ -130,14 +134,17 @@
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/fir_data">
-      <obj_property name="ElementShortName">fir_data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">fir_data[15:0]</obj_property>
+   <wvobject type="logic" fp_name="/vinstru_tb/uut/filt_dv_out">
+      <obj_property name="ElementShortName">filt_dv_out</obj_property>
+      <obj_property name="ObjectShortName">filt_dv_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/filt_d_out">
+      <obj_property name="ElementShortName">filt_d_out[17:0]</obj_property>
+      <obj_property name="ObjectShortName">filt_d_out[17:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogYRangeMin">25655.6</obj_property>
+      <obj_property name="AnalogYRRangeMax">43254.6</obj_property>
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
