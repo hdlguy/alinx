@@ -19,7 +19,7 @@ module vinstru #(
 );
 
     // make 1/8 heartbeat so we can use the iir_filter
-    logic heartbeat;
+    logic heartbeat=0;
     logic[2:0] heart_count=0;
     always_ff @(posedge clk) begin
         heart_count <= heart_count - 1;
@@ -79,11 +79,18 @@ module vinstru #(
     
     // generate noise
     logic[7:0] del_reset = 8'hff;
-    allways_ff @(posedge clk) del_reset <= {1'b0, del_reset[7:1]};
+    always_ff @(posedge clk) del_reset <= {1'b0, del_reset[7:1]};
     logic noise_dv_out;
     logic[15:0] noise_data_out;
     gng #( .INIT_Z1(64'd5030521883283424767), .INIT_Z2(64'd18445829279364155008), .INIT_Z3(64'd18436106298727503359))
-        u_gng (.clk(clk), .rstn(~del_reset[0]), .ce(heartbeat), .valid_out(noise_dv_out), .data_out(noise_d_out));
+        u_gng (.clk(clk), .rstn(~del_reset[0]), .ce(heartbeat), .valid_out(noise_dv_out), .data_out(noise_data_out));
+        
+        
+    // sum pulse and noise
+    logic[17:0] sum_data=0;
+    always_ff @(posedge clk) begin
+        if (noise_dv_out) sum_data <= $signed(pulse) + $signed(noise_data_out)*8;
+    end
             
    
     // iir filter
@@ -100,7 +107,7 @@ module vinstru #(
     };
     logic[17:0] filt_d_out;
     logic filt_dv_out;
-    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(heartbeat), .d_in(pulse), .dv_out(filt_dv_out), .d_out(filt_d_out));
+    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(heartbeat), .d_in(sum_data), .dv_out(filt_dv_out), .d_out(filt_d_out));
 
 
 endmodule

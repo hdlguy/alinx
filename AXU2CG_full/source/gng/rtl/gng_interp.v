@@ -45,7 +45,7 @@ module gng_interp (
     input valid_in,               // input data valid
     input [63:0] data_in,         // input data
     output reg valid_out=0,         // output data valid
-    output reg [15:0] data_out    // output data, s<16,11>
+    output reg [15:0] data_out=0    // output data, s<16,11>
 );
 
 // Local variables

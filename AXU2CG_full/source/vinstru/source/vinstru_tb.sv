@@ -21,12 +21,12 @@ module vinstru_tb ();
     initial begin
     
         enable = 0;
-        pulse_period = 2000-1;
+        pulse_period = 10000-1;
         pulse_width = 1000;
         pulse_amplitude = 30000;
         noise_amplitude = 10;
         filter_bandwidth = 0;
-        #(clk_period*100);
+        #(clk_period*1000);
         
         enable = 1;
         

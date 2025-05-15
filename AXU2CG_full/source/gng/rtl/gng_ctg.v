@@ -51,7 +51,7 @@ module gng_ctg #(
     // Data interface
     input ce,                     // clock enable
     output reg valid_out=0,         // output data valid
-    output reg [63:0] data_out    // output data
+    output reg [63:0] data_out=0    // output data
 );
 
 // Local variables
