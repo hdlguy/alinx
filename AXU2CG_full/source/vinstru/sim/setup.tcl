@@ -15,6 +15,14 @@ read_verilog -sv ../../iir_verilog/iir_sos_dsp48.sv
 read_verilog -sv ../../iir_verilog/round_n_sat.sv
 read_verilog -sv ../../iir_verilog/iir_mult_accum.sv
 
+read_verilog -sv ../../gng/rtl/gng_coef.v  
+read_verilog -sv ../../gng/rtl/gng_ctg.v  
+read_verilog -sv ../../gng/rtl/gng_interp.v  
+read_verilog -sv ../../gng/rtl/gng_lzd.v  
+read_verilog -sv ../../gng/rtl/gng_smul_16_18_sadd_37.v  
+read_verilog -sv ../../gng/rtl/gng_smul_16_18.v  
+read_verilog -sv ../../gng/rtl/gng.v
+
 read_verilog -sv ../source/vinstru.sv  
 read_verilog -sv ../source/vinstru_tb.sv  
 

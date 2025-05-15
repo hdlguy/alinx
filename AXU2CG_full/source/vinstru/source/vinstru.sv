@@ -78,6 +78,12 @@ module vinstru #(
     end
     
     // generate noise
+    logic[7:0] del_reset = 8'hff;
+    allways_ff @(posedge clk) del_reset <= {1'b0, del_reset[7:1]};
+    logic noise_dv_out;
+    logic[15:0] noise_data_out;
+    gng #( .INIT_Z1(64'd5030521883283424767), .INIT_Z2(64'd18445829279364155008), .INIT_Z3(64'd18436106298727503359))
+        u_gng (.clk(clk), .rstn(~del_reset[0]), .ce(heartbeat), .valid_out(noise_dv_out), .data_out(noise_d_out));
             
    
     // iir filter
