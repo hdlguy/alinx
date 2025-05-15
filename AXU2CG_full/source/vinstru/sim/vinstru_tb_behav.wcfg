@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="5,032.344 ns"></ZoomEndTime>
+      <ZoomEndTime time="4,400.001 ns"></ZoomEndTime>
       <Cursor1Time time="0.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="352"></NameColumnWidth>
-      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="38" />
+   <WVObjectSize size="23" />
    <wvobject type="logic" fp_name="/vinstru_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -118,12 +118,8 @@
       <obj_property name="ObjectShortName">pulse_count[15:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vinstru_tb/uut/pulse">
-      <obj_property name="ElementShortName">pulse[17:0]</obj_property>
-      <obj_property name="ObjectShortName">pulse[17:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filt_dout">
-      <obj_property name="ElementShortName">filt_dout[17:0]</obj_property>
-      <obj_property name="ObjectShortName">filt_dout[17:0]</obj_property>
+      <obj_property name="ElementShortName">pulse[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pulse[15:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
@@ -134,65 +130,17 @@
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
    </wvobject>
-   <wvobject fp_name="divider42" type="divider">
-      <obj_property name="label">iir</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/vinstru_tb/uut/filter_inst/clk">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/vinstru_tb/uut/filter_inst/dv_in">
-      <obj_property name="ElementShortName">dv_in</obj_property>
-      <obj_property name="ObjectShortName">dv_in</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/d_in">
-      <obj_property name="ElementShortName">d_in[17:0]</obj_property>
-      <obj_property name="ObjectShortName">d_in[17:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/vinstru_tb/uut/filter_inst/dv_out">
-      <obj_property name="ElementShortName">dv_out</obj_property>
-      <obj_property name="ObjectShortName">dv_out</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/d_out">
-      <obj_property name="ElementShortName">d_out[17:0]</obj_property>
-      <obj_property name="ObjectShortName">d_out[17:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/dv">
-      <obj_property name="ElementShortName">dv[5:0]</obj_property>
-      <obj_property name="ObjectShortName">dv[5:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/data">
-      <obj_property name="ElementShortName">data[5:0][2:-22]</obj_property>
-      <obj_property name="ObjectShortName">data[5:0][2:-22]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/dout_sat">
-      <obj_property name="ElementShortName">dout_sat[17:0]</obj_property>
-      <obj_property name="ObjectShortName">dout_sat[17:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/Ncint">
-      <obj_property name="ElementShortName">Ncint[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Ncint[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/Ncfrac">
-      <obj_property name="ElementShortName">Ncfrac[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Ncfrac[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/Nsos">
-      <obj_property name="ElementShortName">Nsos[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Nsos[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/coeff">
-      <obj_property name="ElementShortName">coeff[0:4][0:5]</obj_property>
-      <obj_property name="ObjectShortName">coeff[0:4][0:5]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/Ndint">
-      <obj_property name="ElementShortName">Ndint[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Ndint[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vinstru_tb/uut/filter_inst/Ndfrac">
-      <obj_property name="ElementShortName">Ndfrac[31:0]</obj_property>
-      <obj_property name="ObjectShortName">Ndfrac[31:0]</obj_property>
+   <wvobject type="array" fp_name="/vinstru_tb/uut/fir_data">
+      <obj_property name="ElementShortName">fir_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">fir_data[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
    </wvobject>
 </wave_config>

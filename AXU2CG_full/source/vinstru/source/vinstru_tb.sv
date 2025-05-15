@@ -21,8 +21,8 @@ module vinstru_tb ();
     initial begin
     
         enable = 0;
-        pulse_period = 100-1;
-        pulse_width = 10;
+        pulse_period = 200-1;
+        pulse_width = 100;
         pulse_amplitude = 50;
         noise_amplitude = 10;
         filter_bandwidth = 0;

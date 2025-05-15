@@ -39,7 +39,7 @@ module vinstru #(
     
     // generate pulse
     logic[15:0] pulse_count=-1;  
-    logic[17:0] pulse=0;  
+    logic[15:0] pulse=0;  
     always_ff @(posedge clk) begin
     
         if (enable) begin
@@ -63,6 +63,17 @@ module vinstru #(
         end
         
     end        
+    
+    // format short; clear; N=32; W=0.25; Bc=18; b=fir1(N,W,"low"); cq=round(b*(2.0^(Bc-1))); for i=1:N+1 printf("%d, ",cq(i)) endfor; printf("\n");
+    logic[39:0] m_axis_data_tdata;
+    fir_core your_instance_name (.aclk(clk), .s_axis_data_tvalid(1'b1), .s_axis_data_tready(), .s_axis_data_tdata(pulse), .m_axis_data_tvalid(), .m_axis_data_tdata(m_axis_data_tdata));
+    logic[15:0] fir_data;
+    assign fir_data = m_axis_data_tdata[17+:16];
+
+
+
+
+endmodule
 
 
 //    // iir filter
@@ -80,6 +91,4 @@ module vinstru #(
 //    logic[17:0] filt_dout;
 //    iir_filter #(.Ncint(Ncint), .Ncfrac(Ncfrac), .Nsos(Nsos), .coeff(coeff)) filter_inst (.clk(clk), .dv_in(1'b1), .d_in(pulse), .dv_out(), .d_out(filt_dout));
 
-
-endmodule
 
