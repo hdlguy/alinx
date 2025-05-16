@@ -5,7 +5,7 @@ module vinstru_tb ();
     localparam int Wdata = 8;
     localparam int Wdepth = 2**10;
     
-    logic               enable;
+    logic               enable, run, done;
     logic[31:0]         pulse_period;
     logic[15:0]         pulse_width;
     logic[15:0]         pulse_amplitude;
