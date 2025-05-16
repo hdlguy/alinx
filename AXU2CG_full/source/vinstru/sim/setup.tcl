@@ -23,6 +23,7 @@ read_verilog -sv ../../gng/rtl/gng_smul_16_18_sadd_37.v
 read_verilog -sv ../../gng/rtl/gng_smul_16_18.v  
 read_verilog -sv ../../gng/rtl/gng.v
 
+read_verilog -sv ../source/vsource.sv  
 read_verilog -sv ../source/vinstru.sv  
 read_verilog -sv ../source/vinstru_tb.sv  
 
