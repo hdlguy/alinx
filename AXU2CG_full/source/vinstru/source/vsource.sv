@@ -9,7 +9,7 @@ module vsource (
     input   logic[15:0]         pulse_amplitude,
     input   logic[15:0]         noise_amplitude,
     //
-    output  logic               trig_out
+    output  logic               trig_out,
     output  logic               dv_out,
     output  logic[17:0]         d_out
 );

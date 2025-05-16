@@ -10,25 +10,35 @@ module vinstru_tb ();
     logic[15:0]         pulse_width;
     logic[15:0]         pulse_amplitude;
     logic[15:0]         noise_amplitude;
-    logic[15:0]         filter_bandwidth;
-    logic               tvalid, tlast;
-    logic[Wdata-1:0]    tdata;
+    logic               bram_clk;
+    logic               bram_rst;
+    logic               bram_en;
+    logic[3:0]          bram_we;
+    logic[11+2:0]       bram_addr;
+    logic[31:0]         bram_din;
+    logic[31:0]         bram_dout;    
 
     localparam time clk_period = 10; logic clk=0; always #(clk_period/2) clk=~clk;
 
-    vinstru #(.Wdata(Wdata), .Wdepth(Wdepth)) uut (.*);
+    vinstru uut (.*);
     
     initial begin
     
         enable = 0;
+        run = 0;
         pulse_period = 10000-1;
         pulse_width = 1000;
         pulse_amplitude = 30000;
         noise_amplitude = 10;
-        filter_bandwidth = 0;
         #(clk_period*1000);
         
         enable = 1;
+        #(clk_period*1000);
+        
+        run = 1;
+        #(clk_period*100);
+        
+        run = 0;
         
     end
 
