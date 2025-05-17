@@ -20,6 +20,13 @@ module top (
     logic           axi_aclk;
     logic [0:0]     axi_aresetn;
     
+    logic [13:0]    vinstru_bram_addr;
+    logic           vinstru_bram_clk;
+    logic [31:0]    vinstru_bram_din;
+    logic [31:0]    vinstru_bram_dout;
+    logic           vinstru_bram_en;
+    logic           vinstru_bram_rst;
+    logic [3:0]     vinstru_bram_we;    
 
     system system_i (
         //
@@ -35,8 +42,20 @@ module top (
         .axi_aresetn        (axi_aresetn),
         //
         .uart_rxd(uart_rxd),
-        .uart_txd(uart_txd)        
+        .uart_txd(uart_txd),
+        //
+        .vinstru_bram_addr  (vinstru_bram_addr),
+        .vinstru_bram_clk   (vinstru_bram_clk),
+        .vinstru_bram_din   (vinstru_bram_din),
+        .vinstru_bram_dout  (vinstru_bram_dout),
+        .vinstru_bram_en    (vinstru_bram_en),
+        .vinstru_bram_rst   (vinstru_bram_rst),
+        .vinstru_bram_we    (vinstru_bram_we)                
     );
+    
+    logic vinstru_run, vinstru_done, vinstru_enable;
+    logic[31:0] vinstru_pulse_period;
+    logic[15:0] vinstru_pulse_width, vinstru_pulse_amplitude, vinstru_noise_amplitude;
     
     // This register file gives software contol over unit under test (UUT).
     localparam int Nregs = 16;
@@ -45,9 +64,37 @@ module top (
     assign slv_read[0] = 32'hdeadbeef;
     assign slv_read[1] = 32'h76543210;
     
-    assign slv_read[2] = slv_reg[2];
+    assign slv_read[ 2] = slv_reg[ 2];
     
-    assign slv_read[Nregs-1:3] = slv_reg[Nregs-1:3];
+    assign slv_read[ 3] = slv_reg[ 3];
+    
+    assign vinstru_enable = slv_reg[4][0];
+    assign vinstru_run = slv_reg[4][4];
+    assign slv_read[4][8] = vinstru_done;
+    assign slv_read[4][3:1] = 0;
+    assign slv_read[4][7:5] = 0;
+    assign slv_read[4][31:9] = 0;
+    
+    assign vinstru_pulse_period = slv_reg[5];
+    assign slv_read[5] = slv_reg[5];
+    
+    assign vinstru_pulse_width = slv_reg[6][15:0];
+    assign slv_read[6] = slv_reg[6];
+
+    assign vinstru_pulse_amplitude = slv_reg[7][15:0];    
+    assign slv_read[7] = slv_reg[7];
+
+    assign vinstru_noise_amplitude = slv_reg[8][15:0];     
+    assign slv_read[8] = slv_reg[8];
+    
+    assign slv_read[ 9] = slv_reg[ 9];
+    assign slv_read[10] = slv_reg[10];
+    assign slv_read[11] = slv_reg[11];
+    assign slv_read[12] = slv_reg[12];
+    assign slv_read[13] = slv_reg[13];
+    assign slv_read[14] = slv_reg[14];
+    assign slv_read[15] = slv_reg[15];
+    
     
     mem_regfile #(
        .Naddr(4)  // 16 registers
@@ -84,5 +131,48 @@ module top (
     always_ff @(posedge clk200) clk200_count <= clk200_count + 1;
     top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
     
+    // a virtual instrument
+    vinstru vinstru_inst (
+        .clk                (clk),
+        .enable             (vinstru_enable),
+        .run                (vinstru_run),
+        .done               (vinstru_done),
+        .pulse_period       (vinstru_pulse_period),
+        .pulse_width        (vinstru_pulse_width),
+        .pulse_amplitude    (vinstru_pulse_amplitude),
+        .noise_amplitude    (vinstru_noise_amplitude),
+        //
+        .bram_clk           (vinstru_bram_clk),
+        .bram_rst           (vinstru_bram_rst),
+        .bram_en            (vinstru_bram_en),
+        .bram_we            (vinstru_bram_we),
+        .bram_addr          (vinstru_bram_addr),
+        .bram_din           (vinstru_bram_din),
+        .bram_dout          (vinstru_bram_dout)
+    );
+    
 endmodule
     
+/*
+module vinstru (
+    //
+    input   logic               clk,
+    input   logic               enable,
+    //
+    input   logic               run,
+    output  logic               done,
+    //
+    input   logic[31:0]         pulse_period,
+    input   logic[15:0]         pulse_width,
+    input   logic[15:0]         pulse_amplitude,
+    input   logic[15:0]         noise_amplitude,
+    //
+    input   logic               bram_clk,
+    input   logic               bram_rst,
+    input   logic               bram_en,
+    input   logic[3:0]          bram_we,
+    input   logic[11+2:0]       bram_addr,
+    input   logic[31:0]         bram_din,
+    output  logic[31:0]         bram_dout
+);
+*/
