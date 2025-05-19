@@ -31,24 +31,48 @@ int main(int argc,char** argv)
     printf("FPGA_ID = 0x%08x, FPGA_VERSION = 0x%08x\n", regptr[FPGA_ID], regptr[FPGA_VERSION]);
 
 
+    uint32_t* write_data;
+    uint32_t* read_data;
+    uint32_t* bram_ptr;
+    int errors;
 
     // Test the scratch bram.
-    uint32_t* write_data = malloc(TEST_RAM_SIZE);
-    uint32_t* read_data  = malloc(TEST_RAM_SIZE);
+    write_data = malloc(TEST_RAM_SIZE);
+    read_data  = malloc(TEST_RAM_SIZE);
     // create test data.
     for (int i=0; i<TEST_RAM_SIZE/4; i++) write_data[i] = rand();
-    uint32_t* bram_ptr = base_addr + TEST_RAM_OFFSET;
+    bram_ptr = base_addr + TEST_RAM_OFFSET;
     fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
     // write bram
     for (int i=0; i<TEST_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
     // read bram
     for (int i=0; i<TEST_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
     // chech bram results
-    int errors = 0;
+    errors = 0;
     for (int i=0; i<TEST_RAM_SIZE/4; i++) {
         if (read_data[i] != write_data[i]) errors++;
     }
     fprintf(stdout, "scratch bram errors = %d\n", errors);
+    free(write_data);
+    free(read_data);
+
+    // Test the vinstru bram.
+    write_data = malloc(VINSTRU_RAM_SIZE);
+    read_data  = malloc(VINSTRU_RAM_SIZE);
+    // create test data.
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) write_data[i] = rand();
+    bram_ptr = base_addr + VINSTRU_RAM_OFFSET;
+    fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
+    // write bram
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
+    // read bram
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
+    // chech bram results
+    errors = 0;
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) {
+        if (read_data[i] != write_data[i]) errors++;
+    }
+    fprintf(stdout, "vinstru bram errors = %d\n", errors);
     free(write_data);
     free(read_data);
 
