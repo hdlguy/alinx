@@ -11,7 +11,7 @@ LIB_FILES =
 
 LIB_OBJS := $(subst .c,.o,$(LIB_FILES))
 
-test: test.o $(LIB_OBJS) $(PUBLIC_LIBS)
+test: test.o $(LIB_OBJS) $(PUBLIC_LIBS) ../include/fpga.h
 # $@: target file name, $^: all prerequisites
 	gcc -g -o $@ $^
 
