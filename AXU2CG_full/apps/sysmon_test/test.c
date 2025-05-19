@@ -6,11 +6,6 @@
 #include <fcntl.h>
 #include <string.h>
 
-//#include "mem-io.h"
-//#include "utils.h"
-//#include "proto2_hw.h"
-//#include "xspi_l.h"
-
 float read_temp()
 {
     //FILE* fd_iio = fopen("/sys/bus/iio/devices/iio:device0/in_temp0_ps_temp_raw", "r");

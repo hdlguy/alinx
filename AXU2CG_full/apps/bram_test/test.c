@@ -31,24 +31,48 @@ int main(int argc,char** argv)
     printf("FPGA_ID = 0x%08x, FPGA_VERSION = 0x%08x\n", regptr[FPGA_ID], regptr[FPGA_VERSION]);
 
 
+    uint32_t* write_data;
+    uint32_t* read_data;
+    uint32_t* bram_ptr;
+    int errors;
 
     // Test the scratch bram.
-    uint32_t* write_data = malloc(TEST_RAM_SIZE);
-    uint32_t* read_data  = malloc(TEST_RAM_SIZE);
+    write_data = malloc(TEST_RAM_SIZE);
+    read_data  = malloc(TEST_RAM_SIZE);
     // create test data.
     for (int i=0; i<TEST_RAM_SIZE/4; i++) write_data[i] = rand();
-    uint32_t* bram_ptr = base_addr + TEST_RAM_OFFSET;
+    bram_ptr = base_addr + TEST_RAM_OFFSET;
     fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
     // write bram
     for (int i=0; i<TEST_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
     // read bram
     for (int i=0; i<TEST_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
     // chech bram results
-    int errors = 0;
+    errors = 0;
     for (int i=0; i<TEST_RAM_SIZE/4; i++) {
         if (read_data[i] != write_data[i]) errors++;
     }
     fprintf(stdout, "scratch bram errors = %d\n", errors);
+    free(write_data);
+    free(read_data);
+
+    // Test the vinstru bram.
+    write_data = malloc(VINSTRU_RAM_SIZE);
+    read_data  = malloc(VINSTRU_RAM_SIZE);
+    // create test data.
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) write_data[i] = rand();
+    bram_ptr = base_addr + VINSTRU_RAM_OFFSET;
+    fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
+    // write bram
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
+    // read bram
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
+    // chech bram results
+    errors = 0;
+    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) {
+        if (read_data[i] != write_data[i]) errors++;
+    }
+    fprintf(stdout, "vinstru bram errors = %d\n", errors);
     free(write_data);
     free(read_data);
 
@@ -59,32 +83,3 @@ int main(int argc,char** argv)
 }
 
 
-/*
-void* phy_addr_2_vir_addr(off_t phy_addr,size_t size)
-{
-   void* vir_addr=NULL;
-
-   int fd = open("/dev/mem",O_RDWR|O_SYNC);
-   if(fd < 0)
-   {
-       fprintf(stderr,"Can't open /dev/mem\n");
-   }
-   else
-   {
-                  //0 is not NULL
-      vir_addr=mmap(0,size,PROT_READ|PROT_WRITE,MAP_SHARED,fd,phy_addr);
-      if(vir_addr == NULL)
-      {
-          fprintf(stderr,"Can't mmap\n");
-      }
-      else
-      {
-          //DEBUG("phy_addr 0x%lX mapped to 0x%lX with size=0x%x bytes\n",phy_addr,(uint64_t)vir_addr,(uint32_t)size);
-          //DEBUG("phy_addr 0x%lx mapped to 0x%p with size=0x%zx bytes\n", phy_addr, vir_addr, size);
-      }
-   }
-   return vir_addr;
-}
-
-
-*/
