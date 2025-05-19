@@ -64,6 +64,7 @@ module top (
     assign slv_read[0] = 32'hdeadbeef;
     assign slv_read[1] = 32'h76543210;
     
+    assign pl_led1 = slv_reg[2][0];
     assign slv_read[ 2] = slv_reg[ 2];
     
     assign slv_read[ 3] = slv_reg[ 3];
@@ -116,7 +117,7 @@ module top (
 	logic[26:0] led_count;
     always_ff @(posedge axi_aclk) begin
         led_count <= led_count + 1;
-	    pl_led1 <= led_count[26];
+	    //pl_led1 <= led_count[26];
 	    fan_pwm <= led_count[17] & led_count[16] & led_count[15];
 	end
 
