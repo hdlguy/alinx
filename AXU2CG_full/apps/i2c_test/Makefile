@@ -2,9 +2,9 @@ ALL_EXE = test
 all: $(ALL_EXE) 
 
 CC=gcc
-CFLAGS=-I. -I../include  -I../API -I../hw -Wall
+CFLAGS=-I. -I..  -I../API -I../hw -Wall
 
-DEPS = Makefile ./lm75.h
+DEPS = Makefile ../fpga.h
 
 PUBLIC_LIBS = 
 LIB_FILES =
@@ -23,6 +23,6 @@ clean:
 	rm -rf *.o $(ALL_EXE) 
 
 #pattern rules
-%.o: %.c $(DEPS)
+%.o: %.c $(DEPS) 
 # $<: first prerequisite
 	$(CC) -g -c -o $@ $< $(CFLAGS)

@@ -2,9 +2,9 @@ ALL_EXE = test
 all: $(ALL_EXE) 
 
 CC=gcc
-CFLAGS=-I. -I../include  -Wall
+CFLAGS=-I. -I../ -Wall
 
-DEPS = Makefile ../include/fpga.h 
+DEPS = Makefile ../fpga.h 
 
 PUBLIC_LIBS = 
 LIB_FILES =
