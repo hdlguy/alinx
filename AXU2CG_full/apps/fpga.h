@@ -9,6 +9,12 @@
 #define     FPGA_VERSION            1
 #define     FPGA_LED                2 // [0] = PL LED value, read/write
 
+#define     VINSTRU_PULSE_ENABLE    4
+#define     VINSTRU_PULSE_PERIOD    5
+#define     VINSTRU_PULSE_WIDTH     6
+#define     VINSTRU_PULSE_AMPLITUDE 7
+#define     VINSTRU_NOISE_AMPLITUDE 8
+
 
 
 #define     TEST_RAM_OFFSET         0x00010000
