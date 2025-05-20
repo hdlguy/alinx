@@ -24,17 +24,20 @@ int main(int argc,char** argv)
     regptr[VINSTRU_PULSE_ENABLE] = 1; // start pulse generator
 
     regptr[VINSTRU_CAPTURE_CONTROL] = 0; // clear capture run
+    printf("waiting for done to clear\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
+
     regptr[VINSTRU_CAPTURE_CONTROL] = 1; // set capture run
+    printf("waiting for done to assert\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0x10); // wait for capture done to assert
-    regptr[VINSTRU_CAPTURE_CONTROL] = 0; // set capture run
-    while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
+
+    //regptr[VINSTRU_CAPTURE_CONTROL] = 0; // set capture run
+    //while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
 
     munmap(base_addr,FPGA_SIZE);
 
     return 0;
 }
-
 
 //#define     VINSTRU_PULSE_ENABLE    3 // [0] = pulse enable (r/w), [4] = capture run (r/w), [8] = capture done (ro)
 //#define     VINSTRU_CAPTURE_CONTROL 4 // [0] = capture run (r/w), [4] = capture done (ro)
