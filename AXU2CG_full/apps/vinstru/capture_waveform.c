@@ -10,10 +10,6 @@
 
 int main(int argc,char** argv)
 {
-    uint32_t pulse_period = atoi(argv[1]);
-    uint32_t pulse_width = atoi(argv[2]);
-    int32_t pulse_amplitude = atoi(argv[3]);
-    uint32_t noise_amplitude = atoi(argv[4]);
 
     void* base_addr;
 
@@ -26,11 +22,6 @@ int main(int argc,char** argv)
     }
 
     uint32_t *regptr = base_addr + FPGA_REG_OFFSET;
-
-    regptr[VINSTRU_PULSE_PERIOD] = pulse_period;
-    regptr[VINSTRU_PULSE_WIDTH] = pulse_width;
-    regptr[VINSTRU_PULSE_AMPLITUDE] = pulse_amplitude;
-    regptr[VINSTRU_NOISE_AMPLITUDE] = noise_amplitude;
 
     munmap(base_addr,FPGA_SIZE);
 
