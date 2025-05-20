@@ -171,3 +171,13 @@ Switch positions 1, 2, 3 and 4 correspond to mode lines 3, 2, 1, 0.
 
 SD Card mode: switch 1 = on, switch 2 = off, switch 3 = on, switch 4 = off.
 
+## Run-time FPGA Configuration
+
+Modify your FPGA build script to produce a .bin file in addition to the normal .bit file. The FPGA example in this project has that command in compile.tcl.
+    
+cp .../fpga/implement/results/top.bit.bin to /lib/firmware
+
+sudo su
+
+echo top.bit.bin > /sys/class/fpga_manager/fpga0/firmware
+

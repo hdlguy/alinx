@@ -192,7 +192,7 @@ module vinstru (
     );    
     
     // debug
-    vinstru_ila ila_inst (.clk(clk), .probe0({bram_addr, bram_en, bram_we, bram_din}), .probe1({state, data_count, data_count_clear, run, done, frame_enable})); // 51, 24
+    vinstru_ila ila_inst (.clk(clk), .probe0({wea, addra, dina}), .probe1({state, data_count, data_count_clear, run, done, frame_enable})); // 48, 24
 
 endmodule
 
