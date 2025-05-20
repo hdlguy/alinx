@@ -7,6 +7,7 @@
 // register numbers
 #define     FPGA_ID                 0
 #define     FPGA_VERSION            1
+#define     FPGA_LED                2 // [0] = PL LED value, read/write
 
 
 
