@@ -14,7 +14,7 @@
 #define     TEST_RAM_OFFSET         0x00010000
 #define     TEST_RAM_SIZE           0x00001000 // 4k
 
-#define     VINSTRU_RAM_OFFSET      0x00040000
-#define     VINSTRU_RAM_SIZE        0x00004000 // 16k
+#define     VINSTRU_BRAM_OFFSET      0x00040000
+#define     VINSTRU_BRAM_SIZE        0x00004000 // 16k
 
 

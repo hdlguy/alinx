@@ -1,4 +1,4 @@
-ALL_EXE = get_fpga_version set_fpga_led
+ALL_EXE = get_fpga_version set_fpga_led read_vinstru_bram
 all: $(ALL_EXE) 
 
 CC=gcc
@@ -7,6 +7,9 @@ CFLAGS=-I. -I../ -Wall
 DEPS = Makefile ../fpga.h 
 
 # $@ = target file name, $^ = all prerequisites, $< = first prerequisite
+
+read_vinstru_bram: read_vinstru_bram.c $(DEPS)
+	$(CC) -g -o $@ $< $(CFLAGS)
 
 set_fpga_led: set_fpga_led.c $(DEPS)
 	$(CC) -g -o $@ $< $(CFLAGS)
