@@ -8,6 +8,7 @@ set_property default_lib work [current_project]
 load_features ipintegrator
 
 read_ip ../source/top_ila/top_ila.xci
+read_ip ../source/vinstru/vinstru_ila/vinstru_ila.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 

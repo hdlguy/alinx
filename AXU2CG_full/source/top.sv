@@ -133,7 +133,7 @@ module top (
     
     // a virtual instrument
     vinstru vinstru_inst (
-        .clk                (clk),
+        .clk                (axi_aclk),
         .enable             (vinstru_enable),
         .run                (vinstru_run),
         .done               (vinstru_done),
@@ -154,25 +154,4 @@ module top (
 endmodule
     
 /*
-module vinstru (
-    //
-    input   logic               clk,
-    input   logic               enable,
-    //
-    input   logic               run,
-    output  logic               done,
-    //
-    input   logic[31:0]         pulse_period,
-    input   logic[15:0]         pulse_width,
-    input   logic[15:0]         pulse_amplitude,
-    input   logic[15:0]         noise_amplitude,
-    //
-    input   logic               bram_clk,
-    input   logic               bram_rst,
-    input   logic               bram_en,
-    input   logic[3:0]          bram_we,
-    input   logic[11+2:0]       bram_addr,
-    input   logic[31:0]         bram_din,
-    output  logic[31:0]         bram_dout
-);
 */
