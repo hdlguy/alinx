@@ -53,7 +53,7 @@ module top (
         .vinstru_bram_we    (vinstru_bram_we)                
     );
     
-    logic vinstru_run, vinstru_done, vinstru_enable;
+    logic vinstru_run, vinstru_done, vinstru_pulse_enable;
     logic[31:0] vinstru_pulse_period;
     logic[15:0] vinstru_pulse_width, vinstru_pulse_amplitude, vinstru_noise_amplitude;
     
@@ -67,14 +67,13 @@ module top (
     assign pl_led1 = slv_reg[2][0];
     assign slv_read[ 2] = slv_reg[ 2];
     
+    assign vinstru_pulse_enable = slv_reg[3][0];
     assign slv_read[ 3] = slv_reg[ 3];
     
-    assign vinstru_enable = slv_reg[4][0];
-    assign vinstru_run = slv_reg[4][4];
-    assign slv_read[4][8] = vinstru_done;
+    assign vinstru_run = slv_reg[4][0];
+    assign slv_read[4][4] = vinstru_done;
     assign slv_read[4][3:1] = 0;
-    assign slv_read[4][7:5] = 0;
-    assign slv_read[4][31:9] = 0;
+    assign slv_read[4][31:5] = 0;
     
     assign vinstru_pulse_period = slv_reg[5];
     assign slv_read[5] = slv_reg[5];

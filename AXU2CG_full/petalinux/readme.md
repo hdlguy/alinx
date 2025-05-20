@@ -43,7 +43,12 @@ petalinux-build
 
 ### Package 
 
-petalinux-package --force --boot --fsbl --fpga --pmufw --u-boot
+petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga 
+
+    * Use this to just update the bitfile.
+
+petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga ../../implement/results/top.bit
+
 
 ### Copy to SD Card
 
