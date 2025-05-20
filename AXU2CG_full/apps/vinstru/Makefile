@@ -1,4 +1,4 @@
-ALL_EXE = get_fpga_version set_fpga_led read_vinstru_bram write_vinstru_bram set_pulse_params enable_pulse disable_pulse
+ALL_EXE = get_fpga_version set_fpga_led read_vinstru_bram write_vinstru_bram set_pulse_params enable_pulse disable_pulse capture_waveform
 all: $(ALL_EXE) 
 
 CC=gcc
@@ -7,6 +7,9 @@ CFLAGS=-I. -I../ -Wall
 DEPS = Makefile ../fpga.h 
 
 # $@ = target file name, $^ = all prerequisites, $< = first prerequisite
+
+capture_waveform: capture_waveform.c $(DEPS)
+	$(CC) -g -o $@ $< $(CFLAGS)
 
 disable_pulse: disable_pulse.c $(DEPS)
 	$(CC) -g -o $@ $< $(CFLAGS)
