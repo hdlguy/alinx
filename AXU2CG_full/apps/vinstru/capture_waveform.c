@@ -21,8 +21,6 @@ int main(int argc,char** argv)
     }
     uint32_t *regptr = base_addr + FPGA_REG_OFFSET;
 
-    regptr[VINSTRU_PULSE_ENABLE] = 1; // start pulse generator
-
     regptr[VINSTRU_CAPTURE_CONTROL] = 0; // clear capture run
     printf("waiting for done to clear\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
@@ -31,8 +29,9 @@ int main(int argc,char** argv)
     printf("waiting for done to assert\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0x10); // wait for capture done to assert
 
-    //regptr[VINSTRU_CAPTURE_CONTROL] = 0; // set capture run
-    //while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
+    regptr[VINSTRU_CAPTURE_CONTROL] = 0; // set capture run
+    printf("waiting for done to clear\n");
+    while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
 
     munmap(base_addr,FPGA_SIZE);
 
