@@ -120,7 +120,7 @@ module top (
 	    fan_pwm <= led_count[17] & led_count[16] & led_count[15];
 	end
 
-    top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
+    //top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
 
     // let us use the 200MHz differential clock
     logic clkin200, clk200;
@@ -129,12 +129,12 @@ module top (
     
 	logic[26:0] clk200_count;
     always_ff @(posedge clk200) clk200_count <= clk200_count + 1;
-    top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
+    //top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
     
     // a virtual instrument
     vinstru vinstru_inst (
         .clk                (axi_aclk),
-        .enable             (vinstru_enable),
+        .enable             (vinstru_pulse_enable),
         .run                (vinstru_run),
         .done               (vinstru_done),
         .pulse_period       (vinstru_pulse_period),
