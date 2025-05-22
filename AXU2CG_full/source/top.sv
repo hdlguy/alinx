@@ -8,6 +8,9 @@ module top (
     input   logic           uart_rxd,
     output  logic           uart_txd        
 );
+
+    localparam logic[31:0] FPGA_VERSION     = 32'h00000101;
+    localparam logic[31:0] FPGA_ID          = 32'hDEADBEEF;
     
     logic [11:0]    regfile_addr;
     logic           regfile_clk;
@@ -61,8 +64,8 @@ module top (
     localparam int Nregs = 16;
     logic [Nregs-1:0][31:0] slv_reg, slv_read;
 
-    assign slv_read[0] = 32'hdeadbeef;
-    assign slv_read[1] = 32'h76543210;
+    assign slv_read[0] = FPGA_ID;
+    assign slv_read[1] = FPGA_VERSION;
     
     assign pl_led1 = slv_reg[2][0];
     assign slv_read[ 2] = slv_reg[ 2];
@@ -117,17 +120,15 @@ module top (
 	logic[26:0] led_count;
     always_ff @(posedge axi_aclk) begin
         led_count <= led_count + 1;
-	    //pl_led1 <= led_count[26];
 	    fan_pwm <= led_count[17] & led_count[16] & led_count[15];
 	end
-
     //top_ila top_ila_inst (.clk(axi_aclk), .probe0(led_count)); // 27
+
 
     // let us use the 200MHz differential clock
     logic clkin200, clk200;
     IBUFDS IBUFDS_inst (.O(clkin200 ), .I(clkin200_p),  .IB(clkin200_n));
     BUFG BUFG_inst (.O(clk200), .I(clkin200));
-    
 	logic[26:0] clk200_count;
     always_ff @(posedge clk200) clk200_count <= clk200_count + 1;
     //top_ila clk200_ila_inst (.clk(clk200), .probe0(clk200_count)); // 27    
