@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// set_register.c
+// sudo ./set_register <regnum(0..15)> <regval(decimal)>
+// writes the regval to the register specified by renum.
 int main(int argc,char** argv)
 {
     int32_t regnum = atoi(argv[1]);

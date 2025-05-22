@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// get_register.c
+// usage: sudo ./get_register <regnum>
+// prints the value of register regnum in hex format
 int main(int argc,char** argv)
 {
     int32_t regnum = atoi(argv[1]);
