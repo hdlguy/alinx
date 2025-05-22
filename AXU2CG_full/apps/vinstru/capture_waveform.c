@@ -21,6 +21,9 @@ int main(int argc,char** argv)
     }
     uint32_t *regptr = base_addr + FPGA_REG_OFFSET;
 
+    regptr[VINSTRU_CAPTURE_CONTROL] = (1<<8); // reset capture logic
+    regptr[VINSTRU_CAPTURE_CONTROL] = 0; 
+
     regptr[VINSTRU_CAPTURE_CONTROL] = 0; // clear capture run
     printf("waiting for done to clear\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
@@ -29,7 +32,7 @@ int main(int argc,char** argv)
     printf("waiting for done to assert\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0x10); // wait for capture done to assert
 
-    regptr[VINSTRU_CAPTURE_CONTROL] = 0; // set capture run
+    regptr[VINSTRU_CAPTURE_CONTROL] = 0; // clear capture run
     printf("waiting for done to clear\n");
     while((0x10 & regptr[VINSTRU_CAPTURE_CONTROL]) != 0); // wait for capture done to clear
 

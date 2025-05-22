@@ -9,12 +9,12 @@
 #define     FPGA_VERSION            1
 #define     FPGA_LED                2 // [0] = PL LED value, read/write
 
-#define     VINSTRU_PULSE_ENABLE    3 // [0] = pulse enable (r/w)
-#define     VINSTRU_CAPTURE_CONTROL 4 // [0] = capture run (r/w), [4] = capture done (ro)
-#define     VINSTRU_PULSE_PERIOD    5 // [31:0] = period between pulses in samples (r/w)
-#define     VINSTRU_PULSE_WIDTH     6 // [15:0] = pulse width in samples (r/w)
-#define     VINSTRU_PULSE_AMPLITUDE 7 // [15:0] = pulse amplitide in counts (r/w)
-#define     VINSTRU_NOISE_AMPLITUDE 8 // [15:0] = noise amplitude (standard deviation) in counts
+#define     VINSTRU_PULSE_ENABLE    3 // [0] = pulse enable (rw)
+#define     VINSTRU_CAPTURE_CONTROL 4 // [0] = capture run (rw), [4] = capture done (ro), [8] = reset (rw)
+#define     VINSTRU_PULSE_PERIOD    5 // [15:0] = period between pulses in samples (rw)
+#define     VINSTRU_PULSE_WIDTH     6 // [15:0] = pulse width in samples (rw)
+#define     VINSTRU_PULSE_AMPLITUDE 7 // [15:0] = pulse amplitide in counts (rw)
+#define     VINSTRU_NOISE_AMPLITUDE 8 // [15:0] = noise amplitude (standard deviation) in counts (rw)
 
 
 
