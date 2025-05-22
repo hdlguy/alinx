@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// enable_pulse.c
+// enables pulse generation
+// usage: sudo ./enable_pulse
 int main(int argc,char** argv)
 {
 

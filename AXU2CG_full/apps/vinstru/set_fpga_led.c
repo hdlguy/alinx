@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// set_fpga_led.c
+// writes the value (1 or 0) to the LED on the board.
+// usage: sudo ./set_fpga_led <val>
 int main(int argc,char** argv)
 {
     uint32_t led = atoi(argv[1]);

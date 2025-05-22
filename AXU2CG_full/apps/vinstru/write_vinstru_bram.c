@@ -8,6 +8,10 @@
 
 #include "fpga.h"
 
+// write_vinstru_bram.c
+// Can be used to write data to the vinstru bram
+// usage: sudo ./write_vinstru_bram <val0> <val1> ... <val(N-1)>
+// writes up to 4096 values in decimal format to the vinstru bram.
 int main(int argc,char** argv)
 {
 
@@ -30,5 +34,3 @@ int main(int argc,char** argv)
 }
 
 
-//#define     VINSTRU_BRAM_OFFSET      0x00040000
-//#define     VINSTRU_BRAM_SIZE        0x00004000 // 16k

@@ -8,6 +8,11 @@
 
 #include "fpga.h"
 
+// set_pulse_params.c
+// sets the pulse parameters period, width, pulse amplitude and noise amplitude.
+// usage: sudo ./set_pulse_params <period> <width> <pulse amplitude> <noise amplitude>
+// Period and width are in units of samples. Amplitude is in units of counts.
+// Period and with can be 0 to 65535. Amplitude is on the range -32768 to +32767.
 int main(int argc,char** argv)
 {
     uint32_t pulse_period = atoi(argv[1]);

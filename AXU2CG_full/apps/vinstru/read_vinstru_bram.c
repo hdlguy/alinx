@@ -8,6 +8,10 @@
 
 #include "fpga.h"
 
+// read_vinstru_bram.c
+// Reads the data from the vinstru bram and writes it to stdout in signed decimal format.
+// usage: sudo ./read_vinstru_bram <numvals>
+// numvals (0..4096) is the number of values to read and print 
 int main(int argc,char** argv)
 {
     uint32_t num_vals = atoi(argv[1]);

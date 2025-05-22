@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// get_fpga_version.c
+// reads the read-only FPGA version register and prints them to stdout.
+// usage: sudo ./get_fpga_version
 int main(int argc,char** argv)
 {
     void* base_addr;

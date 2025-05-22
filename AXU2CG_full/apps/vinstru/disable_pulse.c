@@ -8,6 +8,9 @@
 
 #include "fpga.h"
 
+// disable_pulse.c
+// disables pulse generation
+// usage: sudo ./disable_pulse
 int main(int argc,char** argv)
 {
 

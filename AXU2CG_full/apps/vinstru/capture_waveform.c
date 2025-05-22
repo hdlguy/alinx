@@ -8,6 +8,11 @@
 
 #include "fpga.h"
 
+// capture_waveform.c
+// uses the capture control logic of the vinstru to collect virtual instrument data.
+// The pulse generator must be running in advance of this command to trigger the capture.
+// usage: sudo ./capture_waveform
+// The results are returned in the vinstru block ram to be read by the read_vinstru_bram command.
 int main(int argc,char** argv)
 {
 
