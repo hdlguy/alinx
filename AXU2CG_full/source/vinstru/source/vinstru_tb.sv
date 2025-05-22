@@ -5,8 +5,8 @@ module vinstru_tb ();
     localparam int Wdata = 8;
     localparam int Wdepth = 2**10;
     
-    logic               enable, run, done;
-    logic[31:0]         pulse_period;
+    logic               enable, run, done, reset;
+    logic[15:0]         pulse_period;
     logic[15:0]         pulse_width;
     logic[15:0]         pulse_amplitude;
     logic[15:0]         noise_amplitude;
@@ -26,14 +26,21 @@ module vinstru_tb ();
     
         enable = 0;
         run = 0;
+        reset = 0;
         pulse_period = 10000-1;
         pulse_width = 1000;
         pulse_amplitude = 30000;
-        noise_amplitude = 10;
+        noise_amplitude = 3000;
         #(clk_period*1000);
         
         enable = 1;
         #(clk_period*1000);
+        
+        reset = 1;
+        #(clk_period*10);
+        
+        reset = 0;
+        #(clk_period*10);
         
         run = 1;
         #(clk_period*100);

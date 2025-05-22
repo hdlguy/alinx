@@ -4,7 +4,7 @@ module vsource (
     input   logic               clk,
     input   logic               enable,
     //
-    input   logic[31:0]         pulse_period,
+    input   logic[15:0]         pulse_period,
     input   logic[15:0]         pulse_width,
     input   logic[15:0]         pulse_amplitude,
     input   logic[15:0]         noise_amplitude,
@@ -26,7 +26,7 @@ module vsource (
 
 
     // make a periodic pulse
-    logic[31:0] period_count=-1;
+    logic[15:0] period_count=-1;
     logic period_tc=0;
     always_ff @(posedge clk) begin
         if (enable) begin
@@ -78,6 +78,7 @@ module vsource (
 
     
     // generate noise
+    // output is signed fixed <16,11> = 5.11 format. with standard deviation = 1.0.
     logic[7:0] del_reset = 8'hff;
     always_ff @(posedge clk) del_reset <= {1'b0, del_reset[7:1]};
     logic noise_dv_out;
@@ -86,12 +87,21 @@ module vsource (
         u_gng (.clk(clk), .rstn(~del_reset[0]), .ce(heartbeat), .valid_out(noise_dv_out), .data_out(noise_data_out));
         
         
+    // adjust the noise amplitude
+    logic[31:0] noise_prod=0;
+    logic[15:0] noise_scaled;
+    always_ff @(posedge clk) begin
+        noise_prod <= $signed(noise_amplitude) * $signed(noise_data_out);
+    end
+    assign noise_scaled = noise_prod[11+:16]; // grab bits so that noise_amplitude of 1 gives standard deviation equal to 1 count. 
+    
+                
     // sum pulse and noise
     logic[17:0] sum_data=0;
     always_ff @(posedge clk) begin
-        if (noise_dv_out) sum_data <= $signed(pulse) + $signed(noise_data_out)*8;
+        if (noise_dv_out) sum_data <= $signed(pulse) + $signed(noise_scaled);
     end
-            
+    
    
     // iir filter
     localparam int  Ncint  = 3;

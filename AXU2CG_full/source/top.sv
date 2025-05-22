@@ -53,7 +53,7 @@ module top (
         .vinstru_bram_we    (vinstru_bram_we)                
     );
     
-    logic vinstru_run, vinstru_done, vinstru_pulse_enable;
+    logic vinstru_run, vinstru_done, vinstru_pulse_enable, vinstru_reset;
     logic[31:0] vinstru_pulse_period;
     logic[15:0] vinstru_pulse_width, vinstru_pulse_amplitude, vinstru_noise_amplitude;
     
@@ -71,9 +71,10 @@ module top (
     assign slv_read[ 3] = slv_reg[ 3];
     
     assign vinstru_run = slv_reg[4][0];
+    assign slv_read[4][3:0] = slv_reg[4][3:0];
     assign slv_read[4][4] = vinstru_done;
-    assign slv_read[4][3:1] = 0;
-    assign slv_read[4][31:5] = 0;
+    assign vinstru_reset = slv_reg[4][8];
+    assign slv_read[4][31:5] = slv_reg[4][31:5];
     
     assign vinstru_pulse_period = slv_reg[5];
     assign slv_read[5] = slv_reg[5];
@@ -135,6 +136,7 @@ module top (
     vinstru vinstru_inst (
         .clk                (axi_aclk),
         .enable             (vinstru_pulse_enable),
+        .reset              (vinstru_reset),
         .run                (vinstru_run),
         .done               (vinstru_done),
         .pulse_period       (vinstru_pulse_period),

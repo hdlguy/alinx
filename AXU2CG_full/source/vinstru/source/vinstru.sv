@@ -4,10 +4,11 @@ module vinstru (
     input   logic               clk,
     input   logic               enable,
     //
+    input   logic               reset,
     input   logic               run,
     output  logic               done,
     //
-    input   logic[31:0]         pulse_period,
+    input   logic[15:0]         pulse_period,
     input   logic[15:0]         pulse_width,
     input   logic[15:0]         pulse_amplitude,
     input   logic[15:0]         noise_amplitude,
@@ -100,11 +101,17 @@ module vinstru (
 
     end
     
-    always_ff @(posedge clk) state <= next_state;
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            state <= 0;
+        end else begin
+            state <= next_state;
+        end
+    end
 
 
 
-    // count the data words
+    // count the data wordspulse_period
     always_ff @(posedge clk) begin
         if (data_count_clear) begin
             data_count <= 0;
