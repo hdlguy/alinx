@@ -27,8 +27,10 @@ int main(int argc,char** argv)
 
     uint32_t *bramptr = base_addr + VINSTRU_BRAM_OFFSET;
 
-    for(uint32_t i=0; i<num_vals; i++) fprintf(stdout, "%d\n", (int32_t)bramptr[i]);
-    //fprintf(stdout, "\n");
+    for(uint32_t i=0; i<num_vals; i++) {
+        fprintf(stdout, "%d", (int32_t)bramptr[i]);
+        if (i != (num_vals-1)) fprintf(stdout, "\n");
+    }
 
     munmap(base_addr,FPGA_SIZE);
 
