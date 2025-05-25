@@ -1,4 +1,4 @@
-ALL_EXE = get_fpga_version set_fpga_led read_vinstru_bram write_vinstru_bram set_pulse_params enable_pulse disable_pulse capture_waveform set_register get_register
+ALL_EXE = get_fpga_version set_fpga_led read_vinstru_bram write_vinstru_bram set_pulse_params enable_pulse disable_pulse capture_waveform set_register get_register bram2json
 all: $(ALL_EXE) 
 
 CC=gcc
