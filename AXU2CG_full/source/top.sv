@@ -3,10 +3,10 @@ module top (
     output  logic           pl_led1,
     output  logic           fan_pwm,
     input   logic           clkin200_p,
-    input   logic           clkin200_n,
-    //
-    input   logic           uart_rxd,
-    output  logic           uart_txd        
+    input   logic           clkin200_n
+//    //
+//    input   logic           uart_rxd,
+//    output  logic           uart_txd        
 );
 
     localparam logic[31:0] FPGA_VERSION     = 32'h00000101;
@@ -43,9 +43,9 @@ module top (
         //
         .axi_aclk           (axi_aclk),
         .axi_aresetn        (axi_aresetn),
-        //
-        .uart_rxd(uart_rxd),
-        .uart_txd(uart_txd),
+//        //
+//        .uart_rxd(uart_rxd),
+//        .uart_txd(uart_txd),
         //
         .vinstru_bram_addr  (vinstru_bram_addr),
         .vinstru_bram_clk   (vinstru_bram_clk),
