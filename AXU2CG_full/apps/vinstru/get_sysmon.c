@@ -53,9 +53,9 @@ int main(int argc,char** argv)
     float vccaux = read_vccaux();
 
     int select = atoi(argv[1]);
-    if (select == 1) fprintf(stdout, "%f\n", temp);
-    if (select == 2) fprintf(stdout, "%f\n", vccint);
-    if (select == 3) fprintf(stdout, "%f\n", vccaux);
+    if (select == 1) fprintf(stdout, "%3.2f\n", temp);
+    if (select == 2) fprintf(stdout, "%2.3f\n", vccint);
+    if (select == 3) fprintf(stdout, "%2.3f\n", vccaux);
 
     return 0;
 }
