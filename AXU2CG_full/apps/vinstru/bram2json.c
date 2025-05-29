@@ -33,6 +33,7 @@ int main(int argc,char** argv)
     fprintf(stdout, "[\n");
     for(uint32_t i=0; i<num_vals; i++) {
         fprintf(stdout, "    {\"x\": %d, \"y\": %d }", i, (int32_t)bramptr[i]);
+        //fprintf(stdout, "    {\"x\": %3.5e, \"y\": %d }", i*80.0e-9, (int32_t)bramptr[i]);
         if (i == (num_vals-1)) {
             fprintf(stdout, "\n");
         } else {
