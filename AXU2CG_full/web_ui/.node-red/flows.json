@@ -172,7 +172,7 @@
         "animate": false,
         "className": "",
         "x": 380,
-        "y": 720,
+        "y": 760,
         "wires": [
             [
                 "5acdb7d152e4dced"
@@ -297,7 +297,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 330,
+        "x": 350,
         "y": 160,
         "wires": [
             [
@@ -323,7 +323,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 340,
+        "x": 360,
         "y": 200,
         "wires": [
             [
@@ -349,7 +349,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 340,
+        "x": 360,
         "y": 240,
         "wires": [
             [
@@ -371,7 +371,7 @@
         "statusVal": "payload",
         "statusType": "auto",
         "x": 1020,
-        "y": 560,
+        "y": 540,
         "wires": []
     },
     {
@@ -431,7 +431,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 780,
+        "y": 820,
         "wires": [
             [
                 "6ac6a3edb321ba70"
@@ -456,7 +456,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 940,
-        "y": 780,
+        "y": 820,
         "wires": []
     },
     {
@@ -472,7 +472,7 @@
         "oldrc": false,
         "name": "",
         "x": 770,
-        "y": 780,
+        "y": 820,
         "wires": [
             [
                 "cd518f45db1adc6e"
@@ -503,7 +503,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 380,
-        "y": 780,
+        "y": 820,
         "wires": [
             [
                 "c183691690642448",
@@ -542,7 +542,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 720,
+        "y": 760,
         "wires": [
             [
                 "45e13727887a0c9e"
@@ -562,7 +562,7 @@
         "oldrc": false,
         "name": "",
         "x": 770,
-        "y": 720,
+        "y": 760,
         "wires": [
             [],
             [],
@@ -744,7 +744,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 340,
+        "x": 360,
         "y": 280,
         "wires": [
             [
@@ -765,7 +765,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 860,
+        "y": 900,
         "wires": [
             [
                 "04b16e6b23ab8110"
@@ -790,7 +790,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 950,
-        "y": 860,
+        "y": 900,
         "wires": []
     },
     {
@@ -806,7 +806,7 @@
         "oldrc": false,
         "name": "",
         "x": 770,
-        "y": 860,
+        "y": 900,
         "wires": [
             [
                 "d7383cb4f801dd04"
@@ -828,7 +828,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
                 "548532faaf4a1bd3"
@@ -853,7 +853,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 940,
-        "y": 920,
+        "y": 960,
         "wires": []
     },
     {
@@ -869,7 +869,7 @@
         "oldrc": false,
         "name": "",
         "x": 770,
-        "y": 920,
+        "y": 960,
         "wires": [
             [
                 "9e0b81834b6c7584"
@@ -891,7 +891,7 @@
         "finalize": "",
         "libs": [],
         "x": 600,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "5203719b0b3e0586"
@@ -916,7 +916,7 @@
         "fontSize": 16,
         "color": "#000000",
         "x": 940,
-        "y": 980,
+        "y": 1020,
         "wires": []
     },
     {
@@ -932,7 +932,7 @@
         "oldrc": false,
         "name": "",
         "x": 770,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "aeeecca802cbf4e8"
@@ -962,7 +962,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 360,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "0e7ddb079e181e97",
@@ -990,7 +990,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 330,
+        "x": 350,
         "y": 120,
         "wires": [
             [
@@ -1061,7 +1061,7 @@
         "name": "FPGA Status",
         "info": "",
         "x": 250,
-        "y": 660,
+        "y": 700,
         "wires": []
     },
     {
