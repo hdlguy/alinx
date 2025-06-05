@@ -19,3 +19,6 @@ The flow workspace is accessed here: http://alinx.attlocal.net:1880/
 The deployed webpage is accessed here: http://alinx.attlocal.net:1880/ui
 
 Change the machine name to match your network.
+
+![plot](./webshot2.png)
+
