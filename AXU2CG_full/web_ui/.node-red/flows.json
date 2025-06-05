@@ -119,7 +119,7 @@
         "tab": "5d8a091031102694",
         "order": 2,
         "disp": true,
-        "width": "12",
+        "width": "14",
         "collapse": false,
         "className": ""
     },
@@ -370,8 +370,8 @@
         "targetType": "msg",
         "statusVal": "payload",
         "statusType": "auto",
-        "x": 960,
-        "y": 600,
+        "x": 1000,
+        "y": 560,
         "wires": []
     },
     {
@@ -381,7 +381,7 @@
         "name": "",
         "group": "2ee7ef96b2162bbf",
         "order": 1,
-        "width": "12",
+        "width": "14",
         "height": "6",
         "label": "",
         "chartType": "line",
@@ -399,14 +399,14 @@
         "useOneColor": false,
         "useUTC": false,
         "colors": [
-            "#1f77b4",
+            "#ad058e",
             "#aec7e8",
             "#ff7f0e",
             "#2ca02c",
             "#98df8a",
             "#f20d0d",
             "#ff9896",
-            "#9467bd",
+            "#6405bd",
             "#c5b0d5"
         ],
         "outputs": 1,
