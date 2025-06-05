@@ -11,6 +11,7 @@ When the .node-red folder is first checked out it is missing some of the dashboa
 
     $ cd /root/.node-red
     $ npm install
+    $ cd ..
     $ node-red
 
 ## Access
