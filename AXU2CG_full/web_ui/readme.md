@@ -15,4 +15,7 @@ When the .node-red folder is first checked out it is missing some of the dashboa
 
 ## Access
 The flow workspace is accessed here: http://alinx.attlocal.net:1880/
+
 The deployed webpage is accessed here: http://alinx.attlocal.net:1880/ui
+
+Change the machine name to match your network.
