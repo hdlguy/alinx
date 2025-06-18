@@ -2,7 +2,7 @@ ALL_EXE = test
 all: $(ALL_EXE) 
 
 CC=gcc
-CFLAGS=-I. -I../ -Wall
+CFLAGS=-I../ -Wall
 
 DEPS = Makefile ../fpga.h 
 
