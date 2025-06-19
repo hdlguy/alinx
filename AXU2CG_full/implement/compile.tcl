@@ -31,5 +31,8 @@ close_project
 
 exec bootgen -image bitstream.bif -arch zynqmp -o ./results/top.bit.bin -w
 
+#file delete -force ./results/sdt
+#exec sdtgen -eval "set_dt_param -dir ./results/sdt -xsa ./results/top.xsa; generate_sdt;"
+
 #write_cfgmem -disablebitswap -force -format BIN -size 256 -interface SMAPx32 -loadbit "up 0x0 ./results/top.bit" -verbose ./results/top.bit.bin
 
