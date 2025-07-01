@@ -130,7 +130,7 @@
         "tab": "5d8a091031102694",
         "order": 3,
         "disp": true,
-        "width": "3",
+        "width": "4",
         "collapse": false,
         "className": ""
     },
@@ -370,8 +370,8 @@
         "targetType": "msg",
         "statusVal": "payload",
         "statusType": "auto",
-        "x": 1000,
-        "y": 560,
+        "x": 1020,
+        "y": 580,
         "wires": []
     },
     {
