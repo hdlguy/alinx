@@ -37,12 +37,13 @@ int main(int argc,char** argv)
     int errors;
 
     // Test the scratch bram.
+    fprintf(stdout, "\nTEST_RAM_SIZE = %u\n", TEST_RAM_SIZE);
     write_data = malloc(TEST_RAM_SIZE);
     read_data  = malloc(TEST_RAM_SIZE);
     // create test data.
     for (int i=0; i<TEST_RAM_SIZE/4; i++) write_data[i] = rand();
     bram_ptr = base_addr + TEST_RAM_OFFSET;
-    fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
+    fprintf(stdout, "bram_ptr = %p\n", bram_ptr);
     // write bram
     for (int i=0; i<TEST_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
     // read bram
@@ -57,19 +58,20 @@ int main(int argc,char** argv)
     free(read_data);
 
     // Test the vinstru bram.
-    write_data = malloc(VINSTRU_RAM_SIZE);
-    read_data  = malloc(VINSTRU_RAM_SIZE);
+    fprintf(stdout, "\nVINSTRU_BRAM_SIZE = %u\n", VINSTRU_BRAM_SIZE);
+    write_data = malloc(VINSTRU_BRAM_SIZE);
+    read_data  = malloc(VINSTRU_BRAM_SIZE);
     // create test data.
-    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) write_data[i] = rand();
-    bram_ptr = base_addr + VINSTRU_RAM_OFFSET;
-    fprintf(stdout, "\nbram_ptr = %p\n", bram_ptr);
+    for (int i=0; i<VINSTRU_BRAM_SIZE/4; i++) write_data[i] = rand();
+    bram_ptr = base_addr + VINSTRU_BRAM_OFFSET;
+    fprintf(stdout, "bram_ptr = %p\n", bram_ptr);
     // write bram
-    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
+    for (int i=0; i<VINSTRU_BRAM_SIZE/4; i++) bram_ptr[i] = write_data[i];
     // read bram
-    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
+    for (int i=0; i<VINSTRU_BRAM_SIZE/4; i++) read_data[i] = bram_ptr[i];
     // chech bram results
     errors = 0;
-    for (int i=0; i<VINSTRU_RAM_SIZE/4; i++) {
+    for (int i=0; i<VINSTRU_BRAM_SIZE/4; i++) {
         if (read_data[i] != write_data[i]) errors++;
     }
     fprintf(stdout, "vinstru bram errors = %d\n", errors);

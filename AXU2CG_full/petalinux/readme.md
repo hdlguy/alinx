@@ -1,3 +1,59 @@
+# Petalinux (2025.1) on ZynqMP
+
+# Download and uncompress sstate artifacts
+I find that the compile time download from petalinux.xilinx.com is just unreliable. The trick is to have those files local. Then, in petalinux-config we point to the local files.
+
+https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
+    * Downloads (TAR/GZIP - 61.27 GB) 
+    * sstate_aarch64 (TAR/GZIP - 33.95 GB) 
+
+## Convert XSA to SDT
+/tools/Xilinx/2025.1/Vitis/bin/sdtgen -eval "set_dt_param -dir ./sdt -xsa ../implement/results/top.xsa -user_dts ./system-user.dtsi; generate_sdt;"
+
+### Create Petalinux project
+petalinux-create project --template zynqMP --name proj1
+cd proj1
+
+### configure project from hardware
+petalinux-config --get-hw-description=../sdt/
+
+    * Image Packaging Configuration -> Root Filesystem Type -> EXT4                         (if you want a persistent rootfs)
+    * Image Packaging Configuration -> Device node of SD device -> mmcblk1p2                (if you have the eMMC device enabled in Vivado IPI)
+    * Subsystem Auto Hardware Settings -> SD/SDIO Settings -> Primary SD/SDIO -> sdhci1     (if you have the eMMC device enabled in Vivado IPI)
+    * DTG Settings -> Kernel Bootargs -> manual bootargs -> earlycon console=ttyPS0,115200 root=/dev/mmcblk1p2 rw rootwait clk_ignore_unused (mmc 1, rw, clk_ignore_unused)
+
+    * Yocto Settings -> Local sstate feeds settings -> local sstate feeds url ->    file://~/Downloads/xilinx/petalinux/sstate_download_2025_1/aarch64/
+    * Yocto Settings -> Add pre-mirror url ->                                       file://~/Downloads/xilinx/petalinux/mirror_download_2025_1/downloads/
+
+    * save and exit
+
+### Build the bootloader
+petalinux-build -c bootloader -x distclean
+
+### Configure the kernel
+petalinux-config -c kernel
+
+    * Device Drivers -> nvme -> nvme as block device.
+    * save and exit
+
+### Build
+petalinux-build
+
+### Package 
+petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga 
+
+    * Use this to just update the bitfile.
+
+petalinux-package --force --boot --fsbl --pmufw --u-boot --fpga ../../implement/results/top.bit
+
+### Copy to SD Card
+cp images/linux/BOOT.BIN /media/pedro/BOOT/; cp images/linux/image.ub /media/pedro/BOOT/; cp images/linux/boot.scr /media/pedro/BOOT/; sync
+
+
+
+
+#--------------------------------
+
 # Petalinux (2024.2) on ZynqMP
 
 ## Petalinux Build instructions
@@ -7,6 +63,7 @@
 ### Convert the vivado .xsa file to the system device tree files that Petalinux 2024.x wants.
 
 /tools/Xilinx/Vitis/2024.2/bin/xsct ./gensdt.tcl
+
 
 ### Create Petalinux project
 
@@ -112,7 +169,7 @@ Here are the most important commands listed for convenience.
     sudo chroot ./debianMinimalRootFS
     export LANG=C
 
-    /debootstrap/debootstrap --second-stage
+    /debootstrap/debootstrap --second-stage (this takes several minutes)
 
 Add these sources to /etc/apt/sources.list
 
