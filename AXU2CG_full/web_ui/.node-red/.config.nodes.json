@@ -665,5 +665,123 @@
                 "file": "/root/.node-red/node_modules/node-red-dashboard/nodes/ui_spacer.js"
             }
         }
+    },
+    "node-red-contrib-uibuilder": {
+        "name": "node-red-contrib-uibuilder",
+        "version": "7.3.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "uibuilder": {
+                "name": "uibuilder",
+                "types": [
+                    "uibuilder"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uibuilder/uibuilder.js"
+            },
+            "uib-cache": {
+                "name": "uib-cache",
+                "types": [
+                    "uib-cache"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-cache/uib-cache.js"
+            },
+            "uib-element": {
+                "name": "uib-element",
+                "types": [
+                    "uib-element"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-element/customNode.js"
+            },
+            "uib-file-list": {
+                "name": "uib-file-list",
+                "types": [
+                    "uib-file-list"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-file-list/customNode.js"
+            },
+            "uib-html": {
+                "name": "uib-html",
+                "types": [
+                    "uib-html"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-html/customNode.js"
+            },
+            "uib-save": {
+                "name": "uib-save",
+                "types": [
+                    "uib-save"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-save/customNode.js"
+            },
+            "uib-sender": {
+                "name": "uib-sender",
+                "types": [
+                    "uib-sender"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-sender/uib-sender.js"
+            },
+            "uib-sidebar": {
+                "name": "uib-sidebar",
+                "types": [
+                    "uib-sidebar"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-sidebar/customNode.js"
+            },
+            "uib-tag": {
+                "name": "uib-tag",
+                "types": [
+                    "uib-tag"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-tag/customNode.js"
+            },
+            "uib-update": {
+                "name": "uib-update",
+                "types": [
+                    "uib-update"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-uibuilder",
+                "file": "/root/.node-red/node_modules/node-red-contrib-uibuilder/nodes/uib-update/customNode.js"
+            }
+        }
     }
 }
