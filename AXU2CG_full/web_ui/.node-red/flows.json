@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "3fbb4b3a5ed2dc37",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "5d8a091031102694",
         "type": "ui_tab",
         "name": "Virtual Instrument",
@@ -1107,6 +1115,35 @@
             [
                 "e5927108d25dda83"
             ]
+        ]
+    },
+    {
+        "id": "c0657b756ac6b1dc",
+        "type": "uibuilder",
+        "z": "3fbb4b3a5ed2dc37",
+        "name": "",
+        "topic": "",
+        "url": "uibuilder_test",
+        "okToGo": true,
+        "fwdInMessages": false,
+        "allowScripts": false,
+        "allowStyles": false,
+        "copyIndex": true,
+        "templateFolder": "blank",
+        "extTemplate": "",
+        "showfolder": false,
+        "reload": false,
+        "sourceFolder": "src",
+        "deployedVersion": "7.3.0",
+        "showMsgUib": false,
+        "title": "",
+        "descr": "",
+        "editurl": "",
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [],
+            []
         ]
     }
 ]
