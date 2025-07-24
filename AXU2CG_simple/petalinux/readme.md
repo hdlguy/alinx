@@ -104,6 +104,11 @@ Here are the most important commands listed for convenience.
 
     /debootstrap/debootstrap --second-stage
 
+Add to /etc/apt/sources
+
+deb http://deb.debian.org/debian bookworm main contrib non-free-firmware non-free
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free-firmware non-free
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free-firmware non-free
 
 Do some more file system configuration.
 

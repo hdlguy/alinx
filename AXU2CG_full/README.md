@@ -63,6 +63,8 @@ The PL LED is flashing.
 The eMMC drive was tested by enabling the interface in Vivado and rebuilding Petalinux.  That results in /dev/mmcblk0 showing up under Linux. Standard Linux commands were then used to partition, format and mount the drive resulting in:
 
     sudo fdisk /dev/mmcblk0
+        - create new partition (n) all defaults
+        - write partition table (w)
     sudo mkfs.ext4 /dev/mmcblk0p1
     sudo mkdir /mnt/emmc
     sudo mount /dev/mmcblk0p1 /mnt/emmc
