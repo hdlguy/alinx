@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2024.1
+set scripts_vivado_version 2025.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -130,7 +130,7 @@ set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 xilinx.com:ip:util_ds_buf:2.2\
-xilinx.com:ip:xdma:4.1\
+xilinx.com:ip:xdma:4.2\
 xilinx.com:ip:xlconstant:1.1\
 xilinx.com:ip:blk_mem_gen:8.4\
 xilinx.com:ip:axi_bram_ctrl:4.1\
@@ -237,7 +237,7 @@ proc create_root_design { parentCell } {
 
 
   # Create instance: xdma_0, and set properties
-  set xdma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.1 xdma_0 ]
+  set xdma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.2 xdma_0 ]
   set_property -dict [list \
     CONFIG.PF0_DEVICE_ID_mqdma {9034} \
     CONFIG.PF0_SRIOV_VF_DEVICE_ID {A034} \
@@ -251,6 +251,7 @@ proc create_root_design { parentCell } {
     CONFIG.cfg_mgmt_if {true} \
     CONFIG.disable_gt_loc {true} \
     CONFIG.en_gt_selection {false} \
+    CONFIG.enable_gtwizard {false} \
     CONFIG.enable_ltssm_dbg {false} \
     CONFIG.mode_selection {Advanced} \
     CONFIG.pf0_device_id {9034} \
@@ -289,12 +290,22 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net xdma_0_pcie_mgt [get_bd_intf_ports pcie_mgt] [get_bd_intf_pins xdma_0/pcie_mgt]
 
   # Create port connections
-  connect_bd_net -net S00_ACLK_1 [get_bd_pins xdma_0/axi_aclk] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins smartconnect_0/aclk] [get_bd_ports axi_aclk]
-  connect_bd_net -net pcie_rstn_1 [get_bd_ports pcie_perstn] [get_bd_pins xdma_0/sys_rst_n]
-  connect_bd_net -net util_ds_buf_IBUF_DS_ODIV2 [get_bd_pins util_ds_buf/IBUF_DS_ODIV2] [get_bd_pins xdma_0/sys_clk]
-  connect_bd_net -net util_ds_buf_IBUF_OUT [get_bd_pins util_ds_buf/IBUF_OUT] [get_bd_pins xdma_0/sys_clk_gt]
-  connect_bd_net -net xdma_0_axi_aresetn [get_bd_pins xdma_0/axi_aresetn] [get_bd_pins smartconnect_0/aresetn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_ports axi_aresetn]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins xlconstant_1/dout] [get_bd_pins xdma_0/usr_irq_req]
+  connect_bd_net -net S00_ACLK_1  [get_bd_pins xdma_0/axi_aclk] \
+  [get_bd_ports axi_aclk] \
+  [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] \
+  [get_bd_pins smartconnect_0/aclk]
+  connect_bd_net -net pcie_rstn_1  [get_bd_ports pcie_perstn] \
+  [get_bd_pins xdma_0/sys_rst_n]
+  connect_bd_net -net util_ds_buf_IBUF_DS_ODIV2  [get_bd_pins util_ds_buf/IBUF_DS_ODIV2] \
+  [get_bd_pins xdma_0/sys_clk]
+  connect_bd_net -net util_ds_buf_IBUF_OUT  [get_bd_pins util_ds_buf/IBUF_OUT] \
+  [get_bd_pins xdma_0/sys_clk_gt]
+  connect_bd_net -net xdma_0_axi_aresetn  [get_bd_pins xdma_0/axi_aresetn] \
+  [get_bd_ports axi_aresetn] \
+  [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] \
+  [get_bd_pins smartconnect_0/aresetn]
+  connect_bd_net -net xlconstant_1_dout  [get_bd_pins xlconstant_1/dout] \
+  [get_bd_pins xdma_0/usr_irq_req]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI] [get_bd_addr_segs M00_AXI/Reg] -force
