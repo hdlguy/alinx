@@ -1,4 +1,3 @@
-#define 	REG_BASEADDR 		XPAR_M00_AXI_BASEADDR
 
 // define AXI registers
 #define     Nreg                16  // number of 32 bit AXI registers
