@@ -1,5 +1,5 @@
 #
-write_cfgmem -force -format MCS -size 128 -interface SPIx4 -loadbit "up 0x0 ./results/top.bit" -verbose ./results/top.mcs
+write_cfgmem -force -format MCS -size 128 -interface SPIx4 -loadbit "up 0x0 ./proj.runs/impl_1/top.bit" -verbose ./results/top.mcs
 
 disconnect_hw_server -quiet
 open_hw_manager
