@@ -16,10 +16,10 @@ source ../source/system.tcl
 generate_target {synthesis implementation} [get_files ./proj.srcs/sources_1/bd/system/system.bd]
 set_property synth_checkpoint_mode None    [get_files ./proj.srcs/sources_1/bd/system/system.bd]
 
-read_verilog -sv ../../../iir_filter/verilog/iir_filter.sv
-read_verilog -sv ../../../iir_filter/verilog/iir_sos_dsp48.sv
-read_verilog -sv ../../../iir_filter/verilog/round_n_sat.sv
-read_verilog -sv ../../../iir_filter/verilog/iir_mult_accum.sv
+read_verilog -sv ../../../iir_filter/verilog/source/iir_filter.sv
+read_verilog -sv ../../../iir_filter/verilog/source/iir_sos_dsp48.sv
+read_verilog -sv ../../../iir_filter/verilog/source/round_n_sat.sv
+read_verilog -sv ../../../iir_filter/verilog/source/iir_mult_accum.sv
 
 read_verilog -sv ../source/gng/rtl/gng_coef.v  
 read_verilog -sv ../source/gng/rtl/gng_ctg.v  
