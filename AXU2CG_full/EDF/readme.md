@@ -56,18 +56,10 @@ wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cort
 ### Copy to SD card
 Use balenaEtcher or similar. Be careful to select the correct /dev/xxx for the SD card.
 
-Maybe dd can be used. MAKE SURE /dev/sda IS THE SD card.
+Maybe dd can be used. MAKE SURE /dev/sda IS THE SD card. (slow)
 sudo umount /dev/sda*
 sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic of=/dev/sda bs=4M status=progress
 sudo sync
-
-Maybe bmaptool can do it.
-
-wic_image=<path to SD (.wic) image file>
-sudo umount /dev/sdx*
-sudo dd if=$wic_image of=/dev/sdx bs=1M
-sudo sync
-sudo udisksctl power-off -b /dev/sdx
 
 
 
