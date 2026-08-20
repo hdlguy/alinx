@@ -41,6 +41,17 @@ source edf-init-build-env
 ### parse the sdt files from Vivado to make a custom MACHINE
 gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-description ../../hw_project_sdt/ ;#(several minutes)
 
+;# ### Maybe here we attempt to add a layer with the system-user.dtsi so the sd card works.
+;# vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
+;# add these two lines to the &sdhci1 section
+;#     disable-wp;
+;#     no-1-8-v;
+
+### Better to make a system-user.dtsi layer
+mkdir -p meta-user/recipes-bsp/device-tree/files
+cp ../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+cp ../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
+
 ### Build boot.bin
 MACHINE=custom-zynqmp-machine bitbake xilinx-bootbin
 
@@ -50,13 +61,10 @@ MACHINE=amd-cortexa53-mali-common bitbake edf-linux-disk-image
 ### Add the boot.bin to the wic image
 wic cp tmp/deploy/images/custom-zynqmp-machine/boot.bin tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic:1
 
-wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic ;# list partitions
-wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic:1 ;# list boot partition
+wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic    ;# list partitions
+wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic:1  ;# list boot partition
 
 ### Copy to SD card
-Use balenaEtcher or similar. Be careful to select the correct /dev/xxx for the SD card.
-
-Maybe dd can be used. MAKE SURE /dev/sda IS THE SD card. (slow)
 sudo umount /dev/sda*
 sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic of=/dev/sda bs=4M status=progress
 sudo sync
