@@ -41,16 +41,18 @@ source edf-init-build-env
 ### parse the sdt files from Vivado to make a custom MACHINE
 gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-description ../../hw_project_sdt/ ;#(several minutes)
 
-;# ### Maybe here we attempt to add a layer with the system-user.dtsi so the sd card works.
+;# ### Here we directly add entries to the &sdhci1 block int pcw.dtsi.
 ;# vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
 ;# add these two lines to the &sdhci1 section
 ;#     disable-wp;
 ;#     no-1-8-v;
 
 ### Better to make a system-user.dtsi layer
+bitbake-layers create-layer meta-user
+bitbake-layers add-layer meta-user
 mkdir -p meta-user/recipes-bsp/device-tree/files
-cp ../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
-cp ../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
+cp ../../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+cp ../../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
 
 ### Build boot.bin
 MACHINE=custom-zynqmp-machine bitbake xilinx-bootbin
