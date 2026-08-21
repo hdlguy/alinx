@@ -21,12 +21,14 @@ sudo rm -rf edf/ hw_project_sdt/
 sdtgen -eval "set_dt_param -dir ./hw_project_sdt -xsa ../implement/results/top.xsa; generate_sdt"
 
 ### Install latest repo tool
+```
 curl https://storage.googleapis.com/git-repo-downloads/repo > repo
 chmod a+x repo
 rm -rf ~/bin/repo 
 mv repo ~/bin/
 PATH=~/bin:$PATH
 repo --help
+```
 
 ### Init repo
 mkdir edf
