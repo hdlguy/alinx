@@ -104,6 +104,11 @@ sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-
 sudo sync
 ```
 
+### Boot Hardware
+Insert the SD card into the board and open a terminal on the PS USB Uart port. Serial settings are 115200, 8 bits, no parity, 1 stop bit.
+
+Apply power and hit the reset button. You should see Linux booting and eventually get to a login prompt, username = amd-edf.
+
 
 
 
