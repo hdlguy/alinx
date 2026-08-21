@@ -70,13 +70,18 @@ add these two lines to the &sdhci1 section
     no-1-8-v;
 ```
 
-#### Make a system-user.dtsi layer (recommended)
+#### Make a meta-user layer for system-user.dtsi and to make the root filesystem read-write (recommended)
 ```
+# add the meta-user layer
 bitbake-layers create-layer meta-user
 bitbake-layers add-layer meta-user
+# copy in the files for system-user.dtsi
 mkdir -p meta-user/recipes-bsp/device-tree/files
 cp ../../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 cp ../../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
+# copy in the file to make root filesystem read-write
+mkdir -p meta-user/recipes-core/systemd/
+cp ../../systemd-bootconf-edf_%.bbappend meta-user/recipes-core/systemd/systemd-bootconf-edf_%.bbappend
 ```
 
 ### Build boot.bin
