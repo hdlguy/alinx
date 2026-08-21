@@ -42,7 +42,7 @@ Add to /etc/network/interfaces
 auto eth0
 iface eth0 inet dhcp
 ```
-
+Exit qemu session
 ```
 exit
 ```
