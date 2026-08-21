@@ -1,24 +1,36 @@
 # EDF Linux on Custom Board Starting from XSA
-This is an attempt to run Xilinx EDF linux on a custom board with a ZynqMP-2CG. Commands are run on Ubuntu 24.04 LTS with Vivado 2026.1.  The XSA file from an tested Vivado project is used for all hardware settings.
+This is an attempt to run Xilinx EDF linux on a custom board with a ZynqMP-2CG. Commands are run on Ubuntu 24.04 LTS with Vivado 2026.1. The XSA file was previously tested with Petalinux 2025.2.
+
+This document is in markdown format but can be easily converted to a shell script.
 
 ## Setup Environment
 
 ### Install mtools
+```
 sudo apt install mtools
+```
 
 ### Temporarily disable apparmor
+```
 sudo apparmor_parser -R /etc/apparmor.d/unprivileged_userns
+```
 
 ### Put Vivado 2026.1 tools in path
+```
 source /tools/Xilinx/2026.1/Vivado/settings64.sh;
+```
 
 ### Cleanup
+```
 sudo rm -rf edf/ hw_project_sdt/
+```
 
 ## Build EDF Linux
 
 ### Generate the sdt from the xsa
+```
 sdtgen -eval "set_dt_param -dir ./hw_project_sdt -xsa ../implement/results/top.xsa; generate_sdt"
+```
 
 ### Install latest repo tool
 ```
@@ -48,14 +60,17 @@ source edf-init-build-env
 ```
 gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-description ../../hw_project_sdt/ ;#(several minutes)
 ```
+### Add system-user.dtsi
 
-;# ### Here we directly add entries to the &sdhci1 block int pcw.dtsi.
-;# vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
-;# add these two lines to the &sdhci1 section
-;#     disable-wp;
-;#     no-1-8-v;
+#### Directly add entries to the &sdhci1 block int pcw.dtsi. (not recommended)
+```
+vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
+add these two lines to the &sdhci1 section
+    disable-wp;
+    no-1-8-v;
+```
 
-### Better to make a system-user.dtsi layer
+#### Make a system-user.dtsi layer (recommended)
 ```
 bitbake-layers create-layer meta-user
 bitbake-layers add-layer meta-user
