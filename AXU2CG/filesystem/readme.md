@@ -38,9 +38,10 @@ usermod --shell /bin/bash <user-name>
 ```
 
 Add to /etc/network/interfaces
-
+```
 auto eth0
 iface eth0 inet dhcp
+```
 
 ```
 exit
