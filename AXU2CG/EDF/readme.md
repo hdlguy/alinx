@@ -62,7 +62,7 @@ gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-d
 ```
 ### Add system-user.dtsi
 
-#### Directly add entries to the &sdhci1 block int pcw.dtsi. (not recommended)
+#### Directly add entries to the &sdhci1 block in pcw.dtsi. (not recommended)
 ```
 vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
 add these two lines to the &sdhci1 section
@@ -98,9 +98,10 @@ wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cort
 ```
 
 ### Copy to SD card
+WARNING: change /dev/sdX to the SD card device on your machine. 
 ```
-sudo umount /dev/sda*
-sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic of=/dev/sda bs=4M status=progress
+sudo umount /dev/sdX*
+sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic of=/dev/sdX bs=4M status=progress
 sudo sync
 ```
 
