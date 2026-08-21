@@ -6,16 +6,16 @@ Follow instructions at this link to confgure the root file system: https://akhil
 
 ### Run QEMU
 ```
-    sudo apt install qemu-user-static
-    sudo apt install debootstrap
+sudo apt install qemu-user-static
+sudo apt install debootstrap
 
-    sudo debootstrap --arch=arm64 --foreign bookworm debianMinimalRootFS
-    sudo cp /usr/bin/qemu-aarch64-static ./debianMinimalRootFS/usr/bin/
-    sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
-    sudo chroot ./debianMinimalRootFS
-    export LANG=C
+sudo debootstrap --arch=arm64 --foreign bookworm debianMinimalRootFS ;# this takes several minutes
+sudo cp /usr/bin/qemu-aarch64-static ./debianMinimalRootFS/usr/bin/
+sudo cp /etc/resolv.conf ./debianMinimalRootFS/etc/resolv.conf
+sudo chroot ./debianMinimalRootFS
+export LANG=C
 
-    /debootstrap/debootstrap --second-stage (this takes several minutes)
+/debootstrap/debootstrap --second-stage ;# this takes several minutes
 ```
 
 ### Add apt sources
@@ -26,22 +26,25 @@ deb http://deb.debian.org/debian bookworm-updates main contrib non-free-firmware
 deb http://security.debian.org/debian-security bookworm-security main contrib non-free-firmware non-free
 
 ### More file system configuration.
+```
+apt update
+apt install locales dialog
+dpkg-reconfigure locales
+apt install vim openssh-server ntpdate sudo ifupdown net-tools udev iputils-ping wget dosfstools unzip binutils libatomic1
+passwd
+adduser myuser
+usermod -aG sudo myuser
+usermod --shell /bin/bash <user-name>
+```
 
-    apt update
-    apt install locales dialog
-    dpkg-reconfigure locales
-    apt install vim openssh-server ntpdate sudo ifupdown net-tools udev iputils-ping wget dosfstools unzip binutils libatomic1
-    passwd
-    adduser myuser
-    usermod -aG sudo myuser
-    usermod --shell /bin/bash <user-name>
+Add to /etc/network/interfaces
 
-    Add to /etc/network/interfaces
+auto eth0
+iface eth0 inet dhcp
 
-    auto eth0
-    iface eth0 inet dhcp
-
-    exit
+```
+exit
+```
 
 ### Write filesystem to SD card.
 ```
