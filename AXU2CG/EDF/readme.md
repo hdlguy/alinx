@@ -60,26 +60,12 @@ source edf-init-build-env
 ```
 gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-description ../../hw_project_sdt/ ;#(several minutes)
 ```
-### Add system-user.dtsi
 
-#### Directly add entries to the &sdhci1 block in pcw.dtsi. (not recommended)
-```
-vi ./hw-description/custom-zynqmp-machine/home/pedro/github/hdlguy/alinx/AXU2CG_full/EDF/hw_project_sdt/pcw.dtsi
-add these two lines to the &sdhci1 section
-    disable-wp;
-    no-1-8-v;
-```
-
-#### Make a meta-user layer for system-user.dtsi and to make the root filesystem read-write (recommended)
+### Make a meta-user layer for extra bootargs
 ```
 # add the meta-user layer
 bitbake-layers create-layer meta-user
 bitbake-layers add-layer meta-user
-# # copy in the files for system-user.dtsi (not needed because of -user_dts option on sdtgen)
-# mkdir -p meta-user/recipes-bsp/device-tree/files
-# cp ../../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
-# cp ../../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
-# copy in the file to make root filesystem read-write
 mkdir -p meta-user/recipes-core/systemd/
 cp ../../systemd-bootconf-edf_%.bbappend meta-user/recipes-core/systemd/systemd-bootconf-edf_%.bbappend
 ```
@@ -102,12 +88,34 @@ wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cort
 wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic:1  ;# list boot partition
 ```
 
-### Copy to SD card
+### Copy to SD card to use EDF (busybox) filesystem
 WARNING: change /dev/sdX to the SD card device on your machine. 
 ```
 sudo umount /dev/sdX*
 sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic of=/dev/sdX bs=4M status=progress
 sudo sync
+```
+
+### Update the Linux boot files without touching the root filesystem (work in progress)
+```
+# read the boot files from the ESP partition (1)
+rm -rf ./new_esp_contents/
+mkdir ./new_esp_contents/
+wic cp tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cortexa53-mali-common.rootfs.wic:1 ./new_esp_contents/
+
+# substitute the UUID in the esp files
+ROOTFS_PARTUUID="05274f5d-7cda-4d41-a240-822dc97e0158"
+sed -i "s/root=PARTUUID=[^ ]*/root=PARTUUID=${ROOTFS_PARTUUID}/" new_esp_contents/loader/entries/edf-linux.conf
+
+# copy the files to the ESP partition
+udisksctl mount -b /dev/sda1
+mkdir ./old_esp_contents
+sudo cp -rf /media/pedro/esp/* ./old_esp_contents/ # save the old files
+sudo cp new_esp_contents/boot.bin  /media/pedro/esp/
+sudo cp new_esp_contents/Image     /media/pedro/esp/
+sudo cp new_esp_contents/loader/entries/edf-linux.conf /media/pedro/esp/loader/entries/
+sync
+udisksctl unmount -b /dev/sda1
 ```
 
 ### Boot Hardware
