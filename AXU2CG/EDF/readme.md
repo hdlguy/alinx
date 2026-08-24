@@ -29,7 +29,7 @@ sudo rm -rf edf/ hw_project_sdt/
 
 ### Generate the sdt from the xsa
 ```
-sdtgen -eval "set_dt_param -dir ./hw_project_sdt -xsa ../implement/results/top.xsa; generate_sdt"
+sdtgen -eval "set_dt_param -dir ./hw_project_sdt -xsa ../implement/results/top.xsa -user_dts ./system-user.dtsi; generate_sdt"
 ```
 
 ### Install latest repo tool
@@ -75,10 +75,10 @@ add these two lines to the &sdhci1 section
 # add the meta-user layer
 bitbake-layers create-layer meta-user
 bitbake-layers add-layer meta-user
-# copy in the files for system-user.dtsi
-mkdir -p meta-user/recipes-bsp/device-tree/files
-cp ../../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
-cp ../../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
+# # copy in the files for system-user.dtsi (not needed because of -user_dts option on sdtgen)
+# mkdir -p meta-user/recipes-bsp/device-tree/files
+# cp ../../system-user.dtsi      meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+# cp ../../device-tree.bbappend  meta-user/recipes-bsp/device-tree/device-tree.bbappend
 # copy in the file to make root filesystem read-write
 mkdir -p meta-user/recipes-core/systemd/
 cp ../../systemd-bootconf-edf_%.bbappend meta-user/recipes-core/systemd/systemd-bootconf-edf_%.bbappend

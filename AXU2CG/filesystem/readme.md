@@ -49,7 +49,7 @@ exit
 
 ### Write filesystem to SD card.
 ```
-sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/rootfs/; sync
+sudo cp --recursive --preserve ./debianMinimalRootFS/* /media/pedro/root/; sync
 ```
 
 ## Run-time FPGA Configuration
