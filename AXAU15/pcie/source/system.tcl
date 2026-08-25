@@ -205,19 +205,11 @@ proc create_root_design { parentCell } {
    CONFIG.FREQ_HZ {100000000} \
    ] $pcie_ref
 
-  set M00_AXI [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:aximm_rtl:1.0 M00_AXI ]
+  set regfile [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:bram_rtl:1.0 regfile ]
   set_property -dict [ list \
-   CONFIG.ADDR_WIDTH {31} \
-   CONFIG.DATA_WIDTH {32} \
-   CONFIG.HAS_BURST {0} \
-   CONFIG.HAS_CACHE {0} \
-   CONFIG.HAS_LOCK {0} \
-   CONFIG.HAS_QOS {0} \
-   CONFIG.HAS_REGION {0} \
-   CONFIG.NUM_READ_OUTSTANDING {32} \
-   CONFIG.NUM_WRITE_OUTSTANDING {16} \
-   CONFIG.PROTOCOL {AXI4LITE} \
-   ] $M00_AXI
+   CONFIG.MASTER_TYPE {BRAM_CTRL} \
+   CONFIG.READ_WRITE_MODE {READ_WRITE} \
+   ] $regfile
 
 
   # Create ports
@@ -227,7 +219,7 @@ proc create_root_design { parentCell } {
  ] $pcie_perstn
   set axi_aclk [ create_bd_port -dir O -type clk axi_aclk ]
   set_property -dict [ list \
-   CONFIG.ASSOCIATED_BUSIF {M00_AXI} \
+   CONFIG.ASSOCIATED_BUSIF {} \
  ] $axi_aclk
   set axi_aresetn [ create_bd_port -dir O -type rst axi_aresetn ]
 
@@ -280,10 +272,16 @@ proc create_root_design { parentCell } {
   set_property CONFIG.NUM_MI {2} $smartconnect_0
 
 
+  # Create instance: regfile_ctrl, and set properties
+  set regfile_ctrl [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 regfile_ctrl ]
+  set_property CONFIG.SINGLE_PORT_BRAM {1} $regfile_ctrl
+
+
   # Create interface connections
   connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTA]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_1_BRAM_PORTA [get_bd_intf_ports regfile] [get_bd_intf_pins regfile_ctrl/BRAM_PORTA]
   connect_bd_intf_net -intf_net diff_clock_rtl_0_1 [get_bd_intf_ports pcie_ref] [get_bd_intf_pins util_ds_buf/CLK_IN_D]
-  connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_ports M00_AXI] [get_bd_intf_pins smartconnect_0/M00_AXI]
+  connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins regfile_ctrl/S_AXI] [get_bd_intf_pins smartconnect_0/M00_AXI]
   connect_bd_intf_net -intf_net smartconnect_0_M01_AXI [get_bd_intf_pins smartconnect_0/M01_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
   connect_bd_intf_net -intf_net xdma_0_M_AXI [get_bd_intf_pins smartconnect_0/S00_AXI] [get_bd_intf_pins xdma_0/M_AXI]
   connect_bd_intf_net -intf_net xdma_0_M_AXI_BYPASS [get_bd_intf_pins smartconnect_0/S01_AXI] [get_bd_intf_pins xdma_0/M_AXI_BYPASS]
@@ -293,7 +291,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net S00_ACLK_1  [get_bd_pins xdma_0/axi_aclk] \
   [get_bd_ports axi_aclk] \
   [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] \
-  [get_bd_pins smartconnect_0/aclk]
+  [get_bd_pins smartconnect_0/aclk] \
+  [get_bd_pins regfile_ctrl/s_axi_aclk]
   connect_bd_net -net pcie_rstn_1  [get_bd_ports pcie_perstn] \
   [get_bd_pins xdma_0/sys_rst_n]
   connect_bd_net -net util_ds_buf_IBUF_DS_ODIV2  [get_bd_pins util_ds_buf/IBUF_DS_ODIV2] \
@@ -303,15 +302,16 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xdma_0_axi_aresetn  [get_bd_pins xdma_0/axi_aresetn] \
   [get_bd_ports axi_aresetn] \
   [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] \
-  [get_bd_pins smartconnect_0/aresetn]
+  [get_bd_pins smartconnect_0/aresetn] \
+  [get_bd_pins regfile_ctrl/s_axi_aresetn]
   connect_bd_net -net xlconstant_1_dout  [get_bd_pins xlconstant_1/dout] \
   [get_bd_pins xdma_0/usr_irq_req]
 
   # Create address segments
-  assign_bd_address -offset 0x00000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI] [get_bd_addr_segs M00_AXI/Reg] -force
   assign_bd_address -offset 0x00010000 -range 0x00001000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
-  assign_bd_address -offset 0x00000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI_BYPASS] [get_bd_addr_segs M00_AXI/Reg] -force
+  assign_bd_address -offset 0x00000000 -range 0x00010000 -with_name SEG_axi_bram_ctrl_1_Mem0 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI] [get_bd_addr_segs regfile_ctrl/S_AXI/Mem0] -force
   assign_bd_address -offset 0x00010000 -range 0x00001000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI_BYPASS] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
+  assign_bd_address -offset 0x00000000 -range 0x00010000 -with_name SEG_axi_bram_ctrl_1_Mem0 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI_BYPASS] [get_bd_addr_segs regfile_ctrl/S_AXI/Mem0] -force
 
 
   # Restore current instance
