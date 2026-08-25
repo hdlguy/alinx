@@ -89,6 +89,8 @@ wic ls tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-cort
 ```
 
 ### Copy to SD card to use EDF (busybox) filesystem
+This will install a Red Hat style root filesystem on partition 3. Most commands are replaced with busybox calls to reduce size.
+
 WARNING: change /dev/sdX to the SD card device on your machine. 
 ```
 sudo umount /dev/sdX*
@@ -96,7 +98,10 @@ sudo dd if=tmp/deploy/images/amd-cortexa53-mali-common/edf-linux-disk-image-amd-
 sudo sync
 ```
 
-### Update the Linux boot files without touching the root filesystem (work in progress)
+### Update the Linux boot files without touching the root filesystem
+These commands preserve the root filesystem on partition 3 of the SD card. This is useful if you are running Debian or similar and don't want to lose changes.
+
+WARNING: change /dev/sdX to the SD card device on your machine. 
 ```
 # read the boot files from the ESP partition (1)
 rm -rf ./new_esp_contents/
