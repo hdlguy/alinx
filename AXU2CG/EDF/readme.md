@@ -108,14 +108,14 @@ ROOTFS_PARTUUID="05274f5d-7cda-4d41-a240-822dc97e0158"
 sed -i "s/root=PARTUUID=[^ ]*/root=PARTUUID=${ROOTFS_PARTUUID}/" new_esp_contents/loader/entries/edf-linux.conf
 
 # copy the files to the ESP partition
-udisksctl mount -b /dev/sda1
+udisksctl mount -b /dev/sdX1
 mkdir ./old_esp_contents
 sudo cp -rf /media/pedro/esp/* ./old_esp_contents/ # save the old files
 sudo cp new_esp_contents/boot.bin  /media/pedro/esp/
 sudo cp new_esp_contents/Image     /media/pedro/esp/
 sudo cp new_esp_contents/loader/entries/edf-linux.conf /media/pedro/esp/loader/entries/
 sync
-udisksctl unmount -b /dev/sda1
+udisksctl unmount -b /dev/sdX1
 ```
 
 ### Boot Hardware
