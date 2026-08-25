@@ -56,7 +56,7 @@ unset TEMPLATECONF  ;# This removes some sticky settings.
 source edf-init-build-env
 ```
 
-### parse the sdt files from Vivado to make a custom MACHINE
+### Parse the sdt files from Vivado to make a custom MACHINE
 ```
 gen-machine-conf parse-sdt --machine-name custom-zynqmp-machine -c ./conf --hw-description ../../hw_project_sdt/ ;#(several minutes)
 ```
@@ -75,7 +75,7 @@ cp ../../systemd-bootconf-edf_%.bbappend meta-user/recipes-core/systemd/systemd-
 MACHINE=custom-zynqmp-machine bitbake xilinx-bootbin
 ```
 
-### make the wic disk image file (note different MACHINE)
+### Make the wic disk image file (note different MACHINE)
 ```
 MACHINE=amd-cortexa53-mali-common bitbake edf-linux-disk-image
 ```
