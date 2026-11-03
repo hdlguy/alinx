@@ -2,7 +2,8 @@
 # CHECK VIVADO VERSION
 ##################################################################
 
-set scripts_vivado_version 2026.1
+#set scripts_vivado_version 2026.1
+set scripts_vivado_version 2025.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {

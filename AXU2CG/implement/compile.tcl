@@ -18,6 +18,7 @@ write_debug_probes -force ./results/top.ltx
 report_timing_summary   -file ./results/timing.rpt
 report_utilization      -file ./results/utilization.rpt
 report_io               -file ./results/io.rpt
+write_csv               -force ./results/io.csv
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [get_designs impl_1]
 write_bitstream -bin_file -force ./results/top.bit
