@@ -1,8 +1,8 @@
 
 module top (
-    // 200MHz system clock
-    input   logic       sysclk_p,
-    input   logic       sysclk_n,
+//    // 200MHz system clock
+//    input   logic       sysclk_p,
+//    input   logic       sysclk_n,
     //
     output  logic[1:0]  led,
     //
@@ -57,6 +57,7 @@ module top (
 
     // This register file gives software contol over unit under test (UUT).
     localparam int Nregs = 16;
+    localparam int Naddr = $clog2(Nregs);
     logic [Nregs-1:0][31:0] slv_reg, slv_read;
 
     assign slv_read[0] = 32'hdeadbeef;
@@ -67,16 +68,17 @@ module top (
     assign slv_read[Nregs-1:3] = slv_reg[Nregs-1:3];
 
     mem_regfile #(
-       .Naddr($clog2(Nregs))
+        .Naddr      (Naddr)
     ) regfile_inst (
+        // memory interface
         .clk        (regfile_clk),
-        .addr       (regfile_addr[$clog2(Nregs)+1:2]),
+        .addr       (regfile_addr[Naddr+2-1:2]),
         .wr_data    (regfile_din),
         .rd_data    (regfile_dout),
         .en         (regfile_en),
-        .reset      (regfile_rst),
+        .rst        (regfile_rst),
         .we         (regfile_we),
-        //
+        // register file
         .reg_val    (slv_reg),
         .pul_val    (),
         .read_val   (slv_read)
@@ -84,19 +86,22 @@ module top (
 endmodule
 
 /*
-    mem_regfile #(
-       .Naddr($clog2(Nregs))
-    ) uut (
-        .clk        (regfile_clk),
-        .addr       (regfile_addr[5:2]),
-        .wr_data    (regfile_din),
-        .rd_data    (regfile_dout),
-        .en         (regfile_en),
-        .reset      (regfile_rst),
-        .we         (regfile_we),
-        //
-        .reg_val    (slv_reg),
-        .pul_val    (),
-        .read_val   (slv_read)
-    );
+module mem_regfile #(
+    parameter int                       Naddr = 4,      // register address (not byte address) 
+    parameter int                       Nregs = 2**Naddr,
+    parameter logic[Nregs-1:0][31:0]    init_reg = 0
+) (
+    // interface to bram controller
+    input   logic                   clk,
+    input   logic[Naddr-1:0]        addr,
+    input   logic[31:0]             wr_data,
+    output  logic[31:0]             rd_data,
+    input   logic                   en,
+    input   logic                   reset,
+    input   logic[3:0]              we,
+    // interface to application
+    output  logic[Nregs-1:0][31:0]  reg_val,    // current register value
+    output  logic[Nregs-1:0][31:0]  pul_val,    // single cycle pulse for any bits written as 1. (self-clearing)
+    input   logic[Nregs-1:0][31:0]  read_val    // array of values that can be read back.
+);
 */
